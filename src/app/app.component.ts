@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'VuelaVG1C1fFront';
+  showFiller = false;
 }
