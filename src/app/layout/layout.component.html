@@ -15,10 +15,10 @@
     </button>
     <span>VUELA V</span>
     <span class="example-spacer"></span>
-    <button mat-stroked-button style="margin-right: 0.5%">INICIO</button>
+    <button mat-stroked-button style="margin-right: 0.5%">VUELOS</button>
     <button mat-stroked-button  style="margin-left: 0.5%">PROMOCIONES</button>
     <span class="example-spacer"></span>
-    <button mat-flat-button color="accent">INICAR SESIONS</button>
+    <button mat-flat-button color="accent" [routerLink]="['/inicio/inicarsesion']">INICAR SESION</button>
   </mat-toolbar>
   <mat-drawer #drawer class="example-sidenav" mode="over" >
     <p>Auto-resizing sidenav</p>
@@ -28,7 +28,7 @@
     </button>
   </mat-drawer>
   <div class="example-sidenav-content">
-
+    <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>
 </body>

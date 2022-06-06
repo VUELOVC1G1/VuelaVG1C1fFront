@@ -1,0 +1,32 @@
+.example-card {
+  text-align: center;
+  max-width: 50%;
+  margin: 2% auto;
+  background: #2196f3;
+}
+mat-grid-tile {
+  background:#fb8c00;
+  border-radius: 100%;
+}
+.imagem-mat{
+  color:  white;
+  font-size: 50px;
+  text-align: revert;
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
+}
+h4{
+  color: white;
+  text-align: revert;
+  font-family: Roboto;
+  font-size: 25px;
+}
+
+.example-card1 {
+  text-align: center;
+  max-width: 25%;
+  margin: 2% auto;
+
+}
+

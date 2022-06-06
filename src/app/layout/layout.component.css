@@ -1,15 +1,19 @@
+
 .example-spacer {
   flex: 1 1 auto;
 }
 .example-container {
+  background-image: url("src/assets/icons/fondo.jpg");
+  background-size: cover;
   min-height: 100vh;
   height: auto;
   margin: 0;
 }
 
 .example-sidenav-content {
-  display: flex;
-  height: 100%;
+  width: 100%;
+  height: auto;
+  margin: 0;
   align-items: center;
   justify-content: center;
 }
