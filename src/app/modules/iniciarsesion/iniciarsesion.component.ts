@@ -3,6 +3,8 @@ import {Usuario} from "../../models/usuario";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UsuarioService} from "../../service/usuario.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {EmpleadoService} from "../../service/empleado.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-iniciarsesion',
@@ -13,7 +15,10 @@ export class IniciarsesionComponent implements OnInit {
   hide = true;
   public rol?:String="ND";
 
-  constructor(private usuarioService:UsuarioService, private _snackBar: MatSnackBar) { }
+  constructor(private usuarioService:UsuarioService,
+              private _snackBar: MatSnackBar,
+              private empleadoService:EmpleadoService,
+              private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +30,18 @@ export class IniciarsesionComponent implements OnInit {
 
   iniciarSesionEmplado(){
     this.usuarioService.iniciarUsuario(this.profileFormUsuario.getRawValue()).subscribe(value => {
-      if(value.rol=='EN'){
+      if(value.rol=='EMPLEADO'){
+        this.empleadoService.getEmpleado(value.id).subscribe(value1 => {
+          sessionStorage.clear;
+          sessionStorage.setItem('user', JSON.stringify(value1));
+          this.router.navigate(['/inicio']).then(() => {
+            window.location.reload();
+          });
+        },error => {
+          this._snackBar.open(error.error.message, "",{
+            duration: 1 * 2000,
+          });
+        })
 
       }else {
         this._snackBar.open("Usuario no existe, como empleado", "",{
@@ -33,7 +49,6 @@ export class IniciarsesionComponent implements OnInit {
         });
       }
     },error => {
-      console.log()
       this._snackBar.open(error.error.message, "",{
         duration: 1 * 2000,
       });

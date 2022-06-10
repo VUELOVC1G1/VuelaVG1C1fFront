@@ -1,4 +1,5 @@
 import {Usuario} from "./usuario";
+import {Cargo} from "./cargo";
 
 export class Empleado {
   id?:Number;
@@ -8,4 +9,6 @@ export class Empleado {
   apellido?:String;
   fechaNacimiento?:Date;
   usuario?:Usuario;
+  cargoDto?:Cargo;
+  cargo?:Cargo;
 }

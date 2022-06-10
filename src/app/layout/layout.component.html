@@ -13,19 +13,49 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" color="warn" (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>VUELA V</span>
+    <img src="assets/icons/Vuela_v1.png" >
     <span class="example-spacer"></span>
     <button mat-stroked-button style="margin-right: 0.5%">VUELOS</button>
     <button mat-stroked-button  style="margin-left: 0.5%">PROMOCIONES</button>
     <span class="example-spacer"></span>
-    <button mat-flat-button color="accent" [routerLink]="['/inicio/inicarsesion']">INICAR SESION</button>
+    <button *ngIf="sesion" mat-flat-button color="accent" [routerLink]="['/inicio/inicarsesion']">INICAR SESION</button>
+    <button *ngIf="emplados.cargoDto?.siglas=='AD'" mat-button [matMenuTriggerFor]="menu"> {{emplados.nombre}} {{emplados.apellido}} </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
+    </mat-menu>
   </mat-toolbar>
   <mat-drawer #drawer class="example-sidenav" mode="over" >
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button color="accent"  (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
+    <div *ngIf="emplados.cargoDto?.siglas=='AD'">
+      <h3>ADMINISTRACIÓN</h3>
+      <strong>EMPLEADOS</strong><br>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/nuevoempleado'" (click)="drawer.toggle()">NUEVO EMPLADO</button><br>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/verempledos'" (click)="drawer.toggle()">VER EMPLADO</button>
+      <div style="height: 9px; width: 100%; background-color:#f57c00"></div>
+      <strong>AVIONES</strong><br>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/nuevoavion'" (click)="drawer.toggle()">NUEVO AVION</button><br>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/veraviones'" (click)="drawer.toggle()">VER AVIONES</button>
+      <mat-divider></mat-divider>
+      <strong>RUTAS</strong><br>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/vuevaruta'" (click)="drawer.toggle()">NUEVA RUTA</button><br>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/verrutas'" (click)="drawer.toggle()">VER RUTAS</button>
+      <mat-divider></mat-divider>
+      <div style="height: 9px; width: 100%; background-color:#f57c00"></div>
+      <strong>PROMOCIONES</strong><br>
+      <button mat-flat-button class="mat-boton">NUEVO AVION</button><br>
+      <button mat-flat-button class="mat-boton">VER AVIONES</button>
+      <mat-divider></mat-divider>
+      <div style="height: 9px; width: 100%; background-color:#f57c00"></div>
+      <strong>VUELOS</strong><br>
+      <button mat-flat-button class="mat-boton">NUEVO AVION</button><br>
+      <button mat-flat-button class="mat-boton">VER AVIONES</button>
+      <mat-divider></mat-divider>
+      <div style="height: 9px; width: 100%; background-color:#f57c00"></div>
+      <strong>REPORTES</strong><br>
+      <button mat-flat-button class="mat-boton">FACTURACIÓN</button><br>
+      <button mat-flat-button class="mat-boton">VUELOS</button>
+      <mat-divider></mat-divider>
+    </div>
+
   </mat-drawer>
   <div class="example-sidenav-content">
     <router-outlet></router-outlet>
