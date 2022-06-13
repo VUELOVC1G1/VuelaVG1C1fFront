@@ -19,6 +19,13 @@ import { VervuelosComponent } from './modules/vervuelos/vervuelos.component';
 import { EditaravionesComponent } from './modules/editaraviones/editaraviones.component';
 import { NuevarutaComponent } from './modules/nuevaruta/nuevaruta.component';
 import { VerrutasComponent } from './modules/verrutas/verrutas.component';
+import { NuevohorarioComponent } from './modules/nuevohorario/nuevohorario.component';
+import { EditarrutasComponent } from './modules/editarrutas/editarrutas.component';
+import { VerhoariosComponent } from './modules/verhoarios/verhoarios.component';
+import { EditarhorarioComponent } from './modules/editarhorario/editarhorario.component';
+import { NuevovueloComponent } from './modules/nuevovuelo/nuevovuelo.component';
+import { VeravionesComponent } from './modules/veraviones/veraviones.component';
+import { EditarvueloComponent } from './modules/editarvuelo/editarvuelo.component';
 
 
 const routes: Routes = [
@@ -34,6 +41,13 @@ const routes: Routes = [
   { path: 'inicio/ediatraviones/:id', component: EditaravionesComponent},
   { path: 'inicio/vuevaruta', component: NuevarutaComponent},
   { path: 'inicio/verrutas', component: VerrutasComponent},
+  { path: 'inicio/editarrutas/:id', component: EditarrutasComponent},
+  { path: 'inicio/vuevohorario', component: NuevohorarioComponent},
+  { path: 'inicio/verhoraios', component: VerhoariosComponent},
+  { path: 'inicio/editarhoraios/:id', component: EditarhorarioComponent},
+  { path: 'inicio/nuevovuelo', component: NuevovueloComponent},
+  { path: 'inicio/vervuelos', component: VeravionesComponent},
+  { path: 'inicio/editarvuelos/:id', component: EditarvueloComponent},
 ]
 
 @NgModule({
@@ -51,6 +65,13 @@ const routes: Routes = [
     EditaravionesComponent,
     NuevarutaComponent,
     VerrutasComponent,
+    NuevohorarioComponent,
+    EditarrutasComponent,
+    VerhoariosComponent,
+    EditarhorarioComponent,
+    NuevovueloComponent,
+    VeravionesComponent,
+    EditarvueloComponent,
   ],
   imports: [
     BrowserModule,

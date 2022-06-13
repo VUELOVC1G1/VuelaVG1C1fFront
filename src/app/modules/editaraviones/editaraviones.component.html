@@ -1,0 +1,106 @@
+<mat-stepper [linear]="isLinear" #stepper class="example-card">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Datos del avión</ng-template>
+      <mat-card>
+        <mat-card-content>
+          <mat-form-field appearance="outline" style="width: 49%; margin-right: 1%">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 49%">
+            <mat-label>Marca</mat-label>
+            <input matInput formControlName="marca" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 49%;margin-right: 1%">
+            <mat-label>Modelo</mat-label>
+            <input matInput formControlName="modelo" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 49%">
+            <mat-label>Placa</mat-label>
+            <input matInput formControlName="placa" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 49%;margin-right: 1%">
+            <mat-label>WIFI</mat-label>
+            <mat-select formControlName="wifi">
+              <mat-option [value]="'true'">SI</mat-option>
+              <mat-option [value]="'false'">NO</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 49%">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="estado">
+              <mat-option [value]="true">ACTIVO</mat-option>
+              <mat-option [value]="false">INACATUVO</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-flat-button color="accent" matStepperNext>Siguente</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" label="ASIENTOS Y DIVICIONES">
+    <form [formGroup]="secondFormGroup">
+      <mat-card>
+        <div style="width: 30%; margin: 0 auto">
+          <strong>CLASE PREMIUM</strong>
+          <mat-grid-list cols="2" rowHeight="2:1">
+            <div *ngFor="let asiento of asientos;let indice=index">
+              <mat-grid-tile class="clase1" *ngIf="asiento.tipoAsiento?.nombre=='CLASE PREMIUM'">{{indice+1}}</mat-grid-tile>
+            </div>
+          </mat-grid-list>
+          <mat-divider inset></mat-divider>
+          <strong>CLASE BUSISTES</strong>
+          <mat-grid-list cols="3" rowHeight="1:1">
+            <div *ngFor="let asiento of asientos;let indice=index">
+              <mat-grid-tile class="clase2" *ngIf="asiento.tipoAsiento?.nombre=='CLASE BUSINESS'">{{indice}}</mat-grid-tile>
+            </div>
+          </mat-grid-list>
+          <mat-divider inset></mat-divider>
+          <strong>CLASE ECONIMICA</strong>
+          <mat-grid-list cols="4" rowHeight="2:1">
+            <div *ngFor="let asiento of asientos;let indice=index">
+              <mat-grid-tile *ngIf="asiento.tipoAsiento?.nombre=='CLASE ECONOMICA'">{{indice}}</mat-grid-tile>
+            </div>
+          </mat-grid-list>
+        </div>
+        <mat-card-actions>
+          <button mat-flat-button color="warn" matStepperPrevious>Atras</button>
+          <button mat-flat-button color="accent" matStepperNext style="margin-left: 2px">Siguente</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" label="COSTOS Y GUARDAR">
+    <form [formGroup]="thirdFormGroup">
+      <mat-card>
+        <h3>INGRESE EL COSTO DE CADA CLASE:</h3>
+        <mat-form-field appearance="outline" floatLabel="always" style="width: 100%">
+          <mat-label>Clase premium</mat-label>
+          <input matInput type="number" class="example-right-align" placeholder="0" [min]="-1" formControlName="primera" [(ngModel)]="primera">
+          <span matPrefix>$&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always" style="width: 100%">
+          <mat-label>Clase bussinies</mat-label>
+          <input matInput type="number" class="example-right-align" placeholder="0" [min]="-1" formControlName="segunda" [(ngModel)]="segunda">
+          <span matPrefix>$&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always" style="width: 100%">
+          <mat-label>Clase economica</mat-label>
+          <input matInput type="number" class="example-right-align" placeholder="0" [min]="-1" formControlName="tercera" [(ngModel)]="tercera">
+          <span matPrefix>$&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+        <mat-card-actions>
+          <button mat-flat-button color="warn" matStepperPrevious>Atras</button>
+          <button mat-flat-button color="primary" matStepperNext style="margin-left: 2px" (click)="actualizarAvion()" [disabled]="thirdFormGroup.invalid">GUARDAR</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </mat-step>
+</mat-stepper>
+

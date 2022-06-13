@@ -1,0 +1,244 @@
+<mat-stepper [linear]="isLinear" #stepper class="example-card">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Datos del avión</ng-template>
+      <mat-card>
+        <mat-card-content>
+          <mat-form-field appearance="outline" style="width: 49%; margin-right: 1%">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 49%">
+            <mat-label>Marca</mat-label>
+            <input matInput formControlName="marca" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 49%;margin-right: 1%">
+            <mat-label>Modelo</mat-label>
+            <input matInput formControlName="modelo" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 49%">
+            <mat-label>Placa</mat-label>
+            <input matInput formControlName="placa" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 49%;margin-right: 1%">
+            <mat-label>WIFI</mat-label>
+            <mat-select formControlName="wifi">
+              <mat-option [value]="true">SI</mat-option>
+              <mat-option [value]="false">NO</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 49%">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="estado">
+              <mat-option [value]="true">ACTIVO</mat-option>
+              <mat-option [value]="false">INACATUVO</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-flat-button color="accent" matStepperNext>Siguente</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" label="ASIENTOS Y DIVICIONES">
+    <form [formGroup]="secondFormGroup">
+      <h3>SELECCIONE LOS ASIENTOS CON SUS DIVIONES DEL AVION:</h3>
+      <mat-card>
+        <section class="example-section">
+          <mat-radio-group formControlName="secondCtrl" [(ngModel)]="tipo">
+              <mat-radio-button class="example-margin" value="TIPO1">TIPO 1</mat-radio-button>
+              <div></div>
+                <strong>CLASE PREMIUM</strong>
+                <mat-grid-list cols="2" rowHeight="2:1">
+                  <mat-grid-tile class="clase1">1</mat-grid-tile>
+                  <mat-grid-tile class="clase1">2</mat-grid-tile>
+                  <mat-grid-tile class="clase1">3</mat-grid-tile>
+                  <mat-grid-tile class="clase1">4</mat-grid-tile>
+                </mat-grid-list>
+                <mat-divider inset></mat-divider>
+                <strong>CLASE BUSISTES</strong>
+                <mat-grid-list cols="3" rowHeight="1:1">
+                  <mat-grid-tile class="clase2">1</mat-grid-tile>
+                  <mat-grid-tile class="clase2">2</mat-grid-tile>
+                  <mat-grid-tile class="clase2">3</mat-grid-tile>
+                  <mat-grid-tile class="clase2">4</mat-grid-tile>
+                  <mat-grid-tile class="clase2">5</mat-grid-tile>
+                  <mat-grid-tile class="clase2">6</mat-grid-tile>
+                </mat-grid-list>
+                <mat-divider inset></mat-divider>
+                <strong>CLASE ECONIMICA</strong>
+                <mat-grid-list cols="4" rowHeight="2:1">
+                  <mat-grid-tile>1</mat-grid-tile>
+                  <mat-grid-tile>2</mat-grid-tile>
+                  <mat-grid-tile>3</mat-grid-tile>
+                  <mat-grid-tile>4</mat-grid-tile>
+                  <mat-grid-tile>5</mat-grid-tile>
+                  <mat-grid-tile>6</mat-grid-tile>
+                  <mat-grid-tile>7</mat-grid-tile>
+                  <mat-grid-tile>8</mat-grid-tile>
+                  <mat-grid-tile>9</mat-grid-tile>
+                  <mat-grid-tile>10</mat-grid-tile>
+                  <mat-grid-tile>11</mat-grid-tile>
+                  <mat-grid-tile>12</mat-grid-tile>
+                  <mat-grid-tile>13</mat-grid-tile>
+                  <mat-grid-tile>14</mat-grid-tile>
+                  <mat-grid-tile>15</mat-grid-tile>
+                  <mat-grid-tile>16</mat-grid-tile>
+                  <mat-grid-tile>17</mat-grid-tile>
+                  <mat-grid-tile>18</mat-grid-tile>
+                  <mat-grid-tile>19</mat-grid-tile>
+                  <mat-grid-tile>20</mat-grid-tile>
+                  <mat-grid-tile>21</mat-grid-tile>
+                  <mat-grid-tile>22</mat-grid-tile>
+                  <mat-grid-tile>23</mat-grid-tile>
+                  <mat-grid-tile>24</mat-grid-tile>
+                </mat-grid-list>
+              <mat-radio-button class="example-margin" value="TIPO2">TIPO 2</mat-radio-button>
+              <div></div>
+                <strong>CLASE PREMIUM</strong>
+                <mat-grid-list cols="2" rowHeight="2:1">
+                  <mat-grid-tile class="clase1">1</mat-grid-tile>
+                  <mat-grid-tile class="clase1">2</mat-grid-tile>
+                  <mat-grid-tile class="clase1">3</mat-grid-tile>
+                  <mat-grid-tile class="clase1">4</mat-grid-tile>
+                </mat-grid-list>
+                <mat-divider inset></mat-divider>
+                <strong>CLASE BUSISTES</strong>
+                <mat-grid-list cols="3" rowHeight="1:1">
+                  <mat-grid-tile class="clase2">1</mat-grid-tile>
+                  <mat-grid-tile class="clase2">2</mat-grid-tile>
+                  <mat-grid-tile class="clase2">3</mat-grid-tile>
+                </mat-grid-list>
+                <mat-divider inset></mat-divider>
+                <strong>CLASE ECONIMICA</strong>
+                <mat-grid-list cols="4" rowHeight="2:1">
+                  <mat-grid-tile>1</mat-grid-tile>
+                  <mat-grid-tile>2</mat-grid-tile>
+                  <mat-grid-tile>3</mat-grid-tile>
+                  <mat-grid-tile>4</mat-grid-tile>
+                  <mat-grid-tile>5</mat-grid-tile>
+                  <mat-grid-tile>6</mat-grid-tile>
+                  <mat-grid-tile>7</mat-grid-tile>
+                  <mat-grid-tile>8</mat-grid-tile>
+                  <mat-grid-tile>9</mat-grid-tile>
+                  <mat-grid-tile>10</mat-grid-tile>
+                  <mat-grid-tile>11</mat-grid-tile>
+                  <mat-grid-tile>12</mat-grid-tile>
+                  <mat-grid-tile>13</mat-grid-tile>
+                  <mat-grid-tile>14</mat-grid-tile>
+                  <mat-grid-tile>15</mat-grid-tile>
+                  <mat-grid-tile>16</mat-grid-tile>
+                  <mat-grid-tile>17</mat-grid-tile>
+                  <mat-grid-tile>18</mat-grid-tile>
+                  <mat-grid-tile>19</mat-grid-tile>
+                  <mat-grid-tile>20</mat-grid-tile>
+                  <mat-grid-tile>21</mat-grid-tile>
+                  <mat-grid-tile>22</mat-grid-tile>
+                  <mat-grid-tile>23</mat-grid-tile>
+                  <mat-grid-tile>24</mat-grid-tile>
+                  <mat-grid-tile>25</mat-grid-tile>
+                  <mat-grid-tile>26</mat-grid-tile>
+                  <mat-grid-tile>27</mat-grid-tile>
+                  <mat-grid-tile>28</mat-grid-tile>
+                  <mat-grid-tile>29</mat-grid-tile>
+                  <mat-grid-tile>30</mat-grid-tile>
+                  <mat-grid-tile>31</mat-grid-tile>
+                  <mat-grid-tile>32</mat-grid-tile>
+                  <mat-grid-tile>34</mat-grid-tile>
+                  <mat-grid-tile>35</mat-grid-tile>
+                  <mat-grid-tile>36</mat-grid-tile>
+                  <mat-grid-tile>37</mat-grid-tile>
+                </mat-grid-list>
+              <mat-radio-button class="example-margin" value="TIPO3">TIPO 3</mat-radio-button>
+              <div></div>
+                <strong>CLASE PREMIUM</strong>
+                <mat-grid-list cols="2" rowHeight="2:1">
+                  <mat-grid-tile class="clase1">1</mat-grid-tile>
+                  <mat-grid-tile class="clase1">2</mat-grid-tile>
+                  <mat-grid-tile class="clase1">3</mat-grid-tile>
+                  <mat-grid-tile class="clase1">4</mat-grid-tile>
+                  <mat-grid-tile class="clase1">5</mat-grid-tile>
+                  <mat-grid-tile class="clase1">6</mat-grid-tile>
+                </mat-grid-list>
+                <mat-divider inset></mat-divider>
+                <strong>CLASE BUSISTES</strong>
+                <mat-grid-list cols="3" rowHeight="1:1">
+                  <mat-grid-tile class="clase2">1</mat-grid-tile>
+                  <mat-grid-tile class="clase2">2</mat-grid-tile>
+                  <mat-grid-tile class="clase2">3</mat-grid-tile>
+                  <mat-grid-tile class="clase2">4</mat-grid-tile>
+                  <mat-grid-tile class="clase2">5</mat-grid-tile>
+                  <mat-grid-tile class="clase2">6</mat-grid-tile>
+                </mat-grid-list>
+                <mat-divider inset></mat-divider>
+                <strong>CLASE ECONIMICA</strong>
+                <mat-grid-list cols="4" rowHeight="2:1">
+                  <mat-grid-tile>1</mat-grid-tile>
+                  <mat-grid-tile>2</mat-grid-tile>
+                  <mat-grid-tile>3</mat-grid-tile>
+                  <mat-grid-tile>4</mat-grid-tile>
+                  <mat-grid-tile>5</mat-grid-tile>
+                  <mat-grid-tile>6</mat-grid-tile>
+                  <mat-grid-tile>7</mat-grid-tile>
+                  <mat-grid-tile>8</mat-grid-tile>
+                  <mat-grid-tile>9</mat-grid-tile>
+                  <mat-grid-tile>10</mat-grid-tile>
+                  <mat-grid-tile>11</mat-grid-tile>
+                  <mat-grid-tile>12</mat-grid-tile>
+                  <mat-grid-tile>13</mat-grid-tile>
+                  <mat-grid-tile>14</mat-grid-tile>
+                  <mat-grid-tile>15</mat-grid-tile>
+                  <mat-grid-tile>16</mat-grid-tile>
+                  <mat-grid-tile>17</mat-grid-tile>
+                  <mat-grid-tile>18</mat-grid-tile>
+                  <mat-grid-tile>19</mat-grid-tile>
+                  <mat-grid-tile>20</mat-grid-tile>
+                  <mat-grid-tile>21</mat-grid-tile>
+                  <mat-grid-tile>22</mat-grid-tile>
+                  <mat-grid-tile>23</mat-grid-tile>
+                  <mat-grid-tile>24</mat-grid-tile>
+                  <mat-grid-tile>26</mat-grid-tile>
+                  <mat-grid-tile>27</mat-grid-tile>
+                  <mat-grid-tile>28</mat-grid-tile>
+                  <mat-grid-tile>29</mat-grid-tile>
+                </mat-grid-list>
+          </mat-radio-group>
+        </section>
+        <mat-card-actions>
+          <button mat-flat-button color="warn" matStepperPrevious>Atras</button>
+          <button mat-flat-button color="accent" matStepperNext style="margin-left: 2px">Siguente</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" label="COSTOS Y GUARDAR">
+    <form [formGroup]="thirdFormGroup">
+      <mat-card>
+        <h3>INGRESE EL COSTO DE CADA CLASE:</h3>
+        <mat-form-field appearance="outline" floatLabel="always" style="width: 100%">
+          <mat-label>Clase premium</mat-label>
+          <input matInput type="number" class="example-right-align" placeholder="0" [min]="-1" formControlName="primera">
+          <span matPrefix>$&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always" style="width: 100%">
+          <mat-label>Clase bussinies</mat-label>
+          <input matInput type="number" class="example-right-align" placeholder="0" [min]="-1" formControlName="segunda">
+          <span matPrefix>$&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always" style="width: 100%">
+          <mat-label>Clase economica</mat-label>
+          <input matInput type="number" class="example-right-align" placeholder="0" [min]="-1" formControlName="tercera">
+          <span matPrefix>$&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+        <mat-card-actions>
+          <button mat-flat-button color="warn" matStepperPrevious>Atras</button>
+          <button mat-flat-button color="primary" matStepperNext style="margin-left: 2px" (click)="guardarAvion()" [disabled]="thirdFormGroup.invalid">GUARDAR</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </mat-step>
+</mat-stepper>

@@ -5,6 +5,7 @@ import {UsuarioService} from "../../service/usuario.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {EmpleadoService} from "../../service/empleado.service";
 import {Router} from "@angular/router";
+import {UsuariocharterService} from "../../service/usuariocharter.service";
 
 @Component({
   selector: 'app-iniciarsesion',
@@ -18,7 +19,8 @@ export class IniciarsesionComponent implements OnInit {
   constructor(private usuarioService:UsuarioService,
               private _snackBar: MatSnackBar,
               private empleadoService:EmpleadoService,
-              private router:Router) { }
+              private router:Router,
+              private usuariocharterService:UsuariocharterService) { }
 
   ngOnInit(): void {
   }
@@ -74,8 +76,12 @@ export class IniciarsesionComponent implements OnInit {
 
   iniciarSesionCherter(){
     this.usuarioService.iniciarUsuario(this.profileFormUsuario.getRawValue()).subscribe(value => {
-      if(value.rol=='CH'){
-
+      if(value.rol=='CHARTER'){
+        sessionStorage.clear;
+        sessionStorage.setItem('user', JSON.stringify(value));
+        this.router.navigate(['/inicio']).then(() => {
+          window.location.reload();
+        });
       }else {
         this._snackBar.open("Usuario no existe, como empleado", "",{
           duration: 1 * 2000,

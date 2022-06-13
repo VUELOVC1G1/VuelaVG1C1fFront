@@ -1,0 +1,48 @@
+<div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>VUEVA RUTA</mat-card-title>
+      <mat-card-subtitle>PROVINCIAS DE DEL ECUADOR</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <h3>INGRESE LA RUYTA ENTRE PROVINCIAS DEL ECUADOR</h3>
+      <form class="example-form" [formGroup]="firstFormGroup">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>DESDE</mat-label>
+          <input type="text"
+                 placeholder="Pick one"
+                 aria-label="Number"
+                 matInput
+                 formControlName="origen"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>FINAL</mat-label>
+          <input type="text"
+                 placeholder="Pick one"
+                 aria-label="Number"
+                 matInput
+                 formControlName="destino"
+                 [matAutocomplete]="auto1">
+          <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions1 | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>OBSERVACIONES</mat-label>
+          <input matInput  formControlName="descripcion">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="accent" (click)="guardarRutas()" [disabled]="firstFormGroup.invalid">GUARDAR</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

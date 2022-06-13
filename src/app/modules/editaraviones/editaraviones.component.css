@@ -1,0 +1,32 @@
+.example-card {
+  margin: 1% auto;
+  max-width: 40%;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.clase1 {
+  background: gold;
+}
+.clase2{
+  background: greenyellow;
+}
+mat-grid-tile{
+  background: #607d8b;
+}
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
