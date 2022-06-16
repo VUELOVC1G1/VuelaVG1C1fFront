@@ -12,6 +12,7 @@ import {UsuariocharterService} from "../../service/usuariocharter.service";
 import {Usuariocharter} from "../../models/usuariocharter";
 import {VueloService} from "../../service/vuelo.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nuevovuelo',
@@ -52,7 +53,8 @@ export class NuevovueloComponent implements OnInit {
               private tiposdevueloService:TiposdevueloService,
               private usuariocharterService:UsuariocharterService,
               private vueloService:VueloService,
-              private _snackBar: MatSnackBar,) {}
+              private _snackBar: MatSnackBar,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.avionService.getAvionAll().subscribe(value => {
@@ -79,7 +81,6 @@ export class NuevovueloComponent implements OnInit {
     var vuelo:Vuelo= new Vuelo();
     vuelo.avionid=this.firstFormGroup.getRawValue().avionid
     vuelo.tipoVueloRequest=this.firstFormGroup.getRawValue().tipoVueloRequest
-    vuelo.ucharterResponse=this.firstFormGroup.getRawValue().ucharterResponse
     vuelo.fechaVuelo=this.firstFormGroup.getRawValue().fechaVuelo
 
     vuelo.rutaRequest=this.secondFormGroup.getRawValue().rutaRequest
@@ -93,13 +94,14 @@ export class NuevovueloComponent implements OnInit {
 
     console.log(vuelo.avionid)
 
-    if(vuelo.tipoVueloRequest?.nombre=="COMERCIAL"){
-      vuelo.ucharterResponse= new Usuariocharter();
+    if(vuelo.tipoVueloRequest?.nombre!="COMERCIAL"){
+      vuelo.ucharterResponse=this.firstFormGroup.getRawValue().ucharterResponse
     }
     this.vueloService.postVuelo(vuelo).subscribe(value => {
       this._snackBar.open("Vuelo creado correctamente", "", {
         duration: 1 * 2000,
       });
+      this.router.navigate(["/inicio/vervuelos"])
     }, error => {
       this._snackBar.open(error.error.message, "", {
         duration: 1 * 2000,

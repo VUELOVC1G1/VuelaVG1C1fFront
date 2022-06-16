@@ -21,7 +21,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline" style="width: 100%">
           <mat-label>Cargo</mat-label>
-          <mat-select formControlName="cargo" [compareWith]="objectComparisonFunction">>
+          <mat-select formControlName="cargo" [compareWith]="objectComparisonFunction">
             <mat-option *ngFor="let cargoDto of cargos" [value]="cargoDto">{{cargoDto.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>

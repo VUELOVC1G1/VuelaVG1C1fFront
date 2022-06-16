@@ -9,13 +9,13 @@ export class Vuelo {
   precio?:String;
   estado?:boolean;
   fechaCreacion?:Date;
-  fechaVuelo?:String;
+  fechaVuelo?:Date;
   rutaRequest?:Rutas;
   ucharterResponse?:Usuariocharter;
   tipoVueloRequest?:TiposVuelo;
   horarioRequest?:Horario;
   avionid?:Number;
-  avionResponse?:Vuelo;
+  avionResponse?:Avion;
   tipoVueloResponse?:TiposVuelo;
   rutaResponse?:Rutas;
   horarioResponse?:Horario;

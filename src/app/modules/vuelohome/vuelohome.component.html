@@ -1,0 +1,55 @@
+<div>
+  <mat-card class="example-card">
+    <mat-card-content>
+      <h3>BUSCAR VUELOS</h3>
+      <form class="example-form" [formGroup]="firstFormGroup">
+        <mat-grid-list cols="4" rowHeight="2:1.5">
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width" appearance="outline" style="width: 100%">
+              <mat-label>Origen:</mat-label>
+              <input type="text"
+                     placeholder="Pick one"
+                     aria-label="Number"
+                     matInput
+                     formControlName="origen"
+                     [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <button mat-raised-button color="primary" (click)="cambiarbusqueda()"><mat-icon>compare_arrows</mat-icon></button>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width" appearance="outline" style="width: 100%">
+              <mat-label>Destino:</mat-label>
+              <input type="text"
+                     placeholder="Pick one"
+                     aria-label="Number"
+                     matInput
+                     formControlName="destino"
+                     [matAutocomplete]="auto1">
+              <mat-autocomplete #auto1="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions1 | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <button mat-raised-button color="accent" (click)="buscarvuelo()"><mat-icon>search</mat-icon></button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+      <h4>Resultados:</h4>
+      <h2 *ngIf="vuelos.length==0">Sin resultados</h2>
+      <mat-card *ngFor="let vuelo of vuelos" STYLE="text-align: center;margin-top: 2px; background-color: #607d8b">
+        <h2> <mat-icon>flight_takeoff</mat-icon> {{vuelo.rutaResponse?.origen}}-{{vuelo.rutaResponse?.destino}} <mat-icon>flight_land</mat-icon></h2>
+        ||<strong> Fecha de salida: {{vuelo.fechaVuelo}}</strong>||<button mat-flat-button color="warn"><mat-icon>credit_card</mat-icon>COMPRAR BOLETO</button>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,29 @@
+<mat-card class="example-card">
+  <form [formGroup]="firstFormGroup">
+    <mat-card-header>
+      <mat-card-title>NUEVO DESCUENTO</mat-card-title>
+      <mat-card-subtitle>Descuento</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>Seleccione el Avión</mat-label>
+        <mat-select formControlName="vueloid">
+          <mat-option *ngFor="let vuelo of vuelos" [value]="vuelo.id">Fecha despega: {{vuelo.fechaVuelo}} Precio:{{vuelo.precio}} {{vuelo.tipoVueloResponse?.nombre}}  Destino: {{vuelo.rutaResponse?.origen}} - {{vuelo.rutaResponse?.destino}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>Porcentaje de descuanto</mat-label>
+        <input matInput type="number" placeholder="Ex. 12"  min="1" max="100" formControlName="descuento">
+        <span matSuffix>%</span>
+        <mat-error>Min size: 10px</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>Descripción:</mat-label>
+        <input matInput formControlName="descripcion">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" (click)="actualizarPromocion()" [disabled]="firstFormGroup.invalid">GUARDAR</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

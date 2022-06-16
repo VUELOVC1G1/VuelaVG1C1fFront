@@ -45,8 +45,8 @@ export class EditarempleadoadComponent implements OnInit {
     })
   }
 
-  public objectComparisonFunction = function( cargoDto:Cargo, value: { id: Number | undefined; } ) : boolean {
-    return cargoDto.id === value.id;
+  public objectComparisonFunction = function( option: { id: any; }, value: { id: any; } ) : boolean {
+    return option.id === value.id;
   }
 
   profileFormUsuario = new FormGroup({

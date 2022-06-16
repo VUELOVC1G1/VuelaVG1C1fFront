@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HorarioService} from "../../service/horario.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Vuelo} from "../../models/vuelo";
 
 @Component({
   selector: 'app-editarhorario',
@@ -11,6 +12,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class EditarhorarioComponent implements OnInit {
 
+  vuelos:Vuelo[]=[];
 
   firstFormGroup = new FormGroup({
     id: new FormControl(''),

@@ -26,6 +26,11 @@ import { EditarhorarioComponent } from './modules/editarhorario/editarhorario.co
 import { NuevovueloComponent } from './modules/nuevovuelo/nuevovuelo.component';
 import { VeravionesComponent } from './modules/veraviones/veraviones.component';
 import { EditarvueloComponent } from './modules/editarvuelo/editarvuelo.component';
+import { NuevapromocionComponent } from './modules/nuevapromocion/nuevapromocion.component';
+import { VerpromocionesComponent } from './modules/verpromociones/verpromociones.component';
+import { EditarpromocionComponent } from './modules/editarpromocion/editarpromocion.component';
+import { VerprocioneshomeComponent } from './modules/verprocioneshome/verprocioneshome.component';
+import { VuelohomeComponent } from './modules/vuelohome/vuelohome.component';
 
 
 const routes: Routes = [
@@ -48,6 +53,12 @@ const routes: Routes = [
   { path: 'inicio/nuevovuelo', component: NuevovueloComponent},
   { path: 'inicio/vervuelos', component: VeravionesComponent},
   { path: 'inicio/editarvuelos/:id', component: EditarvueloComponent},
+  { path: 'inicio/vuevopromocion', component:NuevapromocionComponent},
+  { path: 'inicio/verpromociones', component:VerpromocionesComponent},
+  { path: 'inicio/editarpromociones/:id', component: EditarpromocionComponent},
+  //HOME
+  { path: 'inicio/promociones', component: VerprocioneshomeComponent},
+  { path: 'inicio/vuelos', component: VuelohomeComponent},
 ]
 
 @NgModule({
@@ -72,6 +83,11 @@ const routes: Routes = [
     NuevovueloComponent,
     VeravionesComponent,
     EditarvueloComponent,
+    NuevapromocionComponent,
+    VerpromocionesComponent,
+    EditarpromocionComponent,
+    VerprocioneshomeComponent,
+    VuelohomeComponent,
   ],
   imports: [
     BrowserModule,

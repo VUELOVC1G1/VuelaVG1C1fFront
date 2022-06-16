@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {Avion} from "../models/avion";
 import {Vuelo} from "../models/vuelo";
+import {Rutas} from "../models/rutas";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,9 @@ export class VueloService {
 
   getVueloAll():Observable<Vuelo[]>{
     return this.http.get(this.urlEndPoint).pipe(map(Response => Response as Vuelo[]))
+  }
+  getVuelo(id?: Number):Observable<Vuelo>{
+    return this.http.get(this.urlEndPoint+"/"+id);
   }
 
   postVuelo(vueloRequest:Vuelo):Observable<Vuelo>{

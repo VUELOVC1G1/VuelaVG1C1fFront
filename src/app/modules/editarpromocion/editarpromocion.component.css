@@ -1,13 +1,6 @@
-.mat-stepper-horizontal {
-  margin-top: 8px;
-}
-
-.mat-form-field {
-  margin-top: 16px;
-}
 .example-card {
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: 1% auto;
 }
 
 .example-header-image {

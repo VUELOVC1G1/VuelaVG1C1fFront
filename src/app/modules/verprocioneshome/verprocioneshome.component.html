@@ -1,0 +1,23 @@
+<div>
+  <mat-card style="width: 90%; margin: 1% auto; text-align: center; font-size: 25px">PROMOCIONES, ¡NO ES ESPERES Y COMPRA TU BOLETO AHORA!</mat-card>
+  <mat-card style="width: 90%; margin: 1% auto; text-align: center; background-color: transparent">
+    <div *ngFor="let promocion of promociones">
+      <mat-card class="example-card" style="background-image: url('assets/icons/—Pngtree—airplane travel discount ticket_1012044.jpg');">
+        <mat-card-header>
+          <strong style="margin-top: 50px;">{{promocion.descuento}}%</strong>
+        </mat-card-header>
+        <mat-card-content style="margin-top: 50px; background-color: white; border-radius: 5%">
+          <mat-divider></mat-divider>
+          <h1>{{promocion.vuelo?.rutaResponse?.origen}}-{{promocion.vuelo?.rutaResponse?.destino}}</h1>
+          <h2>{{promocion.descripcion}}</h2>
+          <h2>Vuelo: {{promocion.vuelo?.fechaVuelo}}</h2>
+          <h2 *ngIf="promocion.vuelo?.estado==true">DISPONIBLES</h2>
+          <h2 *ngIf="promocion.vuelo?.estado==false">NO DISPONIBLES</h2>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-flat-button color="warn">COMPRAR BOLETO</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-card>
+</div>

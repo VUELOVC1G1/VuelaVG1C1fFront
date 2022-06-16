@@ -10,13 +10,13 @@
 <body>
 <mat-drawer-container class="example-container" autosize>
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" color="warn" (click)="drawer.toggle()">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" color="warn" (click)="drawer.toggle()" *ngIf="emplados.id!=null">
       <mat-icon>menu</mat-icon>
     </button>
     <img src="assets/icons/Vuela_v1.png" >
     <span class="example-spacer"></span>
-    <button mat-stroked-button style="margin-right: 0.5%">VUELOS</button>
-    <button mat-stroked-button  style="margin-left: 0.5%">PROMOCIONES</button>
+    <button mat-stroked-button style="margin-right: 0.5%" [routerLink]="['/inicio/vuelos']">VUELOS</button>
+    <button mat-stroked-button  style="margin-left: 0.5%" [routerLink]="['/inicio/promociones']">PROMOCIONES</button>
     <span class="example-spacer"></span>
     <button *ngIf="sesion" mat-flat-button color="accent" [routerLink]="['/inicio/inicarsesion']">INICAR SESION</button>
     <button *ngIf="emplados.cargoDto?.siglas=='AD'" mat-button [matMenuTriggerFor]="menu"> {{emplados.nombre}} {{emplados.apellido}} </button>
@@ -50,8 +50,8 @@
       <mat-divider></mat-divider>
       <div style="height: 9px; width: 100%; background-color:#f57c00"></div>
       <strong>PROMOCIONES</strong><br>
-      <button mat-flat-button class="mat-boton">NUEVA PROMOCION</button><br>
-      <button mat-flat-button class="mat-boton">VER PROMOCIONES</button>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/vuevopromocion'" (click)="drawer.toggle()">NUEVA PROMOCION</button><br>
+      <button mat-flat-button class="mat-boton"  [routerLink]="'/inicio/verpromociones'" (click)="drawer.toggle()">VER PROMOCIONES</button>
       <mat-divider></mat-divider>
       <div style="height: 9px; width: 100%; background-color:#f57c00"></div>
       <strong>REPORTES</strong><br>

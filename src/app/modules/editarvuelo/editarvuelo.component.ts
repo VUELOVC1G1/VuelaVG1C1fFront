@@ -1,4 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import {RutasService} from "../../service/rutas.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {VueloService} from "../../service/vuelo.service";
+import {Avion} from "../../models/avion";
+import {Rutas} from "../../models/rutas";
+import {Horario} from "../../models/horario";
+import {TiposVuelo, Vuelo} from "../../models/vuelo";
+import {Usuariocharter} from "../../models/usuariocharter";
+import {FormBuilder, Validators} from "@angular/forms";
+import {AvionService} from "../../service/avion.service";
+import {HorarioService} from "../../service/horario.service";
+import {TiposdevueloService} from "../../service/tiposdevuelo.service";
+import {UsuariocharterService} from "../../service/usuariocharter.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Cargo} from "../../models/cargo";
 
 @Component({
   selector: 'app-editarvuelo',
@@ -7,9 +22,120 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarvueloComponent implements OnInit {
 
-  constructor() { }
+  aviones:Avion[]=[];
+  rutas:Rutas[]=[];
+  horarios:Horario[]=[];
+  tiposvuelos:TiposVuelo[]=[];
+  charter:Usuariocharter[]=[];
+  vueloC:TiposVuelo=new TiposVuelo();
+
+  firstFormGroup = this._formBuilder.group({
+    id:[''],
+    avionid: ['', Validators.required],
+    tipoVueloRequest: ['', Validators.required],
+    ucharterResponse: [''],
+    fechaVuelo: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    rutaRequest: ['', Validators.required],
+    horarioRequest: ['', Validators.required],
+    precio: ['', Validators.required],
+
+  });
+  thirtFormGroup = this._formBuilder.group({
+    estado: ['', Validators.required],
+    observacion: ['', Validators.required],
+  });
+  isLinear = false;
+  char =false;
+
+  constructor(private activatedRoute: ActivatedRoute,
+              private vueloService:VueloService,
+              private _formBuilder: FormBuilder,
+              private avionService:AvionService,
+              private rutasService:RutasService,
+              private hoariosService:HorarioService,
+              private tiposdevueloService:TiposdevueloService,
+              private usuariocharterService:UsuariocharterService,
+              private _snackBar: MatSnackBar,
+              private router: Router) { }
 
   ngOnInit(): void {
+    this.avionService.getAvionAll().subscribe(value => {
+      this.aviones=value.filter(value1 => value1.estado==true);
+    })
+    this.rutasService.getRutasAll().subscribe(value => {
+      this.rutas=value;
+    })
+    this.hoariosService.getHorariosAll().subscribe(value => {
+      this.horarios=value;
+    })
+    this.tiposdevueloService.gettiposdevuelosAll().subscribe(value => {
+      this.tiposvuelos=value;
+      this.vueloC=this.tiposvuelos.filter(value1 => value1.nombre=="CHARTER")[0]
+    })
+    this.usuariocharterService.getCharterAll().subscribe(value => {
+      this.charter=value;
+    })
+    this.activatedRoute.params.subscribe(params => {
+      this.vueloService.getVuelo(params['id']).subscribe(value => {
+        this.char=(value.tipoVueloResponse?.nombre=="CHARTER")?true:false;
+        this.firstFormGroup.setValue({
+          id: value.id,
+          avionid: value.avionResponse?.id,
+          tipoVueloRequest: value.tipoVueloResponse,
+          ucharterResponse: value.ucharterResponse,
+          fechaVuelo:value.fechaVuelo,
+        })
+        this.secondFormGroup.setValue({
+          rutaRequest: value.rutaResponse,
+          horarioRequest: value.horarioResponse,
+          precio: value.precio
+        })
+        this.thirtFormGroup.setValue({
+          estado: value.estado,
+          observacion: value.observacion,
+        })
+      })
+    })
   }
 
+  public objectComparisonFunction = function( cargoDto:Cargo, value: { id: Number | undefined; } ) : boolean {
+    return cargoDto.id === value.id;
+  }
+
+  actualizarVuelo(){
+    var vuelo:Vuelo= new Vuelo();
+    vuelo.id=this.firstFormGroup.getRawValue().id
+    vuelo.avionid=this.firstFormGroup.getRawValue().avionid
+    vuelo.tipoVueloRequest=this.firstFormGroup.getRawValue().tipoVueloRequest
+
+    vuelo.fechaVuelo=this.firstFormGroup.getRawValue().fechaVuelo
+
+    vuelo.rutaRequest=this.secondFormGroup.getRawValue().rutaRequest
+    vuelo.horarioRequest=this.secondFormGroup.getRawValue().horarioRequest
+    vuelo.precio=this.secondFormGroup.getRawValue().precio
+
+    vuelo.estado=this.thirtFormGroup.getRawValue().estado
+    vuelo.observacion=this.thirtFormGroup.getRawValue().observacion
+
+    vuelo.fechaCreacion= new Date();
+
+    console.log(vuelo)
+
+    if(vuelo.tipoVueloRequest?.nombre!="COMERCIAL"){
+      vuelo.ucharterResponse=this.firstFormGroup.getRawValue().ucharterResponse
+    }
+    this.vueloService.putVuelo(vuelo).subscribe(value => {
+      this._snackBar.open("Vuelo actualizado correctamente", "", {
+        duration: 1 * 2000,
+      });
+      this.router.navigate(["/inicio/vervuelos"])
+    }, error => {
+      this._snackBar.open(error.error.message, "", {
+        duration: 1 * 2000,
+      });
+    })
+
+  }
 }
