@@ -28,5 +28,15 @@
   width: 100%;
   margin-bottom: 5px;
 }
+/* icono logo*/
+.logo{
+  padding: 2% 0;
+  line-height: 8%;
+}
+
+.logo img{
+  width: 90px;
+  float: left;
+}
 
 
