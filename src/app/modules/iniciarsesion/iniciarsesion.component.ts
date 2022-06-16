@@ -77,11 +77,13 @@ export class IniciarsesionComponent implements OnInit {
   iniciarSesionCherter(){
     this.usuarioService.iniciarUsuario(this.profileFormUsuario.getRawValue()).subscribe(value => {
       if(value.rol=='CHARTER'){
-        sessionStorage.clear;
-        sessionStorage.setItem('user', JSON.stringify(value));
-        this.router.navigate(['/inicio']).then(() => {
-          window.location.reload();
-        });
+        this.usuariocharterService.getCharter(value.id).subscribe(value1 => {
+          sessionStorage.clear;
+          sessionStorage.setItem('user', JSON.stringify(value1));
+          this.router.navigate(['/inicio']).then(() => {
+            window.location.reload();
+          });
+        })
       }else {
         this._snackBar.open("Usuario no existe, como empleado", "",{
           duration: 1 * 2000,

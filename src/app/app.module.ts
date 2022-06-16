@@ -31,6 +31,7 @@ import { VerpromocionesComponent } from './modules/verpromociones/verpromociones
 import { EditarpromocionComponent } from './modules/editarpromocion/editarpromocion.component';
 import { VerprocioneshomeComponent } from './modules/verprocioneshome/verprocioneshome.component';
 import { VuelohomeComponent } from './modules/vuelohome/vuelohome.component';
+import { NuevasolicitudComponent } from './modules/nuevasolicitud/nuevasolicitud.component';
 
 
 const routes: Routes = [
@@ -56,6 +57,7 @@ const routes: Routes = [
   { path: 'inicio/vuevopromocion', component:NuevapromocionComponent},
   { path: 'inicio/verpromociones', component:VerpromocionesComponent},
   { path: 'inicio/editarpromociones/:id', component: EditarpromocionComponent},
+  { path: 'inicio/vuevasolicitud', component: NuevasolicitudComponent},
   //HOME
   { path: 'inicio/promociones', component: VerprocioneshomeComponent},
   { path: 'inicio/vuelos', component: VuelohomeComponent},
@@ -88,6 +90,7 @@ const routes: Routes = [
     EditarpromocionComponent,
     VerprocioneshomeComponent,
     VuelohomeComponent,
+    NuevasolicitudComponent,
   ],
   imports: [
     BrowserModule,

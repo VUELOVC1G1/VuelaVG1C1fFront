@@ -27,6 +27,13 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
     </mat-menu>
+    <button *ngIf="charter.id!=null" mat-button [matMenuTriggerFor]="menu2"> {{charter.empresa}}</button>
+    <mat-menu #menu2="matMenu">
+      <button mat-menu-item [routerLink]="['/inicio/vuevasolicitud']">SOLICITAR AVION</button>
+      <button mat-menu-item>VER SOLICITUDES</button>
+      <button mat-menu-item>VER MANIFIESTOS</button>
+      <button mat-menu-item>Cerrar Sesión</button>
+    </mat-menu>
   </mat-toolbar>
   <mat-drawer #drawer class="example-sidenav" mode="over" >
     <div *ngIf="emplados.cargoDto?.siglas=='AD'">
