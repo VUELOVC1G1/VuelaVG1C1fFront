@@ -32,6 +32,8 @@ import { EditarpromocionComponent } from './modules/editarpromocion/editarpromoc
 import { VerprocioneshomeComponent } from './modules/verprocioneshome/verprocioneshome.component';
 import { VuelohomeComponent } from './modules/vuelohome/vuelohome.component';
 import { NuevasolicitudComponent } from './modules/nuevasolicitud/nuevasolicitud.component';
+import { VersolicitudChaComponent } from './modules/versolicitud-cha/versolicitud-cha.component';
+import { VuevotiketComponent } from './modules/vuevotiket/vuevotiket.component';
 
 
 const routes: Routes = [
@@ -58,6 +60,8 @@ const routes: Routes = [
   { path: 'inicio/verpromociones', component:VerpromocionesComponent},
   { path: 'inicio/editarpromociones/:id', component: EditarpromocionComponent},
   { path: 'inicio/vuevasolicitud', component: NuevasolicitudComponent},
+  { path: 'inicio/versolicitud', component: VersolicitudChaComponent},
+  { path: 'inicio/vuevoticket/:id', component: VuevotiketComponent},
   //HOME
   { path: 'inicio/promociones', component: VerprocioneshomeComponent},
   { path: 'inicio/vuelos', component: VuelohomeComponent},
@@ -91,6 +95,8 @@ const routes: Routes = [
     VerprocioneshomeComponent,
     VuelohomeComponent,
     NuevasolicitudComponent,
+    VersolicitudChaComponent,
+    VuevotiketComponent,
   ],
   imports: [
     BrowserModule,
