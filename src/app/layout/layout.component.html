@@ -13,8 +13,14 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" color="warn" (click)="drawer.toggle()" *ngIf="emplados.id!=null">
       <mat-icon>menu</mat-icon>
     </button>
-    <img src="assets/icons/Vuela_v1.png" >
+
+    <div class="tool logo">
+      <a [routerLink]="['inicio/home']">
+        <span><img src="/assets/icons/Vuela_v1.png"/></span>
+      </a>
+    </div>
     <span class="example-spacer"></span>
+    <button mat-stroked-button style="margin-right: 0.5%"  [routerLink]="['inicio/home']">HOME</button>
     <button mat-stroked-button style="margin-right: 0.5%" [routerLink]="['/inicio/vuelos']">VUELOS</button>
     <button mat-stroked-button  style="margin-left: 0.5%" [routerLink]="['/inicio/promociones']">PROMOCIONES</button>
     <span class="example-spacer"></span>
