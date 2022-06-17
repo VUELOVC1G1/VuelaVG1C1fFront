@@ -7,7 +7,7 @@ export class Boleto {
   qr?:String;
   vueloId?:Number;
   asientos?:Asientos[];
-  maletas?:Maleta;
+  maletas?:Maleta[];
   pago?:Pago;
 }
 

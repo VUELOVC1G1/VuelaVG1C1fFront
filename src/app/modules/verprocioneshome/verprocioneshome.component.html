@@ -4,9 +4,9 @@
     <div *ngFor="let promocion of promociones">
       <mat-card class="example-card" style="background-image: url('assets/icons/—Pngtree—airplane travel discount ticket_1012044.jpg');">
         <mat-card-header>
-          <strong style="margin-top: 50px;">{{promocion.descuento}}%</strong>
+          <strong>{{promocion.descuento}}%</strong>
         </mat-card-header>
-        <mat-card-content style="margin-top: 50px; background-color: white; border-radius: 5%">
+        <mat-card-content style="background-color: white; border-radius: 5%">
           <mat-divider></mat-divider>
           <h1>{{promocion.vuelo?.rutaResponse?.origen}}-{{promocion.vuelo?.rutaResponse?.destino}}</h1>
           <h2>{{promocion.descripcion}}</h2>
