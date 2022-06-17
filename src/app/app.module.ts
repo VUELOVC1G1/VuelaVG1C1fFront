@@ -38,6 +38,8 @@ import { HomeComponent } from './modules/home/home.component';
 import { QuienesComponent } from './modules/quienes/quienes.component';
 import { EquipajeInfoComponent } from './modules/equipaje-info/equipaje-info.component';
 import { ContactoComponent } from './modules/contacto/contacto.component';
+import { VerboletosComponent } from './modules/verboletos/verboletos.component';
+import {NgxQRCodeModule} from "@techiediaries/ngx-qrcode";
 
 
 const routes: Routes = [
@@ -66,6 +68,7 @@ const routes: Routes = [
   { path: 'inicio/vuevasolicitud', component: NuevasolicitudComponent},
   { path: 'inicio/versolicitud', component: VersolicitudChaComponent},
   { path: 'inicio/vuevoticket/:id', component: VuevotiketComponent},
+  { path: 'inicio/verbolestos/:id', component: VerboletosComponent},
   //HOME
   { path: 'inicio/promociones', component: VerprocioneshomeComponent},
   { path: 'inicio/vuelos', component: VuelohomeComponent},
@@ -111,6 +114,7 @@ const routes: Routes = [
     QuienesComponent,
     EquipajeInfoComponent,
     ContactoComponent,
+    VerboletosComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,6 +124,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
     FormsModule,
+    NgxQRCodeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

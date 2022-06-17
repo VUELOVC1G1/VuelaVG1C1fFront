@@ -40,4 +40,19 @@
   width:60%;
   text-align: start;
 }
-
+#contenedor1{
+  overflow: hidden;
+  width:100%;
+  margin: 0 auto;
+}
+#izquierda1{
+  text-align: start;
+  float:left;
+  width:10%;
+}
+#derecha1{
+  height:50%;
+  float:right;
+  width:90%;
+  text-align: start;
+}

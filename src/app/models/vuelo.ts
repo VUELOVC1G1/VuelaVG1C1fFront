@@ -6,7 +6,7 @@ import {Avion} from "./avion";
 export class Vuelo {
   id?:Number;
   observacion?:String;
-  precio?:String;
+  precio?:number;
   estado?:boolean;
   fechaCreacion?:Date;
   fechaVuelo?:Date;

@@ -1,4 +1,5 @@
 import {Asientos} from "./avion";
+import {Vuelo} from "./vuelo";
 
 export class Boleto {
   id?:Number;
@@ -9,12 +10,13 @@ export class Boleto {
   asientos?:Asientos[];
   maletas?:Maleta[];
   pago?:Pago;
+  vuelo?:Vuelo;
 }
 
 export class Maleta {
   id?:Number;
   peso?:String;
-  precio?:Number;
+  precio?:number;
 }
 
 export class Pago {

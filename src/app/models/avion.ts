@@ -13,7 +13,7 @@ export class Avion {
 export class Asientos{
   id?:Number;
   nombre?:String;
-  precio?:Number;
+  precio?:number;
   tipoAsiento?:TipoAsiento;
 
 }

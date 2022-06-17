@@ -68,9 +68,17 @@
                 <h3 style="margin-left: 5%">PRECIO: ${{secondFormGroup.getRawValue().precio}}</h3>
               </div>
               <div *ngIf="!secondFormGroup.getRawValue().estado" style="margin-left: 5%; color: red">
-                <h4>	<mat-icon>close</mat-icon> {{secondFormGroup.getRawValue().nombre}} YA ESTA RESERVADO</h4></div>
+                <h4>
+                  <mat-icon>close</mat-icon>
+                  {{secondFormGroup.getRawValue().nombre}} YA ESTA RESERVADO
+                </h4>
+              </div>
               <div *ngIf="secondFormGroup.getRawValue().estado" style="margin-left: 5%; color: #0e8c0c">
-                <h4><mat-icon>check_circle_outline</mat-icon> DISPONIBLE</h4></div>
+                <h4>
+                  <mat-icon>check_circle_outline</mat-icon>
+                  DISPONIBLE
+                </h4>
+              </div>
             </div>
 
           </div>
@@ -81,14 +89,66 @@
         </mat-card>
       </form>
     </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>CHECK IN</ng-template>
-      <form>
-        <p>You are now done.</p>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
+    <mat-step [stepControl]="thisrFormGroup">
+      <form [formGroup]="thisrFormGroup">
+        <ng-template matStepLabel>CHECK IN</ng-template>
+        <mat-card>
+          <mat-card-title>INGRESO DE MALETAS</mat-card-title>
+          <mat-card-subtitle>Maletas</mat-card-subtitle>
+          <div id="contenedor1">
+            <div id="izquierda1">
+              <button mat-mini-fab color="primary" (click)="onAddRow()" *ngIf="thisrFormGroup.get('rows')">
+                <mat-icon>add_circle</mat-icon>
+              </button>
+            </div>
+            <div id="derecha1">
+              <mat-card *ngFor="let row of thisrFormGroup.get('rows')?.controls;let index = index;" style="width: 100%">
+                MALETA {{index+1}}| |
+                PESO:
+                <mat-form-field appearance="outline" style="width: 30%">
+                  <mat-label>Kilos</mat-label>
+                  <input matInput type="number" placeholder="Ex. 12" min="1" (keyup)="sumar(index)" (change)="sumar(index)"[formControl]="row.get('peso')">
+                  <span matSuffix>K</span>
+                </mat-form-field>
+                | | PRECIO:  ${{row.get('precio').value}}
+                <span class="example-spacer"></span>
+                <button mat-mini-fab color="warn" style="margin-left: 10px" (click)="onRemoveRow(index)">
+                  <mat-icon>delete_sweep</mat-icon>
+                </button>
+              </mat-card>
+            </div>
+          </div>
+          <div>
+            TOTAL: ${{totaMaletas}}
+          </div>
+          <mat-card-actions>
+            <button mat-flat-button color="warn" matStepperPrevious>Atras</button>
+            <button mat-flat-button color="accent" matStepperNext style="margin-left: 2px">Siguente</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="fourFormGroup">
+      <form [formGroup]="fourFormGroup">
+        <ng-template matStepLabel>PAGO</ng-template>
+        <mat-card>
+          <mat-card-title>INGRESE DATOS DE PAGO</mat-card-title>
+          <mat-card-subtitle>Pago</mat-card-subtitle>
+          VALOR TOTAL A PAGAR: <strong> ${{fourFormGroup.getRawValue().valor}}</strong>
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Pagar con:</mat-label>
+            <mat-select formControlName="tipo">
+              <mat-option value="Diners Club">Diners Club</mat-option>
+              <mat-option value="Discover">Discover</mat-option>
+              <mat-option value="MasterCard">MasterCard</mat-option>
+              <mat-option value="VISA">VISA</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-card-actions>
+            <button mat-flat-button color="warn" matStepperPrevious>Atras</button>
+            <button mat-flat-button color="accent" style="margin-left: 2px" (click)="gurdarvuelo()" [disabled]="fourFormGroup.invalid">FINALIZAR Y PAGAR</button>
+          </mat-card-actions>
+        </mat-card>
       </form>
     </mat-step>
   </mat-stepper>

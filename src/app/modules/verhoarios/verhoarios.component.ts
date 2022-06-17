@@ -7,6 +7,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {RutasService} from "../../service/rutas.service";
 import {HorarioService} from "../../service/horario.service";
 import {Horario} from "../../models/horario";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-verhoarios',
@@ -26,7 +27,8 @@ export class VerhoariosComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private _snackBar: MatSnackBar,
-              private horarioService:HorarioService) { }
+              private horarioService:HorarioService,
+              private activatedRoute: ActivatedRoute,) { }
 
 
   ngOnInit(): void {
