@@ -16,7 +16,9 @@ export class VerprocioneshomeComponent implements OnInit {
   ngOnInit(): void {
     this.promocionService.getPromocionAll().subscribe(value => {
       // @ts-ignore
-      this.promociones=value.filter(value1 => new Date(value1.vuelo.fechaVuelo)<new Date())
+      console.log(value.filter(value1 => new Date(value1.vuelo.fechaVuelo)>new Date()))
+      // @ts-ignore
+      this.promociones=value.filter(value1 => new Date(value1.vuelo.fechaVuelo)>new Date())
     })
   }
 

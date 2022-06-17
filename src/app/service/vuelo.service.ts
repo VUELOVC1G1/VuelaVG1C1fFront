@@ -21,6 +21,10 @@ export class VueloService {
     return this.http.get(this.urlEndPoint+"/"+id);
   }
 
+  getEstadoAsiento(vueloId?: Number,asientoId?: Number,):Observable<Object>{
+    return this.http.get(this.urlEndPoint+"/"+vueloId+"/asientos/"+asientoId+"/estado");
+  }
+
   postVuelo(vueloRequest:Vuelo):Observable<Vuelo>{
     console.log(vueloRequest)
     return this.http.post<Vuelo>(this.urlEndPoint+"/",vueloRequest);

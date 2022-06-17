@@ -6,6 +6,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {EmpleadoService} from "../../service/empleado.service";
 import {Router} from "@angular/router";
 import {UsuariocharterService} from "../../service/usuariocharter.service";
+import {PasajeroService} from "../../service/pasajero.service";
 
 @Component({
   selector: 'app-iniciarsesion',
@@ -20,7 +21,8 @@ export class IniciarsesionComponent implements OnInit {
               private _snackBar: MatSnackBar,
               private empleadoService:EmpleadoService,
               private router:Router,
-              private usuariocharterService:UsuariocharterService) { }
+              private usuariocharterService:UsuariocharterService,
+              private pasajeroService:PasajeroService) { }
 
   ngOnInit(): void {
   }
@@ -59,10 +61,16 @@ export class IniciarsesionComponent implements OnInit {
 
   iniciarSesionUsuario(){
     this.usuarioService.iniciarUsuario(this.profileFormUsuario.getRawValue()).subscribe(value => {
-      if(value.rol=='CO'){
-
+      if(value.rol=='PASAJERO'){
+        this.pasajeroService.getPasajero(value.id).subscribe(value1 => {
+          sessionStorage.clear;
+          sessionStorage.setItem('user', JSON.stringify(value1));
+          this.router.navigate(['/inicio']).then(() => {
+            window.location.reload();
+          });
+        })
       }else {
-        this._snackBar.open("Usuario no existe, como empleado", "",{
+        this._snackBar.open("Usuario no existe, como pasajero", "",{
           duration: 1 * 2000,
         });
       }
@@ -85,7 +93,7 @@ export class IniciarsesionComponent implements OnInit {
           });
         })
       }else {
-        this._snackBar.open("Usuario no existe, como empleado", "",{
+        this._snackBar.open("Usuario no existe, como charter", "",{
           duration: 1 * 2000,
         });
       }

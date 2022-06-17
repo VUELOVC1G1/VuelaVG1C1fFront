@@ -3,6 +3,7 @@ import {Empleado} from "../models/empleado";
 import {Cargo} from "../models/cargo";
 import {Router} from "@angular/router";
 import {Usuariocharter} from "../models/usuariocharter";
+import {Pasajero} from "../models/pasajero";
 
 @Component({
   selector: 'app-layout',
@@ -15,6 +16,7 @@ export class LayoutComponent implements OnInit {
   sesion:boolean=true;
   emplados:Empleado = new Empleado();
   charter:Usuariocharter = new Usuariocharter();
+  pasajero:Pasajero = new Pasajero();
   constructor(private router:Router) { }
 
   ngOnInit(): void {
@@ -27,6 +29,11 @@ export class LayoutComponent implements OnInit {
       }
       if(JSON.parse(sessionStorage['user']).usuario.rol=="CHARTER"){
         this.charter=JSON.parse(sessionStorage['user'])
+        console.log(JSON.parse(sessionStorage['user']))
+        this.sesion=false;
+      }
+      if(JSON.parse(sessionStorage['user']).usuario.rol=="PASAJERO"){
+        this.pasajero=JSON.parse(sessionStorage['user'])
         console.log(JSON.parse(sessionStorage['user']))
         this.sesion=false;
       }

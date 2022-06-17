@@ -1,15 +1,21 @@
 .example-card {
-  max-width: 250px;
-  margin-left: 20px;
-  margin-top: 5px;
-  color:  #262020;
-  font-size: 100px;
-  background-size: 100%;
-  float: left;
+  margin: 5px auto;
+  max-width: 900px;
 }
-
 
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+}
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 10%;
 }

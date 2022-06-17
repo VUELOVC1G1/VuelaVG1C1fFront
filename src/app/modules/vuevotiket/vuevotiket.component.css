@@ -1,0 +1,43 @@
+.mat-stepper-horizontal {
+  width: 50%;
+  margin: 1% auto;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+.example-card {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.clase1 {
+  background: gold;
+}
+.clase2{
+  background: greenyellow;
+}
+.clase3{
+  background: #607d8b;
+}
+#contenedor{
+  overflow: hidden;
+  width:50%;
+  margin: 0 auto;
+}
+#izquierda{
+  text-align: start;
+  float:left;
+  width:40%;
+}
+#derecha{
+  height:50%;
+  float:right;
+  width:60%;
+  text-align: start;
+}
+

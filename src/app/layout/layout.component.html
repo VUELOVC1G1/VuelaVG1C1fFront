@@ -19,7 +19,6 @@
       </a>
     </div>
     <span class="example-spacer"></span>
-    <button mat-stroked-button style="margin-right: 0.5%"  [routerLink]="['inicio/home']">HOME</button>
     <button mat-stroked-button style="margin-right: 0.5%" [routerLink]="['/inicio/vuelos']">VUELOS</button>
     <button mat-stroked-button  style="margin-left: 0.5%" [routerLink]="['/inicio/promociones']">PROMOCIONES</button>
     <span class="example-spacer"></span>
@@ -35,9 +34,14 @@
     <button *ngIf="charter.id!=null" mat-button [matMenuTriggerFor]="menu2"> {{charter.empresa}}</button>
     <mat-menu #menu2="matMenu">
       <button mat-menu-item [routerLink]="['/inicio/vuevasolicitud']">SOLICITAR AVION</button>
-      <button mat-menu-item>VER SOLICITUDES</button>
+      <button mat-menu-item [routerLink]="['/inicio/versolicitud']">VER SOLICITUDES</button>
       <button mat-menu-item>VER MANIFIESTOS</button>
-      <button mat-menu-item>Cerrar Sesión</button>
+      <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
+    </mat-menu>
+    <button *ngIf="pasajero.id!=null" mat-button [matMenuTriggerFor]="menu3">{{pasajero.nombre}} {{pasajero.apellido}}</button>
+    <mat-menu #menu3="matMenu">
+      <button mat-menu-item>MIS VUELOS</button>
+      <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
     </mat-menu>
   </mat-toolbar>
   <mat-drawer #drawer class="example-sidenav" mode="over" >

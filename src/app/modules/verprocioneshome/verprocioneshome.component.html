@@ -15,7 +15,7 @@
           <h2 *ngIf="promocion.vuelo?.estado==false">NO DISPONIBLES</h2>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-flat-button color="warn">COMPRAR BOLETO</button>
+          <button mat-flat-button color="warn" [routerLink]="['/inicio/vuevoticket',promocion.vuelo?.id]">COMPRAR BOLETO</button>
         </mat-card-actions>
       </mat-card>
     </div>

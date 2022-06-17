@@ -1,0 +1,93 @@
+<div>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>INFORMACIÓN DEL VUELO</ng-template>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>INFORMACIÓN DEL VUELO</mat-card-title>
+          <mat-card-subtitle>Vuelo</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <h2><strong>Fecha de vuelo: </strong>{{vuelo.fechaVuelo}}</h2>
+          <h2><strong>Ruta: </strong>{{vuelo.rutaResponse?.origen}}-{{vuelo.rutaResponse?.destino}}<br></h2>
+          <h2><strong>Precio: </strong>${{vuelo.precio}}<br></h2>
+          <h2><strong>Avion: </strong>{{vuelo.avionResponse?.nombre}}<br></h2>
+          <h2><strong>Observacion: </strong>{{vuelo.observacion}}</h2>
+          <mat-divider></mat-divider>
+          <h2 *ngIf="promocion.id!=null">Este vuelo tiene {{promocion.descuento}}% de descuento.</h2>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-flat-button matStepperNext color="accent">SIGUIENTE</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="SELECCION DE ASIENTOS">
+      <form [formGroup]="secondFormGroup">
+        <mat-card>
+          <mat-card-title>SELECCION DEL ASIENTO</mat-card-title>
+          <mat-card-subtitle>Asientos</mat-card-subtitle>
+          <div id="contenedor">
+            <div id="izquierda">
+              <div style="width: 100%; margin: 0 auto">
+                <strong>CLASE PREMIUM</strong>
+                <mat-grid-list cols="2" rowHeight="2:1">
+                  <div *ngFor="let asiento of asientos;let indice=index">
+                    <mat-grid-tile class="clase1" *ngIf="asiento.tipoAsiento?.nombre=='CLASE PREMIUM'">
+                      <button class="clase1" mat-flat-button
+                              (click)="estadoAsineto(asiento)">{{indice + 1}}</button>
+                    </mat-grid-tile>
+                  </div>
+                </mat-grid-list>
+                <mat-divider inset></mat-divider>
+                <strong>CLASE BUSISTES</strong>
+                <mat-grid-list cols="3" rowHeight="1:1">
+                  <div *ngFor="let asiento of asientos;let indice=index">
+                    <mat-grid-tile class="clase2" *ngIf="asiento.tipoAsiento?.nombre=='CLASE BUSINESS'">
+                      <button class="clase2" mat-flat-button (click)="estadoAsineto(asiento)">{{indice}}</button>
+                    </mat-grid-tile>
+                  </div>
+                </mat-grid-list>
+                <mat-divider inset></mat-divider>
+                <strong>CLASE ECONIMICA</strong>
+                <mat-grid-list cols="4" rowHeight="2:1">
+                  <div *ngFor="let asiento of asientos;let indice=index">
+                    <mat-grid-tile class="clase3" *ngIf="asiento.tipoAsiento?.nombre=='CLASE ECONOMICA'">
+                      <button class="clase3" mat-flat-button (click)="estadoAsineto(asiento)">{{indice}}</button>
+                    </mat-grid-tile>
+                  </div>
+                </mat-grid-list>
+              </div>
+            </div>
+            <div id="derecha">
+              <div *ngIf="cargo">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              </div>
+              <div *ngIf="secondFormGroup.getRawValue().estado">
+                <h3 style="margin-left: 5%">MAS INFORMACIÓN DE ASIENTO</h3>
+                <h3 style="margin-left: 5%">NOMBRE: {{secondFormGroup.getRawValue().nombre}}</h3>
+                <h3 style="margin-left: 5%">PRECIO: ${{secondFormGroup.getRawValue().precio}}</h3>
+              </div>
+              <div *ngIf="!secondFormGroup.getRawValue().estado" style="margin-left: 5%; color: red">
+                <h4>	<mat-icon>close</mat-icon> {{secondFormGroup.getRawValue().nombre}} YA ESTA RESERVADO</h4></div>
+              <div *ngIf="secondFormGroup.getRawValue().estado" style="margin-left: 5%; color: #0e8c0c">
+                <h4><mat-icon>check_circle_outline</mat-icon> DISPONIBLE</h4></div>
+            </div>
+
+          </div>
+          <mat-card-actions>
+            <button mat-flat-button color="warn" matStepperPrevious>Atras</button>
+            <button mat-flat-button color="accent" matStepperNext style="margin-left: 2px">Siguente</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

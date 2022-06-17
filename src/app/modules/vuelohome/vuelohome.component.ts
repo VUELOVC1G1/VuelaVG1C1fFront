@@ -63,7 +63,7 @@ export class VuelohomeComponent implements OnInit {
       this.vuelos=value.filter(value1 => value1.estado==true&&
         value1.tipoVueloResponse?.nombre=="COMERCIAL"&&
         // @ts-ignore
-        new Date(value1.fechaVuelo)<new Date()&&
+        new Date(value1.fechaVuelo)>new Date()&&
         value1.rutaResponse?.origen==this.firstFormGroup.getRawValue().origen&&
         value1.rutaResponse?.destino==this.firstFormGroup.getRawValue().destino)
     })
