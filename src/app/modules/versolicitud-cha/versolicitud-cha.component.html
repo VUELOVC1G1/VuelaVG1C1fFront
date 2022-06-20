@@ -36,14 +36,14 @@
           <ng-container matColumnDef="eliminar">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> CANCELAR </th>
             <td mat-cell *matCellDef="let row">
-              <button mat-flat-button color="warn">CANCELAR PEDIDO</button>
+              <button mat-flat-button color="warn" (click)="eliminarsolicitar(row)">CANCELAR PEDIDO</button>
             </td>
           </ng-container>
           <!-- Fruit Column -->
           <ng-container matColumnDef="continuar">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> CONTINUAR </th>
             <td mat-cell *matCellDef="let row">
-              <button mat-flat-button color="accent" [disabled]="!row.estado">
+              <button mat-flat-button color="accent" [disabled]="!row.estado" [routerLink]="['/inicio/nuevomanifiesto',row.charterId]">
                 CONTINUAR CON MANIFIESTO</button>
             </td>
           </ng-container>

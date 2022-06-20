@@ -28,10 +28,9 @@
               </mat-select>
             </mat-form-field>
             <mat-form-field appearance="outline" style="width: 100%">
-              <mat-label>Fecha de vuelo</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="fechaVuelo">
+              <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date & time" formControlName="fechaVuelo">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+              <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
             </mat-form-field>
           </mat-card-content>
           <mat-card-actions>

@@ -36,6 +36,7 @@ export class NuevasolicitudComponent implements OnInit {
       this._snackBar.open("Solicitud enviada correctamente, espere una respuesta", "", {
         duration: 1 * 2000,
       });
+      this.router.navigate(["/inicio/versolicitud",solcitud.id_charter])
     }, error => {
       this._snackBar.open(error.error.message, "", {
         duration: 1 * 2000,

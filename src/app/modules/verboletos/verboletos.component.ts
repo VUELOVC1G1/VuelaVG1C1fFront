@@ -127,7 +127,7 @@ export class VerboletosComponent implements OnInit {
                 ],
               },
               {columns:[
-                  {text: 'FECHA DE SALIDA: '+boleto.vuelo?.fechaVuelo,width:350,fontSize: 13},
+                  {text: 'FECHA Y HORA DE SALIDA: '+boleto.vuelo?.fechaVuelo,width:350,fontSize: 13},
                 ],
               },
               {columns:[

@@ -4,5 +4,6 @@ export class Solicitud {
   estado?:boolean;
   ruta?:String;
   id_charter?:Number;
+  charterId?:Number;
 
 }

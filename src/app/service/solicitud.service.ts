@@ -26,12 +26,12 @@ export class SolicitudService {
     return this.http.get(this.urlEndPoint+"/pedidos").pipe(map(Response => Response as Solicitud[]))
   }
 
-  putRutas(pedidoRequest :Solicitud):Observable<Solicitud>{
+  putSolicitud(pedidoRequest :Solicitud):Observable<Solicitud>{
     console.log(pedidoRequest)
     return this.http.put<Solicitud>(this.urlEndPoint+"/pedidos",pedidoRequest);
   }
 
-  deleteRutas(id?: Number){
+  deleteRutas(id: Number){
     return this.http.delete<Solicitud>(this.urlEndPoint+'/pedidos/'+id)
   }
 }

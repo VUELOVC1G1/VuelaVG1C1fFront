@@ -6,6 +6,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Usuario} from "../../models/usuario";
 import {Pasajero} from "../../models/pasajero";
 import {Usuariocharter} from "../../models/usuariocharter";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nuevocharter',
@@ -14,7 +15,9 @@ import {Usuariocharter} from "../../models/usuariocharter";
 })
 export class NuevocharterComponent implements OnInit {
 
-  constructor(private usuariocharterService:UsuariocharterService,private _snackBar: MatSnackBar) { }
+  constructor(private usuariocharterService:UsuariocharterService,
+              private _snackBar: MatSnackBar,
+              private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -37,6 +40,7 @@ export class NuevocharterComponent implements OnInit {
       this._snackBar.open("Usuario creado correctamente", "",{
         duration: 1 * 2000,
       });
+      this.router.navigate(['/inicio/inicarsesion'])
     },error => {
       this._snackBar.open(error.error.message, "",{
         duration: 1 * 2000,

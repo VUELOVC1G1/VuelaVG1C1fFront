@@ -44,6 +44,7 @@ import { VersolitudAoComponent } from './modules/versolitud-ao/versolitud-ao.com
 import { EditarperfilEmComponent } from './modules/editarperfil-em/editarperfil-em.component';
 import { EditarperfilPaComponent } from './modules/editarperfil-pa/editarperfil-pa.component';
 import { EditarperfilChaComponent } from './modules/editarperfil-cha/editarperfil-cha.component';
+import { ManifiestoComponent } from './modules/manifiesto/manifiesto.component';
 
 
 const routes: Routes = [
@@ -70,13 +71,14 @@ const routes: Routes = [
   { path: 'inicio/verpromociones', component:VerpromocionesComponent},
   { path: 'inicio/editarpromociones/:id', component: EditarpromocionComponent},
   { path: 'inicio/vuevasolicitud', component: NuevasolicitudComponent},
-  { path: 'inicio/versolicitud', component: VersolicitudChaComponent},
+  { path: 'inicio/versolicitud/:id', component: VersolicitudChaComponent},
   { path: 'inicio/versolicitud-jo', component: VersolitudAoComponent},
   { path: 'inicio/vuevoticket/:id', component: VuevotiketComponent},
   { path: 'inicio/verbolestos/:id', component: VerboletosComponent},
   { path: 'inicio/editarperfil-em/:id', component: EditarperfilEmComponent},
   { path: 'inicio/editarperfil-pa/:id', component: EditarperfilPaComponent},
   { path: 'inicio/editarperfil-cha/:id', component: EditarperfilChaComponent},
+  { path: 'inicio/nuevomanifiesto/:id', component: ManifiestoComponent},
   //HOME
   { path: 'inicio/promociones', component: VerprocioneshomeComponent},
   { path: 'inicio/vuelos', component: VuelohomeComponent},
@@ -126,6 +128,7 @@ const routes: Routes = [
     EditarperfilEmComponent,
     EditarperfilPaComponent,
     EditarperfilChaComponent,
+    ManifiestoComponent,
   ],
   imports: [
     BrowserModule,

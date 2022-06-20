@@ -29,7 +29,7 @@
       <button mat-menu-item [routerLink]="['/inicio/editarperfil-em',emplados.usuario?.id]">EDITAR PERFIL</button>
       <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
     </mat-menu>
-    <button *ngIf="emplados.cargoDto?.siglas=='JO'" mat-button [matMenuTriggerFor]="menu"> {{emplados.nombre}} {{emplados.apellido}} </button>
+    <button *ngIf="emplados.cargoDto?.siglas=='JO'||emplados.cargoDto?.siglas=='AT'" mat-button [matMenuTriggerFor]="menu"> {{emplados.nombre}} {{emplados.apellido}} </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item [routerLink]="['/inicio/editarperfil-em',emplados.usuario?.id]">EDITAR PERFIL</button>
       <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
@@ -38,7 +38,7 @@
     <mat-menu #menu2="matMenu">
       <button mat-menu-item [routerLink]="['/inicio/editarperfil-cha',charter.usuario?.id]">EDITAR PERFIL</button>
       <button mat-menu-item [routerLink]="['/inicio/vuevasolicitud']">SOLICITAR AVION</button>
-      <button mat-menu-item [routerLink]="['/inicio/versolicitud']">VER SOLICITUDES</button>
+      <button mat-menu-item [routerLink]="['/inicio/versolicitud',charter?.id]">VER SOLICITUDES</button>
       <button mat-menu-item>VER MANIFIESTOS</button>
       <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
     </mat-menu>
@@ -81,15 +81,20 @@
       <mat-divider></mat-divider>
     </div>
     <div *ngIf="emplados.cargoDto?.siglas=='JO'">
-      <h3>JEFE DE OPEREACIONES</h3>
+      <h3>AGENTE DE TRÁFICO</h3>
       <strong>VUELOS</strong><br>
       <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/nuevovuelo'" (click)="drawer.toggle()">NUEVO NUEVO</button><br>
       <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/vervuelos'" (click)="drawer.toggle()">VER VUELOS</button>
       <div style="height: 9px; width: 100%; background-color:#f57c00"></div>
-      <strong>SolicItudes charter</strong><br>
+      <strong>Solicitudes charter</strong><br>
       <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/versolicitud-jo'" (click)="drawer.toggle()">VER SOLICITUDES</button><br>
       <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/vervuelos'" (click)="drawer.toggle()">VER VUELOS</button>
       <div style="height: 9px; width: 100%; background-color:#f57c00"></div>
+    </div>
+    <div *ngIf="emplados.cargoDto?.siglas=='AT'">
+      <h3>JEFE DE OPEREACIONES</h3>
+      <strong>VUELOS</strong><br>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/nuevovuelo'" (click)="drawer.toggle()">VER BOLETOS</button><br>
     </div>
   </mat-drawer>
   <div class="example-sidenav-content">

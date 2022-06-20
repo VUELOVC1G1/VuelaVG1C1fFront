@@ -19,6 +19,10 @@ export class UsuariocharterService {
     console.log(request)
     return this.http.post<Usuariocharter>(this.urlEndPoint+"auth/signup/charter",request);
   }
+  putCharter(idUCharter?:Number,charterRequest?:Usuariocharter):Observable<Usuario>{
+    console.log(charterRequest)
+    return this.http.put<Usuariocharter>(this.urlEndPoint+"charters/usuario/"+idUCharter,charterRequest);
+  }
   getCharterAll():Observable<Usuariocharter[]>{
     return this.http.get(this.urlEndPoint+"charters/all").pipe(map(Response => Response as Usuariocharter[]))
   }

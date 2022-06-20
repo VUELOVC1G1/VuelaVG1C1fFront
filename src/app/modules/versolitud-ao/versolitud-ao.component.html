@@ -35,15 +35,15 @@
           <!-- Fruit Column -->
           <ng-container matColumnDef="eliminar">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> CANCELAR </th>
-            <td mat-cell *matCellDef="let row">Cliente</td>
+            <td mat-cell *matCellDef="let row">CLIENTE</td>
           </ng-container>
           <!-- Fruit Column -->
           <ng-container matColumnDef="continuar">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> ACCIÓN </th>
             <td mat-cell *matCellDef="let row">
-              <button mat-flat-button color="accent" *ngIf="!row.estado">
+              <button mat-flat-button color="accent" *ngIf="!row.estado" (click)="aceptarsolicitar(row)">
                 ACEPTAR SOLICITUD</button>
-              <button mat-flat-button color="warn" *ngIf="row.estado">
+              <button mat-flat-button color="warn" *ngIf="row.estado" (click)="denagarsolicitar(row)">
                 DENEGAR SOLICITUD</button>
             </td>
           </ng-container>
