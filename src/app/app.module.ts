@@ -40,10 +40,14 @@ import { EquipajeInfoComponent } from './modules/equipaje-info/equipaje-info.com
 import { ContactoComponent } from './modules/contacto/contacto.component';
 import { VerboletosComponent } from './modules/verboletos/verboletos.component';
 import {NgxQRCodeModule} from "@techiediaries/ngx-qrcode";
+import { VersolitudAoComponent } from './modules/versolitud-ao/versolitud-ao.component';
+import { EditarperfilEmComponent } from './modules/editarperfil-em/editarperfil-em.component';
+import { EditarperfilPaComponent } from './modules/editarperfil-pa/editarperfil-pa.component';
+import { EditarperfilChaComponent } from './modules/editarperfil-cha/editarperfil-cha.component';
 
 
 const routes: Routes = [
-  { path: 'inicio', component: IniciarsesionComponent,  pathMatch: 'full'},
+  { path: 'inicio/home', component: HomeComponent,  pathMatch: 'full'},
   { path: 'inicio/inicarsesion', component: IniciarsesionComponent},
   { path: 'inicio/nuevousuario', component: NuevopasajeroComponent},
   { path: 'inicio/nuevocharter', component: NuevocharterComponent},
@@ -67,13 +71,16 @@ const routes: Routes = [
   { path: 'inicio/editarpromociones/:id', component: EditarpromocionComponent},
   { path: 'inicio/vuevasolicitud', component: NuevasolicitudComponent},
   { path: 'inicio/versolicitud', component: VersolicitudChaComponent},
+  { path: 'inicio/versolicitud-jo', component: VersolitudAoComponent},
   { path: 'inicio/vuevoticket/:id', component: VuevotiketComponent},
   { path: 'inicio/verbolestos/:id', component: VerboletosComponent},
+  { path: 'inicio/editarperfil-em/:id', component: EditarperfilEmComponent},
+  { path: 'inicio/editarperfil-pa/:id', component: EditarperfilPaComponent},
+  { path: 'inicio/editarperfil-cha/:id', component: EditarperfilChaComponent},
   //HOME
   { path: 'inicio/promociones', component: VerprocioneshomeComponent},
   { path: 'inicio/vuelos', component: VuelohomeComponent},
   //apartado informativo
-  { path: 'inicio/home', component: HomeComponent},
   { path: 'inicio/quienes-info', component: QuienesComponent},
   { path: 'inicio/contacto', component: ContactoComponent},
   { path: 'inicio/equipaje', component: EquipajeInfoComponent},
@@ -115,6 +122,10 @@ const routes: Routes = [
     EquipajeInfoComponent,
     ContactoComponent,
     VerboletosComponent,
+    VersolitudAoComponent,
+    EditarperfilEmComponent,
+    EditarperfilPaComponent,
+    EditarperfilChaComponent,
   ],
   imports: [
     BrowserModule,

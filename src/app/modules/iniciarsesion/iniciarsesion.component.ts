@@ -38,7 +38,7 @@ export class IniciarsesionComponent implements OnInit {
         this.empleadoService.getEmpleado(value.id).subscribe(value1 => {
           sessionStorage.clear;
           sessionStorage.setItem('user', JSON.stringify(value1));
-          this.router.navigate(['/inicio']).then(() => {
+          this.router.navigate(['/inicio/home']).then(() => {
             window.location.reload();
           });
         },error => {
@@ -65,7 +65,7 @@ export class IniciarsesionComponent implements OnInit {
         this.pasajeroService.getPasajero(value.id).subscribe(value1 => {
           sessionStorage.clear;
           sessionStorage.setItem('user', JSON.stringify(value1));
-          this.router.navigate(['/inicio']).then(() => {
+          this.router.navigate(['/inicio/home']).then(() => {
             window.location.reload();
           });
         })
@@ -88,7 +88,7 @@ export class IniciarsesionComponent implements OnInit {
         this.usuariocharterService.getCharter(value.id).subscribe(value1 => {
           sessionStorage.clear;
           sessionStorage.setItem('user', JSON.stringify(value1));
-          this.router.navigate(['/inicio']).then(() => {
+          this.router.navigate(['/inicio/home']).then(() => {
             window.location.reload();
           });
         })

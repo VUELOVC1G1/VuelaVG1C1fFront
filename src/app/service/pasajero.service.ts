@@ -21,4 +21,9 @@ export class PasajeroService {
   getPasajero(id?: Number):Observable<Pasajero>{
     return this.http.get(this.urlEndPoint+"/pasajeros/usuario/"+id);
   }
+
+  putPasajero(idPasajero?:Number,pasajeroRequest?:Pasajero):Observable<Pasajero>{
+    console.log(pasajeroRequest)
+    return this.http.put<Pasajero>(this.urlEndPoint+"/pasajeros/"+idPasajero,pasajeroRequest);
+  }
 }

@@ -149,12 +149,14 @@ export class VuevotiketComponent implements OnInit {
     this.boleto.vueloId=this.vuelo.id;
     this.boleto.asientos=asiento;
     this.boleto.pago=this.fourFormGroup.getRawValue();
-    this.boleto.pago?.estado==true;
+    // @ts-ignore
+    this.boleto.pago.estado==true;
     console.log( this.boleto);
     this.boletoService.postBoleto(this.boleto).subscribe(value => {
       this._snackBar.open("Boleto obtenido, que tenga un buen viaje", "",{
         duration: 1 * 2000,
       });
+      this.router.navigate(['/inicio/verbolestos',this.boleto.pasajeroId])
     },error => {
       this._snackBar.open(error.error.message, "",{
         duration: 1 * 2000,

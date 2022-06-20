@@ -1,19 +1,17 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
-import {Rutas} from "../../models/rutas";
+import {Solicitud} from "../../models/solicitud";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {RutasService} from "../../service/rutas.service";
-import {Solicitud} from "../../models/solicitud";
 import {SolicitudService} from "../../service/solicitud.service";
 
 @Component({
-  selector: 'app-versolicitud-cha',
-  templateUrl: './versolicitud-cha.component.html',
-  styleUrls: ['./versolicitud-cha.component.css']
+  selector: 'app-versolitud-ao',
+  templateUrl: './versolitud-ao.component.html',
+  styleUrls: ['./versolitud-ao.component.css']
 })
-export class VersolicitudChaComponent implements OnInit {
+export class VersolitudAoComponent implements OnInit {
 
   displayedColumns: string[] = ['ruta', 'fecha', 'estado','eliminar','continuar'];
 

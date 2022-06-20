@@ -1,5 +1,6 @@
 import {Asientos} from "./avion";
 import {Vuelo} from "./vuelo";
+import {Pasajero} from "./pasajero";
 
 export class Boleto {
   id?:Number;
@@ -11,6 +12,7 @@ export class Boleto {
   maletas?:Maleta[];
   pago?:Pago;
   vuelo?:Vuelo;
+  pasajero?:Pasajero
 }
 
 export class Maleta {

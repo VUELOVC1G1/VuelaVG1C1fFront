@@ -23,7 +23,7 @@ export class SolicitudService {
   }
 
   getSolicitudAll():Observable<Solicitud[]>{
-    return this.http.get(this.urlEndPoint+"/pedidos/all").pipe(map(Response => Response as Solicitud[]))
+    return this.http.get(this.urlEndPoint+"/pedidos").pipe(map(Response => Response as Solicitud[]))
   }
 
   putRutas(pedidoRequest :Solicitud):Observable<Solicitud>{

@@ -47,7 +47,7 @@ export class LayoutComponent implements OnInit {
     localStorage.removeItem("user");
     sessionStorage.setItem('user', JSON.stringify(""));
     console.log(JSON.parse(sessionStorage['user']))
-    this.router.navigate(['/inicio']).then(() => {
+    this.router.navigate(['/inicio/home']).then(() => {
       window.location.reload();
     });
   }
