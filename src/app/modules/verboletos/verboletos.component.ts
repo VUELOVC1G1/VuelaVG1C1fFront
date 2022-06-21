@@ -14,6 +14,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels} from "@techiediaries/ngx-qrcode";
 import html2canvas from "html2canvas";
+import {DatePipe} from "@angular/common";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -94,11 +95,12 @@ export class VerboletosComponent implements OnInit {
 
 
   async createPdf(boleto: Boleto) {
+    var pipe:DatePipe = new DatePipe('en-US')
     const pdfDefinition: any = {
       background: [
         {
-          image: await this.getBase64ImageFromURL('assets/icons/avion-586x490-1.jpg'),
-          width:500,height:160
+          image: await this.getBase64ImageFromURL('https://d500.epimg.net/cincodias/imagenes/2015/03/24/lifestyle/1427217388_716421_1427217969_noticia_normal.jpg'),
+          width:600,height:200
         }
       ],
       content: [
@@ -107,36 +109,40 @@ export class VerboletosComponent implements OnInit {
             [
               {columns:[
                   {image:await this.getBase64ImageFromURL('assets/icons/Vuela_v1.png'),width: 50},
-                  {text: 'Pass Boarding',width:300,alignment: 'center',fontSize: 18, bold: true},
+                  {text: 'Pass Boarding',width:350,alignment: 'center',fontSize: 20, bold: true,color:'white'},
                 ],
               },
               {columns:[
-                  {text: 'CODIGO: '+boleto.id,width:350,fontSize: 13},
+                  {text: 'CODIGO: '+boleto.id,width:450,fontSize: 15,background:'white'},
                 ],
               },
               {columns:[
-                  {text: 'PASAJERO CEDULA: '+boleto.pasajero?.cedula,width:350,fontSize: 13},
+                  {text: 'PASAJERO CEDULA: '+boleto.pasajero?.cedula,width:450,fontSize: 15,color:'white'},
                 ],
               },
               {columns:[
-                  {text: 'PASAJERO NOMBRES: '+boleto.pasajero?.nombre+' '+boleto.pasajero?.nombre,width:350,fontSize: 13},
+                  {text: 'PASAJERO NOMBRES: '+boleto.pasajero?.nombre+' '+boleto.pasajero?.nombre,width:450,fontSize: 15,color:'white'},
                 ],
               },
               {columns:[
-                  {text: 'VUELO: Vielo'+boleto.vuelo?.id,width:350,fontSize: 13},
+                  {text: 'VUELO: Vielo'+boleto.vuelo?.id,width:450,fontSize: 15,color:'white'},
                 ],
               },
               {columns:[
-                  {text: 'FECHA Y HORA DE SALIDA: '+boleto.vuelo?.fechaVuelo,width:350,fontSize: 13},
+                  {text: 'FECHA Y HORA DE SALIDA: '+pipe.transform(boleto.vuelo?.fechaVuelo,'medium'),width:450,fontSize: 15,color:'white'},
                 ],
               },
               {columns:[
                   // @ts-ignore
-                  {text: 'ASIENTO: '+boleto.asientos[0].nombre,width:350,fontSize: 13},
+                  {text: 'ASIENTO: '+boleto.asientos[0].nombre,width:450,fontSize: 15,color:'white'},
                 ],
               },
               {columns:[
-                  {text: 'RUTA: '+boleto.vuelo?.rutaResponse?.origen+'-'+boleto.vuelo?.rutaResponse?.destino,width:350,fontSize: 13},
+                  {text: 'SALA DE ABORDAJE: '+boleto.vuelo?.salaEspera,width:450,fontSize: 15,color:'white'},
+                ],
+              },
+              {columns:[
+                  {text: 'RUTA: '+boleto.vuelo?.rutaResponse?.origen+'-'+boleto.vuelo?.rutaResponse?.destino,width:450,fontSize: 15,color:'white'},
                 ],
               }
             ],
@@ -146,7 +152,7 @@ export class VerboletosComponent implements OnInit {
           ]
         },
       ],
-      pageSize: {width:500,height:160},
+      pageSize: {width:600,height:200},
       pageMargins: [10, 10, 10, 10],
     }
     const pdf = pdfMake.createPdf(pdfDefinition);

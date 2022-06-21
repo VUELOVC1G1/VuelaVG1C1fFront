@@ -48,7 +48,7 @@
       <h2 *ngIf="vuelos.length==0">Sin resultados</h2>
       <mat-card *ngFor="let vuelo of vuelos" STYLE="text-align: center;margin-top: 2px; background-color: #607d8b">
         <h2> <mat-icon>flight_takeoff</mat-icon> {{vuelo.rutaResponse?.origen}}-{{vuelo.rutaResponse?.destino}} <mat-icon>flight_land</mat-icon></h2>
-        ||<strong> Fecha de salida: {{vuelo.fechaVuelo}}</strong>||<button mat-flat-button color="warn"[routerLink]="['/inicio/vuevoticket',vuelo.id]"><mat-icon>credit_card</mat-icon>COMPRAR BOLETO</button>
+        ||<strong> Fecha de salida: {{vuelo.fechaVuelo | date: 'medium'}}</strong>||<button mat-flat-button color="warn"[routerLink]="['/inicio/vuevoticket',vuelo.id]"><mat-icon>credit_card</mat-icon>COMPRAR BOLETO</button>
       </mat-card>
     </mat-card-content>
   </mat-card>

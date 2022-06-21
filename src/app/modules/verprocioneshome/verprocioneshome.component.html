@@ -10,7 +10,7 @@
           <mat-divider></mat-divider>
           <h1>{{promocion.vuelo?.rutaResponse?.origen}}-{{promocion.vuelo?.rutaResponse?.destino}}</h1>
           <h2>{{promocion.descripcion}}</h2>
-          <h2>Vuelo: {{promocion.vuelo?.fechaVuelo}}</h2>
+          <h2>Vuelo: {{promocion.vuelo?.fechaVuelo | date: 'medium'}}</h2>
           <h2 *ngIf="promocion.vuelo?.estado==true">DISPONIBLES</h2>
           <h2 *ngIf="promocion.vuelo?.estado==false">NO DISPONIBLES</h2>
         </mat-card-content>

@@ -45,6 +45,7 @@ export class EditarvueloComponent implements OnInit {
   thirtFormGroup = this._formBuilder.group({
     estado: ['', Validators.required],
     observacion: ['', Validators.required],
+    salaEspera:['', Validators.required],
   });
   isLinear = false;
   char =false;
@@ -95,6 +96,7 @@ export class EditarvueloComponent implements OnInit {
         this.thirtFormGroup.setValue({
           estado: value.estado,
           observacion: value.observacion,
+          salaEspera: value.salaEspera
         })
       })
     })
@@ -118,6 +120,7 @@ export class EditarvueloComponent implements OnInit {
 
     vuelo.estado=this.thirtFormGroup.getRawValue().estado
     vuelo.observacion=this.thirtFormGroup.getRawValue().observacion
+    vuelo.salaEspera=this.thirtFormGroup.getRawValue().salaEspera
 
     vuelo.fechaCreacion= new Date();
 
@@ -136,6 +139,9 @@ export class EditarvueloComponent implements OnInit {
         duration: 1 * 2000,
       });
     })
-
   }
+
+  options: string[] = ['SALA-A1', 'SALA-A2', 'SALA-A3',
+    'SALA-A4','SALA-A5','SALA-A6','SALA-B1','SALA-B2','SALA-B3','SALA-B4'
+    ,'SALA-B5','SALA-B6'];
 }

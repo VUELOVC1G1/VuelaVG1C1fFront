@@ -1,0 +1,26 @@
+.mat-stepper-horizontal {
+  width: 700px;
+  margin: 8px auto;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+.example-card {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.card1{
+  width: 100%;
+  display: flex;
+}
+.cardflex{
+  -ms-flex: 1;  /* IE 10 */
+  flex: 1;
+
+}

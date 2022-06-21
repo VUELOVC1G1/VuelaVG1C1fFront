@@ -14,7 +14,7 @@
           <h2><strong>Avion: </strong>{{vuelo.avionResponse?.nombre}}<br></h2>
           <h2><strong>Observacion: </strong>{{vuelo.observacion}}</h2>
           <mat-divider></mat-divider>
-          <h2 *ngIf="promocion.id!=null">Este vuelo tiene {{promocion.descuento}}% de descuento.</h2>
+          <h2 *ngIf="promocion.id!=undefined || promocion.id!=null" >Este vuelo tiene {{promocion.descuento}}% de descuento.</h2>
         </mat-card-content>
         <mat-card-actions>
           <button mat-flat-button matStepperNext color="accent">SIGUIENTE</button>

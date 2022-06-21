@@ -47,6 +47,7 @@ import { EditarperfilChaComponent } from './modules/editarperfil-cha/editarperfi
 import { ManifiestoComponent } from './modules/manifiesto/manifiesto.component';
 import { VermanifiestoChaComponent } from './modules/vermanifiesto-cha/vermanifiesto-cha.component';
 import { VermanifiestoJaComponent } from './modules/vermanifiesto-ja/vermanifiesto-ja.component';
+import { PasajescharterComponent } from './modules/pasajescharter/pasajescharter.component';
 
 
 const routes: Routes = [
@@ -83,6 +84,7 @@ const routes: Routes = [
   { path: 'inicio/nuevomanifiesto/:id', component: ManifiestoComponent},
   { path: 'inicio/vermanifiesto-cha/:id', component: VermanifiestoChaComponent},
   { path: 'inicio/vermanifiesto-at', component: VermanifiestoJaComponent},
+  { path: 'inicio/pasajeroscharter', component: PasajescharterComponent},
   //HOME
   { path: 'inicio/promociones', component: VerprocioneshomeComponent},
   { path: 'inicio/vuelos', component: VuelohomeComponent},
@@ -135,6 +137,7 @@ const routes: Routes = [
     ManifiestoComponent,
     VermanifiestoChaComponent,
     VermanifiestoJaComponent,
+    PasajescharterComponent,
   ],
   imports: [
     BrowserModule,

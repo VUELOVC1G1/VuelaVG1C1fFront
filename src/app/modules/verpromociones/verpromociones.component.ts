@@ -36,7 +36,7 @@ export class VerpromocionesComponent implements OnInit {
 
   listarPromociones(){
     this.promocionService.getPromocionAll().subscribe(value => {
-      this.dataSource = new MatTableDataSource(value);
+      this.dataSource = new MatTableDataSource(value.filter(value1 => value1.vuelo?.estado==true));
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })

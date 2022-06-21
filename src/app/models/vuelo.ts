@@ -19,6 +19,7 @@ export class Vuelo {
   tipoVueloResponse?:TiposVuelo;
   rutaResponse?:Rutas;
   horarioResponse?:Horario;
+  salaEspera?:String;
 }
 
 export class TiposVuelo{

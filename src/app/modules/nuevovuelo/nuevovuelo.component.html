@@ -82,6 +82,12 @@
           </mat-card-header>
           <mat-card-content>
             <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Selecione la sala de abordaje del vuelo</mat-label>
+              <mat-select formControlName="salaEspera">
+                <mat-option *ngFor="let salas of options" [value]="salas">{{salas}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%">
               <mat-label>Estado</mat-label>
               <mat-select formControlName="estado">
                 <mat-option [value]="true">Activo</mat-option>

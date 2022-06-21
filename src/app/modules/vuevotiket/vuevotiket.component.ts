@@ -66,7 +66,12 @@ export class VuevotiketComponent implements OnInit {
             })
           })
           this.promocionService.getPromocionAll().subscribe(value => {
-            this.promocion = value.filter(value1 => value1.vuelo?.id == params['id'])[0]
+            if(value.filter(value1 => value1.vuelo?.id == params['id']).length==0){
+              this.promocion= new Promocion()
+            }else {
+              this.promocion = value.filter(value1 => value1.vuelo?.id == params['id'])[0]
+            }
+
           })
         })
       } else {

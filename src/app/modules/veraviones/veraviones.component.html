@@ -16,7 +16,7 @@
           <!-- ID Column -->
           <ng-container matColumnDef="fechaVuelo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> FECHA VUELO </th>
-            <td mat-cell *matCellDef="let row"> {{row.fechaVuelo}} </td>
+            <td mat-cell *matCellDef="let row"> {{row.fechaVuelo|date:'medium'}} </td>
           </ng-container>
 
           <!-- Progress Column -->
