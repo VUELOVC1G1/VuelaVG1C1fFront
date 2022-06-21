@@ -1,17 +1,26 @@
 <div>
   <mat-card class="example-card">
+    <form [formGroup]="FormGroup">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      <mat-card-title>MANIFIESTO</mat-card-title>
+      <mat-card-subtitle>ENVIAR MANIFIESTO</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
     <mat-card-content>
-      <button mat-button color="primary" style="width: 100%">OBTENER PLANTILLA DE MANIFIESTO</button>
+
+        <button mat-button color="primary" style="width: 100%"><a
+          href="https://raw.githubusercontent.com/VUELOVC1G1/VuelaVG1C1fFront/master/src/assets/docs/MANIFIESTO%20DE%20VUELA%20V.pdf">
+          OBTENER PLANTILLA DE MANIFIESTO</a></button>
+        <div class="files">
+          <input  type="file" accept="application/pdf"  (change)="subirManifiesto($event.target.files)" formControlName="documento">
+        </div>
+        <br>
+        <p style="text-align: justify">El manifiesto debe contener los datos que se mencionan en el la platilla, esto para manejar de mejor
+          forma a los clientes y pasajeros. *Nota: Recuerde que El manifiesto será válido SI se ENVIA 24
+          horas antes de la fecha propuesta en la solicitud envida por su parte anteriormente.</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
+      <button mat-flat-button color="accent" [disabled]="FormGroup.invalid" (click)="gurdarManifiesto()" >ENVIAR</button>
     </mat-card-actions>
+    </form>
   </mat-card>
 </div>

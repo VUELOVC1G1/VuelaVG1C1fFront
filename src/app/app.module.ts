@@ -45,6 +45,8 @@ import { EditarperfilEmComponent } from './modules/editarperfil-em/editarperfil-
 import { EditarperfilPaComponent } from './modules/editarperfil-pa/editarperfil-pa.component';
 import { EditarperfilChaComponent } from './modules/editarperfil-cha/editarperfil-cha.component';
 import { ManifiestoComponent } from './modules/manifiesto/manifiesto.component';
+import { VermanifiestoChaComponent } from './modules/vermanifiesto-cha/vermanifiesto-cha.component';
+import { VermanifiestoJaComponent } from './modules/vermanifiesto-ja/vermanifiesto-ja.component';
 
 
 const routes: Routes = [
@@ -79,6 +81,8 @@ const routes: Routes = [
   { path: 'inicio/editarperfil-pa/:id', component: EditarperfilPaComponent},
   { path: 'inicio/editarperfil-cha/:id', component: EditarperfilChaComponent},
   { path: 'inicio/nuevomanifiesto/:id', component: ManifiestoComponent},
+  { path: 'inicio/vermanifiesto-cha/:id', component: VermanifiestoChaComponent},
+  { path: 'inicio/vermanifiesto-at', component: VermanifiestoJaComponent},
   //HOME
   { path: 'inicio/promociones', component: VerprocioneshomeComponent},
   { path: 'inicio/vuelos', component: VuelohomeComponent},
@@ -129,6 +133,8 @@ const routes: Routes = [
     EditarperfilPaComponent,
     EditarperfilChaComponent,
     ManifiestoComponent,
+    VermanifiestoChaComponent,
+    VermanifiestoJaComponent,
   ],
   imports: [
     BrowserModule,

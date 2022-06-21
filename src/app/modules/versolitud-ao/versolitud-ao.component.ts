@@ -15,6 +15,8 @@ import {UsuariocharterService} from "../../service/usuariocharter.service";
 })
 export class VersolitudAoComponent implements OnInit {
 
+  usuario:Usuariocharter[]=[];
+
   displayedColumns: string[] = ['ruta', 'fecha', 'estado', 'eliminar', 'continuar'];
 
   // @ts-ignore
@@ -32,6 +34,9 @@ export class VersolitudAoComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarSolicides();
+    this.usuariocharterService.getCharterAll().subscribe(value => {
+      this.usuario=value;
+    })
   }
 
   listarSolicides() {
@@ -48,6 +53,11 @@ export class VersolitudAoComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  obtnerdatos(id?:Number):String{
+    // @ts-ignore
+    return "Ruc: "+this.usuario.filter(value => value.id==id).pop()?.ruc+"  Nombre: "+this.usuario.filter(value => value.id==id).pop()?.empresa;
   }
 
   aceptarsolicitar(solicitud: Solicitud) {

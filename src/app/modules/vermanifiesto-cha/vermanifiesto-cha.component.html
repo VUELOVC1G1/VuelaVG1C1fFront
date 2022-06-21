@@ -1,0 +1,52 @@
+<div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>VER MANIFIESTOS</mat-card-title>
+      <mat-card-subtitle>MANIFIESTOS REGISTRADOR</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="charter">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </th>
+            <td mat-cell *matCellDef="let row"> {{row.charterResponse?.empresa}} </td>
+          </ng-container>
+
+          <!-- Progress Column -->
+          <ng-container matColumnDef="documento">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> DESTINO </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-flat-button color="primary" (click)="createPdf(row.documento)">DESCARGAR DOCUMENTO</button>
+            </td>
+          </ng-container>
+
+          <!-- Fruit Column -->
+          <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ELIMINAR </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-flat-button color="warn"(click)="eliminarManifiesto(row.id)">ELIMINAR</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+

@@ -48,6 +48,7 @@ import {
   NgxMatNativeDateModule,
   NgxMatTimepickerModule
 } from "@angular-material-components/datetime-picker";
+import {NgxMatFileInputModule} from "@angular-material-components/file-input";
 
 
 
@@ -100,7 +101,8 @@ import {
     ScrollingModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    NgxMatFileInputModule
   ],
 
 })
