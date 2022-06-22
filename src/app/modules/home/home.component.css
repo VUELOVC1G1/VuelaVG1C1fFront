@@ -36,7 +36,7 @@ header {
   background: -webkit-linear-gradient(to right, hsla(217, 81%, 49%, 0.494), hsla(221, 28%, 25%, 0.38));
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, hsla(217, 81%, 49%, 0.494), hsla(221, 28%, 25%, 0.38));
-  background-image: url(src/assets/icons/pista.jpg);
+  background-image: url("src/assets/icons/pista.jpg");
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-size: cover;
   background-attachment: fixed;
