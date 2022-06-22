@@ -8,6 +8,7 @@ import {Empleado} from "../../models/empleado";
 import {EmpleadoService} from "../../service/empleado.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevoempleado',
@@ -20,9 +21,11 @@ export class NuevoempleadoComponent implements OnInit {
   constructor(private cargoService:CargoService,
               private empleadoService:EmpleadoService,
               private _snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Nuevo Empleado")
     this.cargoService.getcargoAll().subscribe(value => {
       this.cargos=value;
       this.logging=false;

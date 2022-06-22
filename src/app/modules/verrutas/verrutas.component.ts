@@ -7,6 +7,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {AvionService} from "../../service/avion.service";
 import {RutasService} from "../../service/rutas.service";
 import {Rutas} from "../../models/rutas";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-verrutas',
@@ -27,9 +28,11 @@ export class VerrutasComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private _snackBar: MatSnackBar,
-              private rutasService:RutasService) { }
+              private rutasService:RutasService,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Ver Rutas")
     this.listarRutas()
   }
 

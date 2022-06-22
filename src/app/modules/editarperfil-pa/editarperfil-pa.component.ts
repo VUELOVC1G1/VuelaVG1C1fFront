@@ -8,6 +8,7 @@ import {PasajeroService} from "../../service/pasajero.service";
 import {Usuario} from "../../models/usuario";
 import {Empleado} from "../../models/empleado";
 import {Pasajero} from "../../models/pasajero";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-editarperfil-pa',
@@ -15,14 +16,17 @@ import {Pasajero} from "../../models/pasajero";
   styleUrls: ['./editarperfil-pa.component.css']
 })
 export class EditarperfilPaComponent implements OnInit {
+
   logging:boolean=true
   constructor(private activatedRoute: ActivatedRoute,
               private pasajeroService:PasajeroService,
               private cargoService:CargoService,
               private _snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Editar Perfil")
     this.activatedRoute.params.subscribe(params => {
       this.pasajeroService.getPasajero(params['id']).subscribe(value => {
         this.logging=false;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PromocionService} from "../../service/promocion.service";
 import {Promocion} from "../../models/promocion";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-home',
@@ -13,16 +14,16 @@ export class HomeComponent implements OnInit {
 
   promociones:Promocion[]=[];
 
-  constructor(private promocionService:PromocionService) { }
+  constructor(private promocionService:PromocionService,
+              private title: Title) { }
 
   ngOnInit(): void {
     this.ListadoPromociones();
   }
 
   ListadoPromociones(){
+    this.title.setTitle("Inicio")
     this.promocionService.getPromocionAll().subscribe(value => {
-      // @ts-ignore
-      console.log(value.filter(value1 => new Date(value1.vuelo.fechaVuelo)>new Date()))
       // @ts-ignore
       this.promociones=value.filter(value1 => value1.vuelo?.estado==true)
     })

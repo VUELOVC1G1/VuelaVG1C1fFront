@@ -5,6 +5,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Usuario} from "../../models/usuario";
 import {Pasajero} from "../../models/pasajero";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevopasajero',
@@ -15,9 +16,11 @@ export class NuevopasajeroComponent implements OnInit {
   logging:boolean=true
   constructor(private pasajeroService:PasajeroService,
               private _snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Nuevo Pasajero")
     setTimeout(() => {
       this.logging=false;
     }, 1000)

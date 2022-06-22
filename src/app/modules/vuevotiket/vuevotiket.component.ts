@@ -11,6 +11,7 @@ import {AvionService} from "../../service/avion.service";
 import {NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels} from "@techiediaries/ngx-qrcode";
 import {Boleto} from "../../models/boleto";
 import {BoletoService} from "../../service/boleto.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-vuevotiket',
@@ -50,12 +51,14 @@ export class VuevotiketComponent implements OnInit {
               private promocionService: PromocionService,
               private _formBuilder: FormBuilder,
               private avionService: AvionService,
-              private boletoService:BoletoService) {
+              private boletoService:BoletoService,
+              private title: Title) {
     //ArrayActividades
     this.rows = this._formBuilder.array([]);
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Reservar Boleto")
     this.onAddRow();
     try {
       if (JSON.parse(sessionStorage['user']).usuario?.rol == "PASAJERO" && JSON.parse(sessionStorage['user']).id != null) {

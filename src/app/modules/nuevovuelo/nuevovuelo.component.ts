@@ -13,6 +13,7 @@ import {Usuariocharter} from "../../models/usuariocharter";
 import {VueloService} from "../../service/vuelo.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevovuelo',
@@ -55,9 +56,11 @@ export class NuevovueloComponent implements OnInit {
               private usuariocharterService:UsuariocharterService,
               private vueloService:VueloService,
               private _snackBar: MatSnackBar,
-              private router: Router) {}
+              private router: Router,
+              private title: Title) {}
 
   ngOnInit(): void {
+    this.title.setTitle("Nuevi Vuelo")
     this.avionService.getAvionAll().subscribe(value => {
       this.aviones=value.filter(value1 => value1.estado==true);
     })

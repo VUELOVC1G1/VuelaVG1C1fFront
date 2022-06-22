@@ -3,6 +3,7 @@ import {map, Observable, startWith} from "rxjs";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Vuelo} from "../../models/vuelo";
 import {VueloService} from "../../service/vuelo.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-vuelohome',
@@ -15,7 +16,8 @@ export class VuelohomeComponent implements OnInit {
 
   vuelos: Vuelo[] = []
 
-  constructor(private vueloService: VueloService) {
+  constructor(private vueloService: VueloService,
+              private title: Title) {
   }
 
   filteredOptions?: Observable<string[]>;
@@ -27,6 +29,7 @@ export class VuelohomeComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.title.setTitle("Buscar vuelos")
     setTimeout(() => {
       this.logging=false;
     }, 1000)
@@ -66,7 +69,6 @@ export class VuelohomeComponent implements OnInit {
     this.vueloService.getVueloAll().subscribe(value => {
       this.vuelos=value.filter(value1 => value1.estado==true&&
         value1.tipoVueloResponse?.nombre=="COMERCIAL"&&
-        value1.estado==true&&
         value1.rutaResponse?.origen==this.firstFormGroup.getRawValue().origen&&
         value1.rutaResponse?.destino==this.firstFormGroup.getRawValue().destino)
     })

@@ -6,6 +6,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Usuario} from "../../models/usuario";
 import {Empleado} from "../../models/empleado";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-editarperfil-em',
@@ -18,9 +19,11 @@ export class EditarperfilEmComponent implements OnInit {
               private empleadoService:EmpleadoService,
               private cargoService:CargoService,
               private _snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Editar Perfil")
     this.activatedRoute.params.subscribe(params => {
       this.empleadoService.getEmpleado(params['id']).subscribe(value => {
         this.logging=false;

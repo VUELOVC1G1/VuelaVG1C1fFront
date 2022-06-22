@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HorarioService} from "../../service/horario.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevohorario',
@@ -20,9 +21,11 @@ export class NuevohorarioComponent implements OnInit {
 
   constructor(private horarioService:HorarioService,
               private _snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Nuevi Horario")
     setTimeout(() => {
       this.logging=false;
     }, 1000)

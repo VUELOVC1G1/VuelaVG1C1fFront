@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HorarioService} from "../../service/horario.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Vuelo} from "../../models/vuelo";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-editarhorario',
@@ -23,9 +24,11 @@ export class EditarhorarioComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private horarioService:HorarioService,
               private _snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Editar Horario")
     this.activatedRoute.params.subscribe(params => {
       this.horarioService.getHorarios(params['id']).subscribe(value => {
         this.firstFormGroup.setValue(value);

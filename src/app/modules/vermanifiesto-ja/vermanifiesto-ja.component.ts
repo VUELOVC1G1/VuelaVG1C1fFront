@@ -7,6 +7,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {HorarioService} from "../../service/horario.service";
 import {ActivatedRoute} from "@angular/router";
 import {ManifiestoService} from "../../service/manifiesto.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-vermanifiesto-ja',
@@ -31,10 +32,12 @@ export class VermanifiestoJaComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar,
               private horarioService:HorarioService,
               private activatedRoute: ActivatedRoute,
-              private manifiestoService:ManifiestoService) { }
+              private manifiestoService:ManifiestoService,
+              private title: Title) { }
 
 
   ngOnInit(): void {
+    this.title.setTitle("Ver Manifiesto")
       this.listarManifiesto()
   }
 

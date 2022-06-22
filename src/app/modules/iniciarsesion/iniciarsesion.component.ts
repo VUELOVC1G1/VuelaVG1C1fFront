@@ -7,6 +7,7 @@ import {EmpleadoService} from "../../service/empleado.service";
 import {Router} from "@angular/router";
 import {UsuariocharterService} from "../../service/usuariocharter.service";
 import {PasajeroService} from "../../service/pasajero.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-iniciarsesion',
@@ -23,9 +24,11 @@ export class IniciarsesionComponent implements OnInit {
               private empleadoService:EmpleadoService,
               private router:Router,
               private usuariocharterService:UsuariocharterService,
-              private pasajeroService:PasajeroService) { }
+              private pasajeroService:PasajeroService,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Inicar sesión")
     setTimeout(() => {
       this.logging=false;
     }, 1000)

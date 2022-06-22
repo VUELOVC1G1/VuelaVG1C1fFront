@@ -7,6 +7,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {SolicitudService} from "../../service/solicitud.service";
 import {Usuariocharter} from "../../models/usuariocharter";
 import {UsuariocharterService} from "../../service/usuariocharter.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-versolitud-ao',
@@ -30,10 +31,12 @@ export class VersolitudAoComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar,
               private solicitudService: SolicitudService,
-              private usuariocharterService:UsuariocharterService) {
+              private usuariocharterService:UsuariocharterService,
+              private title: Title) {
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Ver Solicitud")
     this.listarSolicides();
     this.usuariocharterService.getCharterAll().subscribe(value => {
       this.usuario=value;

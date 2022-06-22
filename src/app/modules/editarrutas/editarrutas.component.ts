@@ -4,6 +4,7 @@ import {RutasService} from "../../service/rutas.service";
 import {map, Observable, startWith} from "rxjs";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-editarrutas',
@@ -25,9 +26,11 @@ export class EditarrutasComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private rutasService:RutasService,
               private _snackBar: MatSnackBar,
-              private router :Router) { }
+              private router :Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Editar Rutas")
     this.filteredOptions = this.firstFormGroup.get("origen")!.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),

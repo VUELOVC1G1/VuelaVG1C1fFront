@@ -6,6 +6,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AvionService} from "../../service/avion.service";
 import {Avion} from "../../models/avion";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-vervuelos',
@@ -25,9 +26,11 @@ export class VervuelosComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private _snackBar: MatSnackBar,
-              private avionService:AvionService) { }
+              private avionService:AvionService,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Ver vuelos")
     this.listarevuelos();
   }
 

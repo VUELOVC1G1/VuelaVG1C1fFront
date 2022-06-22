@@ -13,6 +13,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels} from "@techiediaries/ngx-qrcode";
 import html2canvas from "html2canvas";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-verboletos-at',
@@ -39,10 +40,12 @@ export class VerboletosAtComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar,
               private activatedRoute: ActivatedRoute,
-              private boletoService: BoletoService) {
+              private boletoService: BoletoService,
+              private title: Title) {
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Ver Boletos")
     this.listar("")
   }
 

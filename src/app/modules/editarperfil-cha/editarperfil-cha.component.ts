@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {EmpleadoService} from "../../service/empleado.service";
 import {Usuario} from "../../models/usuario";
 import {Usuariocharter} from "../../models/usuariocharter";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-editarperfil-cha',
@@ -18,7 +19,8 @@ export class EditarperfilChaComponent implements OnInit {
               private _snackBar: MatSnackBar,
               private activatedRoute: ActivatedRoute,
               private empleadoService:EmpleadoService,
-              private router:Router) {
+              private router:Router,
+              private title: Title) {
   }
 
 
@@ -31,6 +33,7 @@ export class EditarperfilChaComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.title.setTitle("Editar Perfil")
     this.activatedRoute.params.subscribe(params => {
       this.usuariocharterService.getCharter(params['id']).subscribe(value => {
         this.logging=false;

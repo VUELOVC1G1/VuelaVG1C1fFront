@@ -13,6 +13,7 @@ import {Boleto} from "../../models/boleto";
 import {Usuario} from "../../models/usuario";
 import {Pasajero} from "../../models/pasajero";
 import {PasajeroService} from "../../service/pasajero.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-pasajescharter',
@@ -57,12 +58,14 @@ export class PasajescharterComponent implements OnInit {
               private promocionService: PromocionService,
               private avionService: AvionService,
               private boletoService:BoletoService,
-              private pasajeroService:PasajeroService,) {
+              private pasajeroService:PasajeroService,
+              private title: Title) {
     //ArrayActividades
     this.rows = this._formBuilder.array([]);
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Pasajero Charter")
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id'])
       this.vueloService.getVuelo(params['id']).subscribe(value => {

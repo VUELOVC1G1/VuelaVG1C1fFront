@@ -7,6 +7,7 @@ import {Usuario} from "../../models/usuario";
 import {Pasajero} from "../../models/pasajero";
 import {Usuariocharter} from "../../models/usuariocharter";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevocharter',
@@ -18,9 +19,11 @@ export class NuevocharterComponent implements OnInit {
   logging:boolean=true
   constructor(private usuariocharterService:UsuariocharterService,
               private _snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Nuevo charter")
     setTimeout(() => {
       this.logging=false;
     }, 1000)

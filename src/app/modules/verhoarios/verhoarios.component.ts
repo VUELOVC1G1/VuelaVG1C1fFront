@@ -8,6 +8,7 @@ import {RutasService} from "../../service/rutas.service";
 import {HorarioService} from "../../service/horario.service";
 import {Horario} from "../../models/horario";
 import {ActivatedRoute} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-verhoarios',
@@ -29,10 +30,12 @@ export class VerhoariosComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar,
               private horarioService:HorarioService,
-              private activatedRoute: ActivatedRoute,) { }
+              private activatedRoute: ActivatedRoute,
+              private title: Title) { }
 
 
   ngOnInit(): void {
+    this.title.setTitle("Ver Horarios")
     this.listarHoriarios();
   }
 

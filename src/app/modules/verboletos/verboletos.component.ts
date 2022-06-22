@@ -15,6 +15,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels} from "@techiediaries/ngx-qrcode";
 import html2canvas from "html2canvas";
 import {DatePipe} from "@angular/common";
+import {Title} from "@angular/platform-browser";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -44,10 +45,12 @@ export class VerboletosComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar,
               private activatedRoute: ActivatedRoute,
-              private boletoService: BoletoService) {
+              private boletoService: BoletoService,
+              private title: Title) {
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Ver Boletos")
     this.activatedRoute.params.subscribe(params => {
       this.listar(params['id'])
       this.id = params['id'];

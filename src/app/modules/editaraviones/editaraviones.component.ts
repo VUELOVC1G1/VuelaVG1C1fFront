@@ -6,6 +6,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {AvionService} from "../../service/avion.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Asientos, Avion} from "../../models/avion";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-editaraviones',
@@ -23,9 +24,11 @@ export class EditaravionesComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private _snackBar: MatSnackBar,
               private router:Router,
-              private avionService:AvionService) { }
+              private avionService:AvionService,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Editar Avion")
     this.activatedRoute.params.subscribe(params => {
       this.avionService.getAvionAll().subscribe(value => {
         this.logging=false;

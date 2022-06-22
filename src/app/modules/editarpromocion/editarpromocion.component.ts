@@ -6,6 +6,7 @@ import {PromocionService} from "../../service/promocion.service";
 import {Vuelo} from "../../models/vuelo";
 import {VueloService} from "../../service/vuelo.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-editarpromocion',
@@ -20,7 +21,8 @@ export class EditarpromocionComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private vueloService:VueloService,
               private _snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private title: Title) { }
 
   firstFormGroup = new FormGroup({
     id: new FormControl(''),
@@ -30,6 +32,7 @@ export class EditarpromocionComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.title.setTitle("Editar Promoción")
     this.vueloService.getVueloAll().subscribe(value => {
       this.vuelos=value.filter(value1 => value1.estado==true&&value1.tipoVueloResponse?.nombre=="COMERCIAL")
     })

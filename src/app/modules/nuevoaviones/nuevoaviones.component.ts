@@ -5,6 +5,7 @@ import {Asientos, Avion, TipoAsiento} from "../../models/avion";
 import {AvionService} from "../../service/avion.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevoaviones',
@@ -21,10 +22,12 @@ export class NuevoavionesComponent implements OnInit {
               private tipoasientosService: TipoasientosService,
               private avionService: AvionService,
               private _snackBar: MatSnackBar,
-              private router: Router) {
+              private router: Router,
+              private title: Title) {
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Nuevo Avión")
     setTimeout(() => {
       this.logging=false;
     }, 1000)

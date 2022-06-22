@@ -6,6 +6,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {Usuario} from "../../models/usuario";
 import {Empleado} from "../../models/empleado";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevaruta',
@@ -25,9 +26,11 @@ export class NuevarutaComponent implements OnInit {
   });
   constructor(private rutasService:RutasService,
               private _snackBar: MatSnackBar,
-              private router :Router) { }
+              private router :Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Nueva Ruta")
     this.filteredOptions = this.firstFormGroup.get("origen")!.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),

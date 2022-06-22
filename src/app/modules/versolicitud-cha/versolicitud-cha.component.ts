@@ -8,6 +8,7 @@ import {RutasService} from "../../service/rutas.service";
 import {Solicitud} from "../../models/solicitud";
 import {SolicitudService} from "../../service/solicitud.service";
 import {ActivatedRoute} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-versolicitud-cha',
@@ -29,9 +30,11 @@ export class VersolicitudChaComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar,
               private solicitudService:SolicitudService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Ver solicitud")
     this.activatedRoute.params.subscribe(params => {
       this.listarSolicides(params['id']);
     })

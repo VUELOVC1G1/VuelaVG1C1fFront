@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DatePipe} from "@angular/common";
 import * as Highcharts from "highcharts";
 import {ReportesService} from "../../service/reportes.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-reportervuelo',
@@ -11,9 +12,11 @@ import {ReportesService} from "../../service/reportes.service";
 export class ReportervueloComponent implements OnInit {
 
   logging:boolean=true
-  constructor(private reportesService: ReportesService) { }
+  constructor(private reportesService: ReportesService,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Vuelos")
     var Vue: Vuelo[] = [];
     this.reportesService.getReporteVue().subscribe(value => {
       this.logging=false;

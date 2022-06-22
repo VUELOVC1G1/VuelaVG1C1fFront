@@ -17,6 +17,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels} from "@techiediaries/ngx-qrcode";
 import html2canvas from "html2canvas";
 import {DatePipe} from "@angular/common";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-vervueloscharter-cha',
@@ -45,10 +46,12 @@ export class VervueloscharterChaComponent implements OnInit {
               private _snackBar: MatSnackBar,
               private router: Router,
               private vueloService: VueloService,
-              private boletoService: BoletoService) {
+              private boletoService: BoletoService,
+              private title: Title) {
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Ver vuelos")
     this.activatedRoute.params.subscribe(params => {
       this.listarevuelos(params['id'])
     })

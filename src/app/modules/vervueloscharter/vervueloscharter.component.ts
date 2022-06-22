@@ -6,6 +6,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {VueloService} from "../../service/vuelo.service";
 import {Vuelo} from "../../models/vuelo";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-vervueloscharter',
@@ -28,9 +29,11 @@ export class VervueloscharterComponent implements OnInit {
 
 
   constructor(private _snackBar: MatSnackBar,
-              private vueloService:VueloService) { }
+              private vueloService:VueloService,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Ver Vuelos")
     this.listarevuelos();
   }
   listarevuelos(){

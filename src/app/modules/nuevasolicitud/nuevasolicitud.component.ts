@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {SolicitudService} from "../../service/solicitud.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Solicitud} from "../../models/solicitud";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevasolicitud',
@@ -15,7 +16,8 @@ export class NuevasolicitudComponent implements OnInit {
   logging:boolean=true
   constructor(private solicitudService:SolicitudService,
               private _snackBar: MatSnackBar,
-              private router :Router) { }
+              private router :Router,
+              private title: Title) { }
 
   firstFormGroup = new FormGroup({
     ruta: new FormControl('', [Validators.required]),
@@ -23,6 +25,7 @@ export class NuevasolicitudComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.title.setTitle("Nuevo Solicitud")
     setTimeout(() => {
       this.logging=false;
     }, 1000)

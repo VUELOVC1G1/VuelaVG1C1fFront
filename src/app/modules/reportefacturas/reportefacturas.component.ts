@@ -3,6 +3,7 @@ import * as Highcharts from 'highcharts';
 import {ReportesService} from "../../service/reportes.service";
 import {ReportesFac} from "../../models/reportes";
 import {DatePipe} from "@angular/common";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-reportefacturas',
@@ -13,10 +14,12 @@ export class ReportefacturasComponent implements OnInit {
 
   logging:boolean=true
 
-  constructor(private reportesService: ReportesService) {
+  constructor(private reportesService: ReportesService,
+              private title: Title) {
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Facturas")
     var Fac: Fac[] = [];
 
     this.reportesService.getReporteFac().subscribe(value => {

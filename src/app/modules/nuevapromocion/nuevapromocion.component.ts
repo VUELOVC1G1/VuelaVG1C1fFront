@@ -6,6 +6,7 @@ import {Avion} from "../../models/avion";
 import {Vuelo} from "../../models/vuelo";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-nuevapromocion',
@@ -20,7 +21,8 @@ export class NuevapromocionComponent implements OnInit {
   constructor(private promocionService:PromocionService,
               private vueloService:VueloService,
               private _snackBar: MatSnackBar,
-              private router :Router) { }
+              private router :Router,
+              private title: Title) { }
 
   firstFormGroup = new FormGroup({
     vueloid: new FormControl('', [Validators.required]),
@@ -29,6 +31,7 @@ export class NuevapromocionComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.title.setTitle("Nuevo Promoción")
     this.vueloService.getVueloAll().subscribe(value => {
       this.logging=false;
       console.log(value.filter(value1 => value1.estado==true&&value1.tipoVueloResponse?.nombre=="COMERCIAL"))

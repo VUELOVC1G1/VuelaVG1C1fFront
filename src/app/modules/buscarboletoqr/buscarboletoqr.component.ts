@@ -6,6 +6,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {VueloService} from "../../service/vuelo.service";
 import {BoletoService} from "../../service/boleto.service";
 import {Boleto} from "../../models/boleto";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-buscarboletoqr',
@@ -24,9 +25,11 @@ export class BuscarboletoqrComponent implements OnInit {
               private _snackBar: MatSnackBar,
               private router: Router,
               private vueloService: VueloService,
-              private boletoService: BoletoService) { }
+              private boletoService: BoletoService,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Boletos")
     this.activatedRoute.params.subscribe(params => {
       this.boletoService.getBoleto(params['id']).subscribe(value => {
        this.boleto=value;

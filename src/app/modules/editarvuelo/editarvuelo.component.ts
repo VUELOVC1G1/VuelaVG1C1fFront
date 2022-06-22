@@ -14,6 +14,7 @@ import {TiposdevueloService} from "../../service/tiposdevuelo.service";
 import {UsuariocharterService} from "../../service/usuariocharter.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Cargo} from "../../models/cargo";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-editarvuelo',
@@ -61,9 +62,11 @@ export class EditarvueloComponent implements OnInit {
               private tiposdevueloService:TiposdevueloService,
               private usuariocharterService:UsuariocharterService,
               private _snackBar: MatSnackBar,
-              private router: Router) { }
+              private router: Router,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Editar Vuelo")
     this.avionService.getAvionAll().subscribe(value => {
       this.aviones=value.filter(value1 => value1.estado==true);
     })

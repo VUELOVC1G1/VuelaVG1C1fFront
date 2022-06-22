@@ -6,6 +6,7 @@ import {UsuariocharterService} from "../../service/usuariocharter.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Mafiniesto} from "../../models/mafiniesto";
 import {ManifiestoService} from "../../service/manifiesto.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-manifiesto',
@@ -21,7 +22,8 @@ export class ManifiestoComponent implements OnInit {
               private _snackBar: MatSnackBar,
               private router :Router,
               private usuariocharterService:UsuariocharterService,
-              private manifiestoService:ManifiestoService) { }
+              private manifiestoService:ManifiestoService,
+              private title: Title) { }
 
 
   FormGroup = new FormGroup({
@@ -29,6 +31,7 @@ export class ManifiestoComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.title.setTitle("Manifiesto")
     this.activatedRoute.params.subscribe(params => {
       this.id=params['id']
       this.usuariocharterService.getCharterAll().subscribe(value => {

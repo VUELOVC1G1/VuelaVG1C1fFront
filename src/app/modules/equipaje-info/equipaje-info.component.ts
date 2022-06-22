@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-equipaje-info',
@@ -10,9 +11,10 @@ export class EquipajeInfoComponent implements OnInit {
   logging:boolean=true
 
 
-  constructor() { }
+  constructor(private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Equipaje")
     setTimeout(() => {
       this.logging=false;
     }, 1000)

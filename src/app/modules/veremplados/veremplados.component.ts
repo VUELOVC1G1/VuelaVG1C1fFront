@@ -5,6 +5,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {Empleado} from "../../models/empleado";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-veremplados',
@@ -26,11 +27,12 @@ export class VerempladosComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private empleadoService:EmpleadoService,
-              private _snackBar: MatSnackBar) { }
+              private _snackBar: MatSnackBar,
+              private title: Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("Ver Empleados")
     this.listarHoarios();
-
   }
 
   listarHoarios(){
