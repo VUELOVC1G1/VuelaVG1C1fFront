@@ -16,14 +16,14 @@
 
     <div class="tool logo">
       <a [routerLink]="['inicio/home']">
-        <span><img src="/assets/icons/Vuela_v1.png"/></span>
+        <span><img src="assets/icons/vuela_v1.png"/></span>
       </a>
     </div>
     <span class="example-spacer"></span>
     <button mat-stroked-button style="margin-right: 0.5%" [routerLink]="['/inicio/vuelos']">VUELOS</button>
     <button mat-stroked-button  style="margin-left: 0.5%" [routerLink]="['/inicio/promociones']">PROMOCIONES</button>
     <span class="example-spacer"></span>
-    <button *ngIf="sesion" mat-flat-button color="accent" [routerLink]="['/inicio/inicarsesion']">INICAR SESION</button>
+    <button *ngIf="sesion" mat-flat-button color="accent" [routerLink]="['/inicio/inicarsesion']">INICIAR SESION</button>
     <button *ngIf="emplados.cargoDto?.siglas=='AD'" mat-button [matMenuTriggerFor]="menu"> {{emplados.nombre}} {{emplados.apellido}} </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item [routerLink]="['/inicio/editarperfil-em',emplados.usuario?.id]">EDITAR PERFIL</button>

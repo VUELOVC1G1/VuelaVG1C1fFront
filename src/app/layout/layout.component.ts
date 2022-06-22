@@ -14,6 +14,7 @@ import {Notificacion} from "../models/notificacion";
 })
 export class LayoutComponent implements OnInit {
 
+
   logging:boolean=true
   showFiller = false;
   sesion:boolean=true;

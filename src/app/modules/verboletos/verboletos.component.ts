@@ -116,7 +116,7 @@ export class VerboletosComponent implements OnInit {
           columns: [
             [
               {columns:[
-                  {image:await this.getBase64ImageFromURL('assets/icons/Vuela_v1.png'),width: 50},
+                  {image:await this.getBase64ImageFromURL('assets/icons/vuela_v1.png'),width: 50},
                   {text: 'Pass Boarding',width:350,alignment: 'center',fontSize: 20, bold: true,color:'white'},
                 ],
               },
@@ -155,7 +155,7 @@ export class VerboletosComponent implements OnInit {
               }
             ],
             {
-              qr: 'blob:http://localhost:4200/727e7dc2-73a4-4c44-a084-becae77d593e/1',fit: '160'
+              qr: 'https://vuelovc1g1.github.io/VuelaVG1C1fFront/inicio/buscarboleto/'+boleto.id,fit: '160'
             },
           ]
         },
