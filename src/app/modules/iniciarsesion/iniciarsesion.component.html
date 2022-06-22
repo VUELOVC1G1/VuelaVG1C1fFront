@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="logging==false">
   <div *ngIf="rol=='ND'">
     <mat-card class="example-card">
       <h2>INICIAR SESION COMO:</h2>
@@ -106,5 +106,9 @@
   <div>
 
   </div>
+</div>
+<div *ngIf="logging">
+  <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
 </div>
 

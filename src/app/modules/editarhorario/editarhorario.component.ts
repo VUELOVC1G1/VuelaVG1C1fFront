@@ -11,7 +11,7 @@ import {Vuelo} from "../../models/vuelo";
   styleUrls: ['./editarhorario.component.css']
 })
 export class EditarhorarioComponent implements OnInit {
-
+  logging:boolean=true
   vuelos:Vuelo[]=[];
 
   firstFormGroup = new FormGroup({
@@ -29,6 +29,9 @@ export class EditarhorarioComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.horarioService.getHorarios(params['id']).subscribe(value => {
         this.firstFormGroup.setValue(value);
+        this.logging=false;
+      },error => {
+        this.logging=false;
       })
     })
   }

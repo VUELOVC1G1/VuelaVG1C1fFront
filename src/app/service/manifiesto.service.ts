@@ -9,7 +9,7 @@ import {Mafiniesto} from "../models/mafiniesto";
 })
 export class ManifiestoService {
 
-  private urlEndPoint:string='https://vuelo-v.herokuapp.com/api/v1/manifiestos';
+  private urlEndPoint:string='https://vuelav-api.herokuapp.com/api/v1/manifiestos';
 
   constructor(private http:HttpClient) { }
 

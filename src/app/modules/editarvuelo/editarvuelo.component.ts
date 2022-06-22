@@ -22,6 +22,8 @@ import {Cargo} from "../../models/cargo";
 })
 export class EditarvueloComponent implements OnInit {
 
+  logging:boolean=true
+
   aviones:Avion[]=[];
   rutas:Rutas[]=[];
   horarios:Horario[]=[];
@@ -80,6 +82,7 @@ export class EditarvueloComponent implements OnInit {
     })
     this.activatedRoute.params.subscribe(params => {
       this.vueloService.getVuelo(params['id']).subscribe(value => {
+        this.logging=false;
         this.char=(value.tipoVueloResponse?.nombre=="CHARTER")?true:false;
         this.firstFormGroup.setValue({
           id: value.id,
@@ -98,6 +101,8 @@ export class EditarvueloComponent implements OnInit {
           observacion: value.observacion,
           salaEspera: value.salaEspera
         })
+      },error => {
+        this.logging=false;
       })
     })
   }

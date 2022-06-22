@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactoComponent implements OnInit {
 
+  logging:boolean=true
   constructor() { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.logging=false;
+    }, 1000)
   }
 
 }

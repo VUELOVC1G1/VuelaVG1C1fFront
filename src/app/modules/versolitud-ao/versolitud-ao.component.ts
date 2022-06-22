@@ -15,6 +15,7 @@ import {UsuariocharterService} from "../../service/usuariocharter.service";
 })
 export class VersolitudAoComponent implements OnInit {
 
+  logging:boolean=true
   usuario:Usuariocharter[]=[];
 
   displayedColumns: string[] = ['ruta', 'fecha', 'estado', 'eliminar', 'continuar'];
@@ -41,9 +42,12 @@ export class VersolitudAoComponent implements OnInit {
 
   listarSolicides() {
     this.solicitudService.getSolicitudAll().subscribe(value => {
+      this.logging=false;
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    },error => {
+      this.logging=false;
     })
   }
 

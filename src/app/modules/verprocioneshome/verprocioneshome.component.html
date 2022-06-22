@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="logging==false">
   <mat-card style="width: 90%; margin: 1% auto; text-align: center; font-size: 25px">PROMOCIONES, ¡NO ES ESPERES Y COMPRA TU BOLETO AHORA!</mat-card>
   <mat-card style="width: 90%; margin: 1% auto; text-align: center; background-color: transparent">
     <div *ngFor="let promocion of promociones">
@@ -20,4 +20,8 @@
       </mat-card>
     </div>
   </mat-card>
+</div>
+<div *ngIf="logging">
+  <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
 </div>

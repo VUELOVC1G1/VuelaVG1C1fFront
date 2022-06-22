@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quienes.component.css']
 })
 export class QuienesComponent implements OnInit {
-
+  logging:boolean=true
   constructor() { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.logging=false;
+    }, 1000)
   }
 
 }

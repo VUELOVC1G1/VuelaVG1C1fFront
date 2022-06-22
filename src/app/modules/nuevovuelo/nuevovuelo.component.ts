@@ -20,7 +20,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./nuevovuelo.component.css']
 })
 export class NuevovueloComponent implements OnInit {
-
+  logging:boolean=true
   aviones:Avion[]=[];
   rutas:Rutas[]=[];
   horarios:Horario[]=[];
@@ -68,8 +68,11 @@ export class NuevovueloComponent implements OnInit {
       this.horarios=value;
     })
     this.tiposdevueloService.gettiposdevuelosAll().subscribe(value => {
+      this.logging=false;
       this.tiposvuelos=value;
       this.vueloC=this.tiposvuelos.filter(value1 => value1.nombre=="CHARTER")[0]
+    },error => {
+      this.logging=false;
     })
     this.usuariocharterService.getCharterAll().subscribe(value => {
       this.charter=value;

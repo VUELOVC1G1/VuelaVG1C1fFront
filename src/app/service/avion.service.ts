@@ -9,7 +9,7 @@ import {Avion} from "../models/avion";
 })
 export class AvionService {
 
-  private urlEndPoint:string='https://vuelo-v.herokuapp.com/api/v1/aviones';
+  private urlEndPoint:string='https://vuelav-api.herokuapp.com/api/v1/aviones';
 
   constructor(private http:HttpClient) { }
 

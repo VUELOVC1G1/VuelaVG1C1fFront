@@ -15,6 +15,7 @@ import {PasajeroService} from "../../service/pasajero.service";
 })
 export class IniciarsesionComponent implements OnInit {
   hide = true;
+  logging:boolean=true
   public rol?:String="ND";
 
   constructor(private usuarioService:UsuarioService,
@@ -25,6 +26,9 @@ export class IniciarsesionComponent implements OnInit {
               private pasajeroService:PasajeroService) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.logging=false;
+    }, 1000)
   }
 
   profileFormUsuario = new FormGroup({

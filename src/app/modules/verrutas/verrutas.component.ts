@@ -15,6 +15,7 @@ import {Rutas} from "../../models/rutas";
 })
 export class VerrutasComponent implements OnInit {
 
+  logging:boolean=true
   displayedColumns: string[] = ['origen', 'destino', 'descripcion','eliminar','editar'];
 
   // @ts-ignore
@@ -34,9 +35,12 @@ export class VerrutasComponent implements OnInit {
 
   listarRutas(){
     this.rutasService.getRutasAll().subscribe(value => {
+      this.logging=false;
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    },error => {
+      this.logging=false;
     })
   }
 

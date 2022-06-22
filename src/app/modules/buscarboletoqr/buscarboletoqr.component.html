@@ -1,0 +1,35 @@
+<div *ngIf="logging==false">
+  <div *ngIf="boleto.id!=null">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>DATOS DEL PASAJERO</mat-card-title>
+        <mat-card-subtitle>PASAJERO</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <h2>DATOS PERSONALES:</h2>
+        <h3>Cédula: {{boleto.pasajero.cedula}}</h3>
+        <h3>Nombres: {{boleto.pasajero.nombre}} {{boleto.pasajero.apellido}}</h3>
+        <h3>Correo: {{boleto.pasajero.usuario.email}}</h3>
+        <h3>Edad: {{CalculateAge(boleto.pasajero.fechaNacimiento)}}</h3>
+        <h2>DATOS DE BOLETO:</h2>
+        <h3>Id: {{boleto.id}}</h3>
+        <div *ngFor="let a of boleto.asientos">
+          <h3>Asiento: {{a.nombre}}</h3>
+          <h3>Asiento tipo: {{a.tipoAsiento.nombre}}</h3>
+        </div>
+        <h3>Vuelo: {{boleto.vuelo.id}}</h3>
+        <h3>Ruta: {{boleto.vuelo.rutaResponse.origen}}-{{boleto.vuelo.rutaResponse.destino}}</h3>
+        <h3>Fecha de vuelo: {{boleto.vuelo.fechaVuelo | date:'medium'}}</h3>
+        <h3>Sala de espera: {{boleto.vuelo.salaEspera}}</h3>
+        <h3 *ngIf="boleto.vuelo.estado==true">Activo</h3><h3 *ngIf="boleto.vuelo.estado==false">No Activo</h3>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div *ngIf="boleto.id==null">
+    <mat-card>BOLETO NO EXISTE</mat-card>
+  </div>
+</div>
+<div *ngIf="logging">
+  <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
+</div>

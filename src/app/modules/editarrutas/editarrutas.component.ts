@@ -14,6 +14,7 @@ export class EditarrutasComponent implements OnInit {
   filteredOptions?: Observable<string[]>;
   filteredOptions1?: Observable<string[]>;
 
+  logging:boolean=true
   firstFormGroup = new FormGroup({
     id: new FormControl(''),
     origen: new FormControl('', [Validators.required]),
@@ -37,8 +38,11 @@ export class EditarrutasComponent implements OnInit {
     );
     this.activatedRoute.params.subscribe(params => {
       this.rutasService.getRutas(params['id']).subscribe(value => {
+        this.logging=false;
         this.firstFormGroup.setValue(value);
         console.log(value)
+      },error => {
+        this.logging=false;
       })
     })
   }

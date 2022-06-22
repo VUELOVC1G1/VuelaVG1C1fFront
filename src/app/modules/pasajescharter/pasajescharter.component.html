@@ -1,46 +1,142 @@
-<div>
+<div *ngIf="logging==false">
   <mat-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-card class="example-card">
+      <mat-card class="example-card">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Registrar pasajero</ng-template>
           <mat-card-header>
-            <mat-card-title>REGISTRO DE PASAJEROS</mat-card-title>
-            <mat-card-subtitle>PASAJEROS</mat-card-subtitle>
+            <mat-card-title>REGISTRARSE</mat-card-title>
+            <mat-card-subtitle>Pasajero</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <div class="card1">
-              <div class="cardflex">s</div>
-              <div class="cardflex">s</div>
-              <div class="cardflex">s</div>
-            </div>
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Cédula</mat-label>
+              <input matInput formControlName="cedula">
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="nombre">
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Apellido</mat-label>
+              <input matInput formControlName="apellido">
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Correo</mat-label>
+              <input matInput formControlName="correo">
+            </mat-form-field>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button matStepperNext>Siguente</button>
+            <button mat-flat-button color="accent" matStepperNext>Siguente</button>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="SELECCION DE ASIENTOS">
+      <form [formGroup]="secondFormGroup">
+        <mat-card>
+          <mat-card-title>SELECCION DEL ASIENTO</mat-card-title>
+          <mat-card-subtitle>Asientos</mat-card-subtitle>
+          <div id="contenedor">
+            <div id="izquierda">
+              <div style="width: 100%; margin: 0 auto">
+                <strong>CLASE PREMIUM</strong>
+                <mat-grid-list cols="2" rowHeight="2:1">
+                  <div *ngFor="let asiento of asientos;let indice=index">
+                    <mat-grid-tile class="clase1" *ngIf="asiento.tipoAsiento?.nombre=='CLASE PREMIUM'">
+                      <button class="clase1" mat-flat-button
+                              (click)="estadoAsineto(asiento)">{{indice + 1}}</button>
+                    </mat-grid-tile>
+                  </div>
+                </mat-grid-list>
+                <mat-divider inset></mat-divider>
+                <strong>CLASE BUSISTES</strong>
+                <mat-grid-list cols="3" rowHeight="1:1">
+                  <div *ngFor="let asiento of asientos;let indice=index">
+                    <mat-grid-tile class="clase2" *ngIf="asiento.tipoAsiento?.nombre=='CLASE BUSINESS'">
+                      <button class="clase2" mat-flat-button (click)="estadoAsineto(asiento)">{{indice}}</button>
+                    </mat-grid-tile>
+                  </div>
+                </mat-grid-list>
+                <mat-divider inset></mat-divider>
+                <strong>CLASE ECONIMICA</strong>
+                <mat-grid-list cols="4" rowHeight="2:1">
+                  <div *ngFor="let asiento of asientos;let indice=index">
+                    <mat-grid-tile class="clase3" *ngIf="asiento.tipoAsiento?.nombre=='CLASE ECONOMICA'">
+                      <button class="clase3" mat-flat-button (click)="estadoAsineto(asiento)">{{indice}}</button>
+                    </mat-grid-tile>
+                  </div>
+                </mat-grid-list>
+              </div>
+            </div>
+            <div id="derecha">
+              <div *ngIf="cargo">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              </div>
+              <div *ngIf="secondFormGroup.getRawValue().estado">
+                <h3 style="margin-left: 5%">MAS INFORMACIÓN DE ASIENTO</h3>
+                <h3 style="margin-left: 5%">NOMBRE: {{secondFormGroup.getRawValue().nombre}}</h3>
+              </div>
+              <div *ngIf="!secondFormGroup.getRawValue().estado" style="margin-left: 5%; color: red">
+                <h4>
+                  <mat-icon>close</mat-icon>
+                  {{secondFormGroup.getRawValue().nombre}} YA ESTA RESERVADO
+                </h4>
+              </div>
+              <div *ngIf="secondFormGroup.getRawValue().estado" style="margin-left: 5%; color: #0e8c0c">
+                <h4>
+                  <mat-icon>check_circle_outline</mat-icon>
+                  DISPONIBLE
+                </h4>
+              </div>
+            </div>
+
+          </div>
+          <mat-card-actions>
+            <button mat-flat-button color="warn" matStepperPrevious>Atras</button>
+            <button mat-flat-button color="accent" matStepperNext style="margin-left: 2px">Siguente</button>
           </mat-card-actions>
         </mat-card>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-      <form [formGroup]="secondFormGroup">
-        <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
+    <mat-step [stepControl]="thisrFormGroup">
+      <form [formGroup]="thisrFormGroup">
+        <ng-template matStepLabel>CHECK IN</ng-template>
+        <mat-card>
+          <mat-card-title>INGRESO DE MALETAS</mat-card-title>
+          <mat-card-subtitle>Maletas</mat-card-subtitle>
+          <div id="contenedor1">
+            <div id="izquierda1">
+              <button mat-mini-fab color="primary" (click)="onAddRow()" *ngIf="thisrFormGroup.get('rows')">
+                <mat-icon>add_circle</mat-icon>
+              </button>
+            </div>
+            <div id="derecha1">
+              <mat-card *ngFor="let row of thisrFormGroup.get('rows')?.controls;let index = index;" style="width: 100%">
+                MALETA {{index+1}}| |
+                PESO:
+                <mat-form-field appearance="outline" style="width: 60%">
+                  <mat-label>Kilos</mat-label>
+                  <input matInput type="number" placeholder="Ex. 12" min="1" (keyup)="sumar(index)" (change)="sumar(index)"[formControl]="row.get('peso')">
+                  <span matSuffix>K</span>
+                </mat-form-field>
+                <span class="example-spacer"></span>
+                <button mat-mini-fab color="warn" style="margin-left: 10px" (click)="onRemoveRow(index)">
+                  <mat-icon>delete_sweep</mat-icon>
+                </button>
+              </mat-card>
+            </div>
+          </div>
+          <mat-card-actions>
+            <button mat-flat-button color="warn" matStepperPrevious>Atras</button>
+            <button mat-flat-button color="accent" style="margin-left: 2px" (click)="gurdarvuelo()" [disabled]="thisrFormGroup.invalid">FINALIZAR</button>
+          </mat-card-actions>
+        </mat-card>
       </form>
     </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
-    </mat-step>
   </mat-stepper>
+</div>
+<div *ngIf="logging">
+  <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
 </div>

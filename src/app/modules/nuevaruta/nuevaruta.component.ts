@@ -14,6 +14,7 @@ import {Empleado} from "../../models/empleado";
 })
 export class NuevarutaComponent implements OnInit {
 
+  logging:boolean=true
   filteredOptions?: Observable<string[]>;
   filteredOptions1?: Observable<string[]>;
 
@@ -35,6 +36,9 @@ export class NuevarutaComponent implements OnInit {
       startWith(''),
       map(value => this._filter1(value || '')),
     );
+    setTimeout(() => {
+      this.logging=false;
+    }, 1000)
   }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();

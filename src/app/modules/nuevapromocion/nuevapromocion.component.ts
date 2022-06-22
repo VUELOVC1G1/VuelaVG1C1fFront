@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
 })
 export class NuevapromocionComponent implements OnInit {
 
+  logging:boolean=true
   vuelos:Vuelo[]=[];
 
   constructor(private promocionService:PromocionService,
@@ -29,8 +30,11 @@ export class NuevapromocionComponent implements OnInit {
 
   ngOnInit(): void {
     this.vueloService.getVueloAll().subscribe(value => {
+      this.logging=false;
       console.log(value.filter(value1 => value1.estado==true&&value1.tipoVueloResponse?.nombre=="COMERCIAL"))
       this.vuelos=value.filter(value1 => value1.estado==true&&value1.tipoVueloResponse?.nombre=="COMERCIAL")
+    },error => {
+      this.logging=false;
     })
   }
 

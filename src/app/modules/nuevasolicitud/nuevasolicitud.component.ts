@@ -12,7 +12,7 @@ import {Solicitud} from "../../models/solicitud";
   styleUrls: ['./nuevasolicitud.component.css']
 })
 export class NuevasolicitudComponent implements OnInit {
-
+  logging:boolean=true
   constructor(private solicitudService:SolicitudService,
               private _snackBar: MatSnackBar,
               private router :Router) { }
@@ -23,7 +23,9 @@ export class NuevasolicitudComponent implements OnInit {
   });
 
   ngOnInit(): void {
-
+    setTimeout(() => {
+      this.logging=false;
+    }, 1000)
   }
 
 

@@ -16,6 +16,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class VerhoariosComponent implements OnInit {
 
+  logging:boolean=true
   displayedColumns: string[] = ['fechaInicio', 'fechaFin','eliminar','editar'];
 
   // @ts-ignore
@@ -37,9 +38,12 @@ export class VerhoariosComponent implements OnInit {
 
   listarHoriarios(){
     this.horarioService.getHorariosAll().subscribe(value => {
+      this.logging=false;
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    },error => {
+      this.logging=false;
     })
   }
   applyFilter(event: Event) {

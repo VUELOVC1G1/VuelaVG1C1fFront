@@ -8,7 +8,7 @@ import {Usuario} from "../models/usuario";
 })
 export class UsuarioService {
 
-  private urlEndPoint:string='https://vuelo-v.herokuapp.com/api/v1/auth';
+  private urlEndPoint:string='https://vuelav-api.herokuapp.com/api/v1/auth';
 
   constructor(private http:HttpClient) { }
 

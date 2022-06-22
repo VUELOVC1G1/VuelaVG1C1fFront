@@ -9,16 +9,20 @@ import {Promocion} from "../../models/promocion";
 })
 export class VerprocioneshomeComponent implements OnInit {
 
+  logging:boolean=true
   promociones:Promocion[]=[];
 
   constructor(private promocionService:PromocionService) { }
 
   ngOnInit(): void {
     this.promocionService.getPromocionAll().subscribe(value => {
+      this.logging=false;
       // @ts-ignore
       console.log(value.filter(value1 => new Date(value1.vuelo.fechaVuelo)>new Date()))
       // @ts-ignore
-      this.promociones=value.filter(value1 => new Date(value1.vuelo.fechaVuelo)>new Date())
+      this.promociones=value.filter(value1 => value1.vuelo?.estado==true)
+    },error => {
+      this.logging=false;
     })
   }
 

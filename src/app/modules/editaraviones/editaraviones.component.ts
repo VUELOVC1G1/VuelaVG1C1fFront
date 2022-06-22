@@ -14,7 +14,7 @@ import {Asientos, Avion} from "../../models/avion";
 })
 export class EditaravionesComponent implements OnInit {
 
-
+  logging:boolean=true
   primera?: Number;
   segunda?: Number;
   tercera?: Number;
@@ -28,6 +28,7 @@ export class EditaravionesComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.avionService.getAvionAll().subscribe(value => {
+        this.logging=false;
         this.asientos= value.filter(value1 => value1.id==params['id'])[0].asientos;
         console.log(this.asientos?.length)
         // @ts-ignore
@@ -45,6 +46,8 @@ export class EditaravionesComponent implements OnInit {
           estado:value.filter(value1 => value1.id==params['id'])[0].estado,
           wifi:value.filter(value1 => value1.id==params['id'])[0].wifi,
         })
+      },error => {
+        this.logging=false;
       })
     })
   }

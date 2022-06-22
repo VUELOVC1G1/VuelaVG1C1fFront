@@ -10,7 +10,7 @@ import {Rutas} from "../models/rutas";
 })
 export class VueloService {
 
-  private urlEndPoint:string='https://vuelo-v.herokuapp.com/api/v1/vuelos';
+  private urlEndPoint:string='https://vuelav-api.herokuapp.com/api/v1/vuelos';
 
   constructor(private http:HttpClient) { }
 

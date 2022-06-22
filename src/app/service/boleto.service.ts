@@ -9,7 +9,7 @@ import {Boleto} from "../models/boleto";
 })
 export class BoletoService {
 
-  private urlEndPoint:string='https://vuelo-v.herokuapp.com/api/v1/boletos';
+  private urlEndPoint:string='https://vuelav-api.herokuapp.com/api/v1/boletos';
 
   constructor(private http:HttpClient) { }
 
@@ -19,6 +19,10 @@ export class BoletoService {
 
   getBoletoAll(id?: Number ):Observable<Boleto[]>{
     return this.http.get(this.urlEndPoint+"/pasajero/"+id).pipe(map(Response => Response as Boleto[]))
+  }
+
+  getAll():Observable<Boleto[]>{
+    return this.http.get(this.urlEndPoint).pipe(map(Response => Response as Boleto[]))
   }
 
   postBoleto(request:Boleto):Observable<Boleto>{

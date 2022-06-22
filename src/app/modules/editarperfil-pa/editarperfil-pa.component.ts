@@ -15,7 +15,7 @@ import {Pasajero} from "../../models/pasajero";
   styleUrls: ['./editarperfil-pa.component.css']
 })
 export class EditarperfilPaComponent implements OnInit {
-
+  logging:boolean=true
   constructor(private activatedRoute: ActivatedRoute,
               private pasajeroService:PasajeroService,
               private cargoService:CargoService,
@@ -25,6 +25,7 @@ export class EditarperfilPaComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.pasajeroService.getPasajero(params['id']).subscribe(value => {
+        this.logging=false;
         this.profileFormUsuario.setValue({
           id:value.id,
           cedula: value.cedula,
@@ -34,6 +35,8 @@ export class EditarperfilPaComponent implements OnInit {
           correo: value.usuario?.email,
           password: value.usuario?.password,
         })
+      },error => {
+        this.logging=false;
       })
     })
   }

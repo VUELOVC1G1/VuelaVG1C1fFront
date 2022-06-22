@@ -16,6 +16,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class VersolicitudChaComponent implements OnInit {
 
+  logging:boolean=true
   displayedColumns: string[] = ['ruta', 'fecha', 'estado','eliminar','continuar'];
 
   // @ts-ignore
@@ -38,10 +39,13 @@ export class VersolicitudChaComponent implements OnInit {
 
   listarSolicides(id:Number){
     this.solicitudService.getSolicitudAll().subscribe(value => {
+      this.logging=false;
       console.log(value)
       this.dataSource = new MatTableDataSource(value.filter(value1 => value1.charterId==id));
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    },error => {
+      this.logging=false;
     })
   }
 

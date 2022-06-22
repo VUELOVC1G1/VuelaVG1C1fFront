@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="logging==false">
   <mat-stepper [linear]="isLinear" #stepper class="example-card">
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
@@ -106,4 +106,9 @@
   </mat-stepper>
 
 </div>
+<div *ngIf="logging">
+  <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
+</div>
+
 

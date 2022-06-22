@@ -14,7 +14,7 @@ import {ManifiestoService} from "../../service/manifiesto.service";
 })
 export class ManifiestoComponent implements OnInit {
 
-
+  logging:boolean=true
   id?:Number;
   constructor(private activatedRoute: ActivatedRoute,
               private rutasService:RutasService,
@@ -33,6 +33,9 @@ export class ManifiestoComponent implements OnInit {
       this.id=params['id']
       this.usuariocharterService.getCharterAll().subscribe(value => {
         this.documento.charterRequest=value.filter(value1 => value1.id==params['id'])[0]
+        this.logging=false;
+      },error => {
+        this.logging=false;
       })
     })
   }
@@ -50,6 +53,7 @@ export class ManifiestoComponent implements OnInit {
       this._snackBar.open("Manifiesto enviada correctamente", "", {
         duration: 1 * 2000,
       });
+      this.router.navigate(['/inicio/vermanifiesto-cha',this.id])
     }, error => {
       this._snackBar.open(error.error.message, "", {
         duration: 1 * 2000,

@@ -13,7 +13,7 @@ import {Usuariocharter} from "../../models/usuariocharter";
   styleUrls: ['./editarperfil-cha.component.css']
 })
 export class EditarperfilChaComponent implements OnInit {
-
+  logging:boolean=true
   constructor(private usuariocharterService: UsuariocharterService,
               private _snackBar: MatSnackBar,
               private activatedRoute: ActivatedRoute,
@@ -33,6 +33,7 @@ export class EditarperfilChaComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.usuariocharterService.getCharter(params['id']).subscribe(value => {
+        this.logging=false;
         this.profileFormUsuario.setValue({
           id: value.id,
           ruc: value.ruc,
@@ -40,6 +41,8 @@ export class EditarperfilChaComponent implements OnInit {
           correo: value.usuario?.email,
           password: value.usuario?.password,
         })
+      },error => {
+        this.logging=false;
       })
     })
   }

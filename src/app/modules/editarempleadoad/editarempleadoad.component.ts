@@ -15,7 +15,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class EditarempleadoadComponent implements OnInit {
 
-
+  logging:boolean=true
   cargos:Cargo[]=[];
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -27,6 +27,7 @@ export class EditarempleadoadComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.empleadoService.getEmpleado(params['id']).subscribe(value => {
+        this.logging=false;
         console.log(value.cargoDto)
         this.profileFormUsuario.setValue({
           id:value.id,
@@ -38,6 +39,8 @@ export class EditarempleadoadComponent implements OnInit {
           correo: value.usuario?.email,
           password: value.usuario?.password,
         })
+      },error => {
+        this.logging=false;
       })
       this.cargoService.getcargoAll().subscribe(value => {
         this.cargos=value;

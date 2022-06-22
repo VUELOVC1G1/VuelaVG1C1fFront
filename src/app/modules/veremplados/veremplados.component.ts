@@ -13,6 +13,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class VerempladosComponent implements OnInit {
 
+  logging:boolean=true
 
   displayedColumns: string[] = ['cedula', 'nombre', 'apellido','nombrec','eliminar','editar'];
 
@@ -34,9 +35,12 @@ export class VerempladosComponent implements OnInit {
 
   listarHoarios(){
     this.empleadoService.getEmpleadoAll().subscribe(value => {
+      this.logging=false;
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    },error => {
+      this.logging=false;
     })
   }
 

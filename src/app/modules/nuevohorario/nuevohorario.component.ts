@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 })
 export class NuevohorarioComponent implements OnInit {
 
+  logging:boolean=true
 
   firstFormGroup = new FormGroup({
     fechaInicio: new FormControl('', [Validators.required]),
@@ -22,7 +23,9 @@ export class NuevohorarioComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit(): void {
-
+    setTimeout(() => {
+      this.logging=false;
+    }, 1000)
   }
 
 

@@ -48,6 +48,12 @@ import { ManifiestoComponent } from './modules/manifiesto/manifiesto.component';
 import { VermanifiestoChaComponent } from './modules/vermanifiesto-cha/vermanifiesto-cha.component';
 import { VermanifiestoJaComponent } from './modules/vermanifiesto-ja/vermanifiesto-ja.component';
 import { PasajescharterComponent } from './modules/pasajescharter/pasajescharter.component';
+import { VervueloscharterComponent } from './modules/vervueloscharter/vervueloscharter.component';
+import { VervueloscharterChaComponent } from './modules/vervueloscharter-cha/vervueloscharter-cha.component';
+import { VerboletosAtComponent } from './modules/verboletos-at/verboletos-at.component';
+import { BuscarboletoqrComponent } from './modules/buscarboletoqr/buscarboletoqr.component';
+import { ReportefacturasComponent } from './modules/reportefacturas/reportefacturas.component';
+import { ReportervueloComponent } from './modules/reportervuelo/reportervuelo.component';
 
 
 const routes: Routes = [
@@ -84,7 +90,13 @@ const routes: Routes = [
   { path: 'inicio/nuevomanifiesto/:id', component: ManifiestoComponent},
   { path: 'inicio/vermanifiesto-cha/:id', component: VermanifiestoChaComponent},
   { path: 'inicio/vermanifiesto-at', component: VermanifiestoJaComponent},
-  { path: 'inicio/pasajeroscharter', component: PasajescharterComponent},
+  { path: 'inicio/pasajeroscharter/:id', component: PasajescharterComponent},
+  { path: 'inicio/vervueloscharter', component: VervueloscharterComponent},
+  { path: 'inicio/vervueloscharter-cha/:id', component: VervueloscharterChaComponent},
+  { path: 'inicio/verboletos-at', component: VerboletosAtComponent},
+  { path: 'inicio/buscarboleto/:id', component: BuscarboletoqrComponent},
+  { path: 'inicio/reportesfactura', component: ReportefacturasComponent},
+  { path: 'inicio/reportesvuelo', component: ReportervueloComponent},
   //HOME
   { path: 'inicio/promociones', component: VerprocioneshomeComponent},
   { path: 'inicio/vuelos', component: VuelohomeComponent},
@@ -138,6 +150,12 @@ const routes: Routes = [
     VermanifiestoChaComponent,
     VermanifiestoJaComponent,
     PasajescharterComponent,
+    VervueloscharterComponent,
+    VervueloscharterChaComponent,
+    VerboletosAtComponent,
+    BuscarboletoqrComponent,
+    ReportefacturasComponent,
+    ReportervueloComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,70 +1,78 @@
-<div class="cuerpo">
-  <section id="quienes">
-    <div class="container">
-      <div class="img-containerTres"></div>
-      <div class="texto">
-        <h2>Misión</h2>
-        <p>
-          Colaborar para mejorar el servicio Aeroe Nacional e Internacional y
-          asu vez la calidad de viajes de los ciudadanos, ofertando servicios de
-          excelencia con el cliente como centro de nuestra atención, y
-          profesionales altamente calificados brindando servicios de Vuelos con
-          eficacia, eficiencia y calidez para mejorar la calidad de viaje con
-          capacidad y conocimiento de nuestro personal , asistencial y
-          administrativo.
-        </p>
-        <h2>Visión</h2>
-        <p>
-          Ser Líderes en el sector del trasnporte Aereo a nivel regional con
-          posicionamiento nacional e internacional.
-        </p>
-        <h2>Valores</h2>
-        <p>
-          Ética Institucional.<br />
-          Respeto a la vida, integridad del ser humano y a los derechos de los
-          Clientes.<br />
-          Liderazgo integrador con innovación.<br />
-          Honestidad y Transparencia en su gestión.<br />
-          Trabajo en equipo con responsabilidad y solidaridad.<br />
-        </p>
+<div *ngIf="logging==false">
+  <div class="cuerpo">
+    <section id="quienes">
+      <div class="container">
+        <div class="img-containerTres"></div>
+        <div class="texto">
+          <h2>Misión</h2>
+          <p>
+            Colaborar para mejorar el servicio Aeroe Nacional e Internacional y
+            asu vez la calidad de viajes de los ciudadanos, ofertando servicios de
+            excelencia con el cliente como centro de nuestra atención, y
+            profesionales altamente calificados brindando servicios de Vuelos con
+            eficacia, eficiencia y calidez para mejorar la calidad de viaje con
+            capacidad y conocimiento de nuestro personal , asistencial y
+            administrativo.
+          </p>
+          <h2>Visión</h2>
+          <p>
+            Ser Líderes en el sector del trasnporte Aereo a nivel regional con
+            posicionamiento nacional e internacional.
+          </p>
+          <h2>Valores</h2>
+          <p>
+            Ética Institucional.<br />
+            Respeto a la vida, integridad del ser humano y a los derechos de los
+            Clientes.<br />
+            Liderazgo integrador con innovación.<br />
+            Honestidad y Transparencia en su gestión.<br />
+            Trabajo en equipo con responsabilidad y solidaridad.<br />
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="quienes">
-    <div class="container">
-      <div class="texto">
-        <h2>Sobre Vuela V</h2>
-        <p>
-          Vuela V es la empresa de viajes líder en Latinoamérica. Desde hace 2
-          años revoluciona la industria del turismo a través de la tecnología,
-          y, con su continua apuesta al desarrollo del sector, hoy forma un
-          Grupo consolidado que integra a Best Day, Viajes Falabella y Koin,
-          convirtiéndose en una de las Compañías más relevantes de la región y
-          capaz de ofrecer una experiencia personalizada a más de 29 millones de
-          clientes.
-        </p>
+    <section id="quienes">
+      <div class="container">
+        <div class="texto">
+          <h2>Sobre Vuela V</h2>
+          <p>
+            Vuela V es la empresa de viajes líder en Latinoamérica. Desde hace 2
+            años revoluciona la industria del turismo a través de la tecnología,
+            y, con su continua apuesta al desarrollo del sector, hoy forma un
+            Grupo consolidado que integra a Best Day, Viajes Falabella y Koin,
+            convirtiéndose en una de las Compañías más relevantes de la región y
+            capaz de ofrecer una experiencia personalizada a más de 29 millones de
+            clientes.
+          </p>
+        </div>
+        <div class="img-container"></div>
       </div>
-      <div class="img-container"></div>
-    </div>
-  </section>
+    </section>
 
-  <section id="quienes">
-    <div class="container">
-      <div class="img-containerDos"></div>
-      <div class="texto">
-        <h2>Beneficios</h2>
-        <p>
-          Vuela V opera en 20 países, acompañando a los latinoamericanos desde
-          el momento en que sueñan con viajar hasta cuando están compartiendo
-          recuerdos. Con el propósito de crear experiencias para que los viajes
-          enriquezcan la vida de las personas y transformar la experiencia de
-          compra, ha desarrollado métodos de pago alternativos y financiamiento,
-          democratizando el acceso al consumo y acercando a los latinoamericanos
-          a su próxima experiencia de viaje.
-        </p>
+    <section id="quienes">
+      <div class="container">
+        <div class="img-containerDos"></div>
+        <div class="texto">
+          <h2>Beneficios</h2>
+          <p>
+            Vuela V opera en 20 países, acompañando a los latinoamericanos desde
+            el momento en que sueñan con viajar hasta cuando están compartiendo
+            recuerdos. Con el propósito de crear experiencias para que los viajes
+            enriquezcan la vida de las personas y transformar la experiencia de
+            compra, ha desarrollado métodos de pago alternativos y financiamiento,
+            democratizando el acceso al consumo y acercando a los latinoamericanos
+            a su próxima experiencia de viaje.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
-  <div class="sv"></div>
+    </section>
+    <div class="sv"></div>
+  </div>
+</div>
+
+
+<div *ngIf="logging">
+  <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
 </div>

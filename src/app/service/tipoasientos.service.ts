@@ -10,7 +10,7 @@ import {TipoAsiento} from "../models/avion";
 })
 export class TipoasientosService {
 
-  private urlEndPoint:string='https://vuelo-v.herokuapp.com/api/v1/tiposasiento';
+  private urlEndPoint:string='https://vuelav-api.herokuapp.com/api/v1/tiposasiento';
 
   constructor(private http:HttpClient) { }
 

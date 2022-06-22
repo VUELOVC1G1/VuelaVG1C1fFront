@@ -12,12 +12,15 @@ import {Router} from "@angular/router";
   styleUrls: ['./nuevopasajero.component.css']
 })
 export class NuevopasajeroComponent implements OnInit {
-
+  logging:boolean=true
   constructor(private pasajeroService:PasajeroService,
               private _snackBar: MatSnackBar,
               private router:Router) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.logging=false;
+    }, 1000)
   }
 
   profileFormUsuario = new FormGroup({

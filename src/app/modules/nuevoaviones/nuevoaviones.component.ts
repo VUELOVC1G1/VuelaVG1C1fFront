@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class NuevoavionesComponent implements OnInit {
 
-
+  logging:boolean=true
   tipo?: String;
   isLinear = true;
 
@@ -25,6 +25,9 @@ export class NuevoavionesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.logging=false;
+    }, 1000)
   }
 
   firstFormGroup = new FormGroup({

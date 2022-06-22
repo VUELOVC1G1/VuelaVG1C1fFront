@@ -9,7 +9,7 @@ import {Cargo} from "../models/cargo";
 })
 export class CargoService {
 
-  private urlEndPoint:string='https://vuelo-v.herokuapp.com/api/v1/cargos';
+  private urlEndPoint:string='https://vuelav-api.herokuapp.com/api/v1/cargos';
 
   constructor(private http:HttpClient) { }
 

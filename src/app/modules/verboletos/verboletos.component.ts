@@ -25,6 +25,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class VerboletosComponent implements OnInit {
 
+  logging:boolean=true
+
   id?: Number;
 
   displayedColumns: string[] = ['asientos', 'asientos1', 'vuelo0', 'vuelo', 'vuelo1', 'eliminar', 'editar'];
@@ -54,9 +56,12 @@ export class VerboletosComponent implements OnInit {
 
   listar(id?: Number) {
     this.boletoService.getBoletoAll(id).subscribe(value => {
+      this.logging=false;
       this.dataSource = new MatTableDataSource(value.filter(value1 => value1.vuelo?.estado == true));
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    },error => {
+      this.logging=false;
     })
     this.boletoService.getBoletoAll(id).subscribe(value => {
       this.dataSource2 = new MatTableDataSource(value.filter(value1 => value1.vuelo?.estado == false));

@@ -18,6 +18,8 @@ import {BoletoService} from "../../service/boleto.service";
   styleUrls: ['./vuevotiket.component.css']
 })
 export class VuevotiketComponent implements OnInit {
+
+  logging:boolean=true
   vuelo: Vuelo = new Vuelo();
   promocion: Promocion = new Promocion();
   asientos?: Asientos[] = [];
@@ -60,18 +62,24 @@ export class VuevotiketComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
           console.log(params['id'])
           this.vueloService.getVuelo(params['id']).subscribe(value => {
+            this.logging=false;
             this.vuelo = value;
             this.avionService.getAvionAll().subscribe(value1 => {
               this.asientos = value1.filter(value2 => value2.id == value.avionResponse?.id)[0].asientos;
             })
+          },error => {
+            this.logging=false;
           })
           this.promocionService.getPromocionAll().subscribe(value => {
+            this.logging=false;
             if(value.filter(value1 => value1.vuelo?.id == params['id']).length==0){
               this.promocion= new Promocion()
             }else {
               this.promocion = value.filter(value1 => value1.vuelo?.id == params['id'])[0]
             }
 
+          },error => {
+            this.logging=false;
           })
         })
       } else {
@@ -87,6 +95,8 @@ export class VuevotiketComponent implements OnInit {
     // @ts-ignore
     this.thisrFormGroup.addControl('rows', this.rows);
   }
+
+
 
   estadoAsineto(aseinto: Asientos) {
     this.cargo = true;
@@ -155,7 +165,7 @@ export class VuevotiketComponent implements OnInit {
     this.boleto.asientos=asiento;
     this.boleto.pago=this.fourFormGroup.getRawValue();
     // @ts-ignore
-    this.boleto.pago.estado==true;
+    this.boleto.pago?.estado=true;
     console.log( this.boleto);
     this.boletoService.postBoleto(this.boleto).subscribe(value => {
       this._snackBar.open("Boleto obtenido, que tenga un buen viaje", "",{

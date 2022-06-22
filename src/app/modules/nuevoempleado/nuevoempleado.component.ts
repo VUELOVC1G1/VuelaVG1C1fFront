@@ -15,7 +15,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./nuevoempleado.component.css']
 })
 export class NuevoempleadoComponent implements OnInit {
-
+  logging:boolean=true
   cargos:Cargo[]=[];
   constructor(private cargoService:CargoService,
               private empleadoService:EmpleadoService,
@@ -25,6 +25,9 @@ export class NuevoempleadoComponent implements OnInit {
   ngOnInit(): void {
     this.cargoService.getcargoAll().subscribe(value => {
       this.cargos=value;
+      this.logging=false;
+    },error => {
+      this.logging=false;
     })
   }
 

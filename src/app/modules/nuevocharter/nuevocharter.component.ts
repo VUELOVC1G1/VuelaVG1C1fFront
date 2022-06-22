@@ -15,11 +15,15 @@ import {Router} from "@angular/router";
 })
 export class NuevocharterComponent implements OnInit {
 
+  logging:boolean=true
   constructor(private usuariocharterService:UsuariocharterService,
               private _snackBar: MatSnackBar,
               private router:Router) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.logging=false;
+    }, 1000)
   }
 
   profileFormUsuario = new FormGroup({

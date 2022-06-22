@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="logging==false">
   <mat-card class="example-card">
     <mat-card-header>
       <mat-card-title>VUEVA RUTA</mat-card-title>
@@ -45,4 +45,8 @@
       <button mat-flat-button color="accent" (click)="actualizarRutas()" [disabled]="firstFormGroup.invalid">GUARDAR</button>
     </mat-card-actions>
   </mat-card>
+</div>
+<div *ngIf="logging">
+  <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
 </div>

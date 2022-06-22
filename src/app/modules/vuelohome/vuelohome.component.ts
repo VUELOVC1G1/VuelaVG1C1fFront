@@ -11,6 +11,7 @@ import {VueloService} from "../../service/vuelo.service";
 })
 export class VuelohomeComponent implements OnInit {
 
+  logging:boolean=true
 
   vuelos: Vuelo[] = []
 
@@ -26,6 +27,9 @@ export class VuelohomeComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.logging=false;
+    }, 1000)
     this.filteredOptions = this.firstFormGroup.get("origen")!.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),

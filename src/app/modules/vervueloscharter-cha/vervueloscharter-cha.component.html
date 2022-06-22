@@ -1,0 +1,66 @@
+<div *ngIf="logging==false">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>VUELOS CHARTER</mat-card-title>
+      <mat-card-subtitle>CHARTER</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="fechaVuelo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> FECHA VUELO </th>
+            <td mat-cell *matCellDef="let row"> {{row.fechaVuelo|date:'medium'}} </td>
+          </ng-container>
+
+          <!-- Progress Column -->
+          <ng-container matColumnDef="rutaResponse">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> RUTA </th>
+            <td mat-cell *matCellDef="let row"> {{row.rutaResponse?.origen}}-{{row.rutaResponse?.destino}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="tipoVueloResponse">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </th>
+            <td mat-cell *matCellDef="let row"> {{row.ucharterResponse?.empresa}} </td>
+          </ng-container>
+          <!-- Fruit Column -->
+          <ng-container matColumnDef="avionResponse">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> RUC</th>
+            <td mat-cell *matCellDef="let row"> {{row.ucharterResponse?.ruc}} </td>
+          </ng-container>
+
+          <!-- Fruit Column -->
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> OBTENER PASES </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-flat-button color="accent" (click)="obtenerBoletos(row.id)">
+                Pass Boarding</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div *ngIf="logging">
+  <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
+</div>
+

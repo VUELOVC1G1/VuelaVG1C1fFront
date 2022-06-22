@@ -13,7 +13,7 @@ import {Avion} from "../../models/avion";
   styleUrls: ['./vervuelos.component.css']
 })
 export class VervuelosComponent implements OnInit {
-
+  logging:boolean=true
   displayedColumns: string[] = ['nombre', 'marca', 'placa','clase1','eliminar','editar'];
 
   // @ts-ignore
@@ -33,9 +33,12 @@ export class VervuelosComponent implements OnInit {
 
   listarevuelos(){
     this.avionService.getAvionAll().subscribe(value => {
+      this.logging=false;
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    },error => {
+      this.logging=false;
     })
   }
   applyFilter(event: Event) {

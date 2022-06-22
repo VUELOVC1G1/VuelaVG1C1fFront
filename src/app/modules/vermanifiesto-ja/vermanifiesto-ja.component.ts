@@ -15,10 +15,10 @@ import {ManifiestoService} from "../../service/manifiesto.service";
 })
 export class VermanifiestoJaComponent implements OnInit {
 
-
+  logging:boolean=true
   id?:Number;
 
-  displayedColumns: string[] = ['charter','charter1','documento','eliminar'];
+  displayedColumns: string[] = ['charter','charter1','documento'];
 
   // @ts-ignore
   dataSource: MatTableDataSource<Mafiniesto>;
@@ -40,9 +40,12 @@ export class VermanifiestoJaComponent implements OnInit {
 
   listarManifiesto(){
     this.manifiestoService.getManifiestoAll().subscribe(value => {
+      this.logging=false;
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    },error => {
+      this.logging=false;
     })
   }
   applyFilter(event: Event) {

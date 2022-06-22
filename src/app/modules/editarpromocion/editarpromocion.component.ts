@@ -13,6 +13,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./editarpromocion.component.css']
 })
 export class EditarpromocionComponent implements OnInit {
+
+  logging:boolean=true
   vuelos:Vuelo[]=[];
   constructor(private promocionService:PromocionService,
               private activatedRoute: ActivatedRoute,
@@ -33,12 +35,15 @@ export class EditarpromocionComponent implements OnInit {
     })
     this.activatedRoute.params.subscribe(params => {
       this.promocionService.getPromocion(params['id']).subscribe(value => {
+        this.logging=false;
         this.firstFormGroup.setValue({
           id:value.id,
           vueloid:value.vuelo?.id,
           descuento:value.descuento,
           descripcion:value.descripcion
         })
+      },error => {
+        this.logging=false;
       })
     })
   }

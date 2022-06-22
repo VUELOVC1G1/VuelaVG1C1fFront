@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="logging==false">
   <mat-card class="example-card">
     <mat-card-content>
       <h3>BUSCAR VUELOS</h3>
@@ -52,4 +52,9 @@
       </mat-card>
     </mat-card-content>
   </mat-card>
+</div>
+
+<div *ngIf="logging">
+  <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
 </div>

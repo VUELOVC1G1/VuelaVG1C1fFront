@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="logging==false">
   <mat-card class="example-card">
     <form [formGroup]="profileFormUsuario">
       <mat-card-header>
@@ -45,4 +45,8 @@
       </mat-card-actions>
     </form>
   </mat-card>
+</div>
+<div *ngIf="logging">
+  <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
 </div>

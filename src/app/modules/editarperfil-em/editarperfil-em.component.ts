@@ -13,7 +13,7 @@ import {Empleado} from "../../models/empleado";
   styleUrls: ['./editarperfil-em.component.css']
 })
 export class EditarperfilEmComponent implements OnInit {
-
+  logging:boolean=true
   constructor(private activatedRoute: ActivatedRoute,
               private empleadoService:EmpleadoService,
               private cargoService:CargoService,
@@ -23,6 +23,7 @@ export class EditarperfilEmComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.empleadoService.getEmpleado(params['id']).subscribe(value => {
+        this.logging=false;
         this.profileFormUsuario.setValue({
           id:value.id,
           cedula: value.cedula,
@@ -33,6 +34,8 @@ export class EditarperfilEmComponent implements OnInit {
           correo: value.usuario?.email,
           password: value.usuario?.password,
         })
+      },error => {
+        this.logging=false;
       })
     })
   }

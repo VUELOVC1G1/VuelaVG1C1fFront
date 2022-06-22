@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
-<body>
+<body *ngIf="logging==false">
 <mat-drawer-container class="example-container" autosize>
   <mat-toolbar color="primary">
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" color="warn" (click)="drawer.toggle()" *ngIf="emplados.id!=null">
@@ -40,7 +40,20 @@
       <button mat-menu-item [routerLink]="['/inicio/vuevasolicitud']">SOLICITAR AVION</button>
       <button mat-menu-item [routerLink]="['/inicio/versolicitud',charter?.id]">VER SOLICITUDES</button>
       <button mat-menu-item [routerLink]="['/inicio/vermanifiesto-cha',charter.id]">VER MANIFIESTOS</button>
+      <button mat-menu-item [routerLink]="['/inicio/vervueloscharter-cha',charter.id]">VER VUELOS</button>
       <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
+    </mat-menu>
+    <button *ngIf="pasajero.id!=null" mat-button [matMenuTriggerFor]="not">
+      <mat-icon matBadge="{{notificacions.length}}" matBadgeColor="warn">notifications</mat-icon>
+    </button>
+    <mat-menu #not="matMenu">
+      <div *ngFor="let notificacions of notificacions">
+        <mat-card style="margin-top: 1%">
+          Recuerde que tiene un vuelo el dia : {{notificacions.fecha | date:'medium'}}
+          al destino {{notificacions.destino}}
+          vuelo {{notificacions.vueloId}}
+        </mat-card>
+      </div>
     </mat-menu>
     <button *ngIf="pasajero.id!=null" mat-button [matMenuTriggerFor]="menu3">{{pasajero.nombre}} {{pasajero.apellido}}</button>
     <mat-menu #menu3="matMenu">
@@ -76,8 +89,8 @@
       <mat-divider></mat-divider>
       <div style="height: 9px; width: 100%; background-color:#f57c00"></div>
       <strong>REPORTES</strong><br>
-      <button mat-flat-button class="mat-boton">FACTURACIÓN</button><br>
-      <button mat-flat-button class="mat-boton">VUELOS</button>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/reportesfactura'" (click)="drawer.toggle()">FACTURACIÓN</button><br>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/reportesvuelo'" (click)="drawer.toggle()">VUELOS</button>
       <mat-divider></mat-divider>
     </div>
     <div *ngIf="emplados.cargoDto?.siglas=='JO'">
@@ -91,14 +104,13 @@
       <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/vermanifiesto-at'" (click)="drawer.toggle()">VER MANIFIESTOS</button>
       <div style="height: 9px; width: 100%; background-color:#f57c00"></div>
       <strong>Registrar pasajeros de usuario charter</strong><br>
-      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/pasajeroscharter'" (click)="drawer.toggle()">REGISTRAR</button><br>
-      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/vermanifiesto-at'" (click)="drawer.toggle()">VER MANIFIESTOS</button>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/vervueloscharter'" (click)="drawer.toggle()">REGISTRAR</button><br>
       <div style="height: 9px; width: 100%; background-color:#f57c00"></div>
     </div>
     <div *ngIf="emplados.cargoDto?.siglas=='AT'">
       <h3>JEFE DE OPEREACIONES</h3>
       <strong>VUELOS</strong><br>
-      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/nuevovuelo'" (click)="drawer.toggle()">VER BOLETOS</button><br>
+      <button mat-flat-button class="mat-boton" [routerLink]="'/inicio/verboletos-at'" (click)="drawer.toggle()">VER BOLETOS</button><br>
     </div>
   </mat-drawer>
   <div class="example-sidenav-content">
@@ -106,5 +118,9 @@
   </div>
 </mat-drawer-container>
 </body>
+<div *ngIf="logging">
+  <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
+</div>
 </html>
 

@@ -18,7 +18,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
   styleUrls: ['./vermanifiesto-cha.component.css']
 })
 export class VermanifiestoChaComponent implements OnInit {
-
+  logging:boolean=true
   id?:Number;
 
   displayedColumns: string[] = ['charter','documento','eliminar'];
@@ -46,9 +46,12 @@ export class VermanifiestoChaComponent implements OnInit {
 
   listarManifiesto(id?:Number){
     this.manifiestoService.getManifiestoAll().subscribe(value => {
+      this.logging=false;
       this.dataSource = new MatTableDataSource(value.filter(value1 => value1.charterResponse?.id==id));
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    },error => {
+      this.logging=false;
     })
   }
   applyFilter(event: Event) {

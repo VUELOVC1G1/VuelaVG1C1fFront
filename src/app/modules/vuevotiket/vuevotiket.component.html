@@ -8,7 +8,7 @@
           <mat-card-subtitle>Vuelo</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <h2><strong>Fecha de vuelo: </strong>{{vuelo.fechaVuelo}}</h2>
+          <h2><strong>Fecha de vuelo: </strong>{{vuelo.fechaVuelo | date:'medium'}}</h2>
           <h2><strong>Ruta: </strong>{{vuelo.rutaResponse?.origen}}-{{vuelo.rutaResponse?.destino}}<br></h2>
           <h2><strong>Precio: </strong>${{vuelo.precio}}<br></h2>
           <h2><strong>Avion: </strong>{{vuelo.avionResponse?.nombre}}<br></h2>

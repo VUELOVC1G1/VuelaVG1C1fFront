@@ -10,7 +10,7 @@ import {Horario} from "../models/horario";
 })
 export class HorarioService {
 
-  private urlEndPoint:string='https://vuelo-v.herokuapp.com/api/v1';
+  private urlEndPoint:string='https://vuelav-api.herokuapp.com/api/v1';
 
   constructor(private http:HttpClient) { }
 

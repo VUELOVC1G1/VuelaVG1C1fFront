@@ -10,7 +10,7 @@ import {Promocion} from "../models/promocion";
 })
 export class PromocionService {
 
-  private urlEndPoint:string='https://vuelo-v.herokuapp.com/api/v1';
+  private urlEndPoint:string='https://vuelav-api.herokuapp.com/api/v1';
 
   constructor(private http:HttpClient) { }
 

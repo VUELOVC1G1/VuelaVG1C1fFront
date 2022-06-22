@@ -15,11 +15,12 @@ import {Vuelo} from "../../models/vuelo";
 })
 export class VeravionesComponent implements OnInit {
 
+  logging:boolean=true
 
   displayedColumns: string[] = ['fechaVuelo', 'rutaResponse', 'tipoVueloResponse','avionResponse','eliminar','editar'];
 
   // @ts-ignore
-  dataSource: MatTableDataSource<Avion>;
+  dataSource: MatTableDataSource<Vuelo>;
 
   // @ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,10 +36,13 @@ export class VeravionesComponent implements OnInit {
   }
   listarevuelos(){
     this.vueloService.getVueloAll().subscribe(value => {
+      this.logging=false;
       console.log(value[0].tipoVueloRequest)
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    },error => {
+      this.logging=false;
     })
   }
 
