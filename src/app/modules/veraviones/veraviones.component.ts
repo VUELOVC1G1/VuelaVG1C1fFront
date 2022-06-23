@@ -8,6 +8,7 @@ import {AvionService} from "../../service/avion.service";
 import {VueloService} from "../../service/vuelo.service";
 import {Vuelo} from "../../models/vuelo";
 import {Title} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-veraviones',
@@ -31,11 +32,20 @@ export class VeravionesComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar,
               private vueloService:VueloService,
-              private title: Title) { }
+              private title: Title,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.title.setTitle("Ver aviones")
-   this.listarevuelos();
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+        this.listarevuelos();
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
   listarevuelos(){
     this.vueloService.getVueloAll().subscribe(value => {

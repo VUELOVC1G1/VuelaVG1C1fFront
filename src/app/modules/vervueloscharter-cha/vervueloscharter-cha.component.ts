@@ -52,9 +52,19 @@ export class VervueloscharterChaComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Ver vuelos")
-    this.activatedRoute.params.subscribe(params => {
-      this.listarevuelos(params['id'])
-    })
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "CHARTER" && JSON.parse(sessionStorage['user']).id != null) {
+
+        this.activatedRoute.params.subscribe(params => {
+          this.listarevuelos(params['id'])
+        })
+
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   listarevuelos(id: Number) {
@@ -109,7 +119,7 @@ export class VervueloscharterChaComponent implements OnInit {
           columns: [
             [
               {columns:[
-                  {image:await this.getBase64ImageFromURL('assets/icons/Vuela_v1.png'),width: 50},
+                  {image:await this.getBase64ImageFromURL('assets/icons/vuela_v1.png'),width: 50},
                   {text: 'Pass Boarding',width:350,alignment: 'center',fontSize: 20, bold: true,color:'white'},
                 ],
               },
@@ -148,7 +158,7 @@ export class VervueloscharterChaComponent implements OnInit {
               }
             ],
             {
-              qr: 'blob:http://localhost:4200/727e7dc2-73a4-4c44-a084-becae77d593e/1',fit: '160'
+              qr: 'https://vuelovc1g1.github.io/VuelaVG1C1fFront/inicio/buscarboleto/'+boleto.id,fit: '160'
             },
           ]
         },

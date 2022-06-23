@@ -13,6 +13,8 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['./nuevopasajero.component.css']
 })
 export class NuevopasajeroComponent implements OnInit {
+  date:Date=new Date();
+  hide = true;
   logging:boolean=true
   constructor(private pasajeroService:PasajeroService,
               private _snackBar: MatSnackBar,

@@ -8,6 +8,7 @@ import {RutasService} from "../../service/rutas.service";
 import {PromocionService} from "../../service/promocion.service";
 import {Promocion} from "../../models/promocion";
 import {Title} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-verpromociones',
@@ -31,11 +32,23 @@ export class VerpromocionesComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar,
               private promocionService:PromocionService,
-              private title: Title) { }
+              private title: Title,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.title.setTitle("Ver Promociones")
-    this.listarPromociones();
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+
+        this.listarPromociones();
+
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
+
   }
 
   listarPromociones(){

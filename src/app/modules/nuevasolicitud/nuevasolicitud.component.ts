@@ -25,10 +25,18 @@ export class NuevasolicitudComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.title.setTitle("Nuevo Solicitud")
-    setTimeout(() => {
-      this.logging=false;
-    }, 1000)
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "CHARTER" && JSON.parse(sessionStorage['user']).id != null) {
+        this.title.setTitle("Nuevo Solicitud")
+        setTimeout(() => {
+          this.logging=false;
+        }, 1000)
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
 

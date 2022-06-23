@@ -29,14 +29,22 @@ export class EditarhorarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Editar Horario")
-    this.activatedRoute.params.subscribe(params => {
-      this.horarioService.getHorarios(params['id']).subscribe(value => {
-        this.firstFormGroup.setValue(value);
-        this.logging=false;
-      },error => {
-        this.logging=false;
-      })
-    })
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+        this.activatedRoute.params.subscribe(params => {
+          this.horarioService.getHorarios(params['id']).subscribe(value => {
+            this.firstFormGroup.setValue(value);
+            this.logging=false;
+          },error => {
+            this.logging=false;
+          })
+        })
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   actualizarHorario(){

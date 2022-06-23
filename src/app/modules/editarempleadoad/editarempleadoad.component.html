@@ -27,7 +27,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline" style="width: 100%">
           <mat-label>Fecha de nacimiento</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento">
+          <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" [max]="date" >
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -35,9 +35,12 @@
           <mat-label>Correo</mat-label>
           <input matInput formControlName="correo" readonly="true">
         </mat-form-field>
-        <mat-form-field appearance="outline" style="width: 100%">
+        <mat-form-field appearance="outline"  style="width: 100%">
           <mat-label>Contraseña</mat-label>
-          <input matInput formControlName="password">
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>

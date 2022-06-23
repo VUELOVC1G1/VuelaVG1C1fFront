@@ -5,7 +5,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {HorarioService} from "../../service/horario.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Mafiniesto} from "../../models/mafiniesto";
 import {ManifiestoService} from "../../service/manifiesto.service";
 import {Boleto} from "../../models/boleto";
@@ -36,15 +36,26 @@ export class VermanifiestoChaComponent implements OnInit {
               private horarioService:HorarioService,
               private activatedRoute: ActivatedRoute,
               private manifiestoService:ManifiestoService,
-              private title: Title) { }
+              private title: Title,
+              private router:Router) { }
 
 
   ngOnInit(): void {
     this.title.setTitle("Ver Manifiesto")
-    this.activatedRoute.params.subscribe(params => {
-      this.id=params['id']
-      this.listarManifiesto(params['id'])
-    })
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "CHARTER" && JSON.parse(sessionStorage['user']).id != null) {
+
+        this.activatedRoute.params.subscribe(params => {
+          this.id=params['id']
+          this.listarManifiesto(params['id'])
+        })
+
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   listarManifiesto(id?:Number){

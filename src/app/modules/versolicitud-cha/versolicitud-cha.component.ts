@@ -7,7 +7,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {RutasService} from "../../service/rutas.service";
 import {Solicitud} from "../../models/solicitud";
 import {SolicitudService} from "../../service/solicitud.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 
 @Component({
@@ -31,13 +31,24 @@ export class VersolicitudChaComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar,
               private solicitudService:SolicitudService,
               private activatedRoute: ActivatedRoute,
-              private title: Title) { }
+              private title: Title,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.title.setTitle("Ver solicitud")
-    this.activatedRoute.params.subscribe(params => {
-      this.listarSolicides(params['id']);
-    })
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "CHARTER" && JSON.parse(sessionStorage['user']).id != null) {
+
+        this.activatedRoute.params.subscribe(params => {
+          this.listarSolicides(params['id']);
+        })
+
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   listarSolicides(id:Number){

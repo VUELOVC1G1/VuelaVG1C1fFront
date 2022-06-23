@@ -26,9 +26,17 @@ export class NuevohorarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Nuevi Horario")
-    setTimeout(() => {
-      this.logging=false;
-    }, 1000)
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+        setTimeout(() => {
+          this.logging=false;
+        }, 1000)
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
 

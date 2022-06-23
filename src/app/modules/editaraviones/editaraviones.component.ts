@@ -29,30 +29,40 @@ export class EditaravionesComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Editar Avion")
-    this.activatedRoute.params.subscribe(params => {
-      this.avionService.getAvionAll().subscribe(value => {
-        this.logging=false;
-        this.asientos= value.filter(value1 => value1.id==params['id'])[0].asientos;
-        console.log(this.asientos?.length)
-        // @ts-ignore
-        this.primera= value.filter(value1 => value1.id==params['id'])[0].asientos.filter(value1 => value1.nombre=="Asientop1")[0].precio
-        // @ts-ignore
-        this.segunda= value.filter(value1 => value1.id==params['id'])[0].asientos.filter(value1 => value1.nombre=="Asientob1")[0].precio
-        // @ts-ignore
-        this.tercera= value.filter(value1 => value1.id==params['id'])[0].asientos.filter(value1 => value1.nombre=="Asientoe1")[0].precio
-        this.firstFormGroup.setValue({
-          id:value.filter(value1 => value1.id==params['id'])[0].id,
-          nombre:value.filter(value1 => value1.id==params['id'])[0].nombre,
-          marca:value.filter(value1 => value1.id==params['id'])[0].marca,
-          modelo:value.filter(value1 => value1.id==params['id'])[0].modelo,
-          placa:value.filter(value1 => value1.id==params['id'])[0].placa,
-          estado:value.filter(value1 => value1.id==params['id'])[0].estado,
-          wifi:value.filter(value1 => value1.id==params['id'])[0].wifi,
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+        this.activatedRoute.params.subscribe(params => {
+          this.avionService.getAvionAll().subscribe(value => {
+            this.logging=false;
+            this.asientos= value.filter(value1 => value1.id==params['id'])[0].asientos;
+            console.log(this.asientos?.length)
+            // @ts-ignore
+            this.primera= value.filter(value1 => value1.id==params['id'])[0].asientos.filter(value1 => value1.nombre=="Asientop1")[0].precio
+            // @ts-ignore
+            this.segunda= value.filter(value1 => value1.id==params['id'])[0].asientos.filter(value1 => value1.nombre=="Asientob1")[0].precio
+            // @ts-ignore
+            this.tercera= value.filter(value1 => value1.id==params['id'])[0].asientos.filter(value1 => value1.nombre=="Asientoe1")[0].precio
+            this.firstFormGroup.setValue({
+              id:value.filter(value1 => value1.id==params['id'])[0].id,
+              nombre:value.filter(value1 => value1.id==params['id'])[0].nombre,
+              marca:value.filter(value1 => value1.id==params['id'])[0].marca,
+              modelo:value.filter(value1 => value1.id==params['id'])[0].modelo,
+              placa:value.filter(value1 => value1.id==params['id'])[0].placa,
+              estado:value.filter(value1 => value1.id==params['id'])[0].estado,
+              wifi:value.filter(value1 => value1.id==params['id'])[0].wifi,
+            })
+          },error => {
+            this.logging=false;
+          })
         })
-      },error => {
-        this.logging=false;
-      })
-    })
+
+
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   firstFormGroup = new FormGroup({

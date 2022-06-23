@@ -7,7 +7,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {HorarioService} from "../../service/horario.service";
 import {BoletoService} from "../../service/boleto.service";
 import {Boleto} from "../../models/boleto";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 // @ts-ignore
 import pdfMake from 'pdfmake/build/pdfmake';
 // @ts-ignore
@@ -46,15 +46,25 @@ export class VerboletosComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar,
               private activatedRoute: ActivatedRoute,
               private boletoService: BoletoService,
-              private title: Title) {
+              private title: Title,
+              private router:Router) {
   }
 
   ngOnInit(): void {
     this.title.setTitle("Ver Boletos")
-    this.activatedRoute.params.subscribe(params => {
-      this.listar(params['id'])
-      this.id = params['id'];
-    })
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "PASAJERO" && JSON.parse(sessionStorage['user']).id != null) {
+        this.activatedRoute.params.subscribe(params => {
+          this.listar(params['id'])
+          this.id = params['id'];
+        })
+
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   listar(id?: Number) {

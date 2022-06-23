@@ -67,47 +67,55 @@ export class EditarvueloComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Editar Vuelo")
-    this.avionService.getAvionAll().subscribe(value => {
-      this.aviones=value.filter(value1 => value1.estado==true);
-    })
-    this.rutasService.getRutasAll().subscribe(value => {
-      this.rutas=value;
-    })
-    this.hoariosService.getHorariosAll().subscribe(value => {
-      this.horarios=value;
-    })
-    this.tiposdevueloService.gettiposdevuelosAll().subscribe(value => {
-      this.tiposvuelos=value;
-      this.vueloC=this.tiposvuelos.filter(value1 => value1.nombre=="CHARTER")[0]
-    })
-    this.usuariocharterService.getCharterAll().subscribe(value => {
-      this.charter=value;
-    })
-    this.activatedRoute.params.subscribe(params => {
-      this.vueloService.getVuelo(params['id']).subscribe(value => {
-        this.logging=false;
-        this.char=(value.tipoVueloResponse?.nombre=="CHARTER")?true:false;
-        this.firstFormGroup.setValue({
-          id: value.id,
-          avionid: value.avionResponse?.id,
-          tipoVueloRequest: value.tipoVueloResponse,
-          ucharterResponse: value.ucharterResponse,
-          fechaVuelo:value.fechaVuelo,
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+        this.avionService.getAvionAll().subscribe(value => {
+          this.aviones=value.filter(value1 => value1.estado==true);
         })
-        this.secondFormGroup.setValue({
-          rutaRequest: value.rutaResponse,
-          horarioRequest: value.horarioResponse,
-          precio: value.precio
+        this.rutasService.getRutasAll().subscribe(value => {
+          this.rutas=value;
         })
-        this.thirtFormGroup.setValue({
-          estado: value.estado,
-          observacion: value.observacion,
-          salaEspera: value.salaEspera
+        this.hoariosService.getHorariosAll().subscribe(value => {
+          this.horarios=value;
         })
-      },error => {
-        this.logging=false;
-      })
-    })
+        this.tiposdevueloService.gettiposdevuelosAll().subscribe(value => {
+          this.tiposvuelos=value;
+          this.vueloC=this.tiposvuelos.filter(value1 => value1.nombre=="CHARTER")[0]
+        })
+        this.usuariocharterService.getCharterAll().subscribe(value => {
+          this.charter=value;
+        })
+        this.activatedRoute.params.subscribe(params => {
+          this.vueloService.getVuelo(params['id']).subscribe(value => {
+            this.logging=false;
+            this.char=(value.tipoVueloResponse?.nombre=="CHARTER")?true:false;
+            this.firstFormGroup.setValue({
+              id: value.id,
+              avionid: value.avionResponse?.id,
+              tipoVueloRequest: value.tipoVueloResponse,
+              ucharterResponse: value.ucharterResponse,
+              fechaVuelo:value.fechaVuelo,
+            })
+            this.secondFormGroup.setValue({
+              rutaRequest: value.rutaResponse,
+              horarioRequest: value.horarioResponse,
+              precio: value.precio
+            })
+            this.thirtFormGroup.setValue({
+              estado: value.estado,
+              observacion: value.observacion,
+              salaEspera: value.salaEspera
+            })
+          },error => {
+            this.logging=false;
+          })
+        })
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   public objectComparisonFunction = function( cargoDto:Cargo, value: { id: Number | undefined; } ) : boolean {

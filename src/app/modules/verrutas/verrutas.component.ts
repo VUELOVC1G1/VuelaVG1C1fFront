@@ -8,6 +8,7 @@ import {AvionService} from "../../service/avion.service";
 import {RutasService} from "../../service/rutas.service";
 import {Rutas} from "../../models/rutas";
 import {Title} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-verrutas',
@@ -29,11 +30,23 @@ export class VerrutasComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar,
               private rutasService:RutasService,
-              private title: Title) { }
+              private title: Title,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.title.setTitle("Ver Rutas")
-    this.listarRutas()
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+
+        this.listarRutas()
+
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
+
   }
 
   listarRutas(){

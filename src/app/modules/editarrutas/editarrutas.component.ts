@@ -31,23 +31,31 @@ export class EditarrutasComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Editar Rutas")
-    this.filteredOptions = this.firstFormGroup.get("origen")!.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
-    this.filteredOptions1 = this.firstFormGroup.get("destino")!.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter1(value || '')),
-    );
-    this.activatedRoute.params.subscribe(params => {
-      this.rutasService.getRutas(params['id']).subscribe(value => {
-        this.logging=false;
-        this.firstFormGroup.setValue(value);
-        console.log(value)
-      },error => {
-        this.logging=false;
-      })
-    })
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+        this.filteredOptions = this.firstFormGroup.get("origen")!.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filter(value || '')),
+        );
+        this.filteredOptions1 = this.firstFormGroup.get("destino")!.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filter1(value || '')),
+        );
+        this.activatedRoute.params.subscribe(params => {
+          this.rutasService.getRutas(params['id']).subscribe(value => {
+            this.logging=false;
+            this.firstFormGroup.setValue(value);
+            console.log(value)
+          },error => {
+            this.logging=false;
+          })
+        })
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   private _filter(value: string): string[] {

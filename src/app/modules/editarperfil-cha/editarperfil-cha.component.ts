@@ -14,6 +14,9 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['./editarperfil-cha.component.css']
 })
 export class EditarperfilChaComponent implements OnInit {
+
+  date:Date=new Date();
+
   logging:boolean=true
   constructor(private usuariocharterService: UsuariocharterService,
               private _snackBar: MatSnackBar,
@@ -34,20 +37,28 @@ export class EditarperfilChaComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Editar Perfil")
-    this.activatedRoute.params.subscribe(params => {
-      this.usuariocharterService.getCharter(params['id']).subscribe(value => {
-        this.logging=false;
-        this.profileFormUsuario.setValue({
-          id: value.id,
-          ruc: value.ruc,
-          empresa:value.empresa,
-          correo: value.usuario?.email,
-          password: value.usuario?.password,
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "CHARTER" && JSON.parse(sessionStorage['user']).id != null) {
+        this.activatedRoute.params.subscribe(params => {
+          this.usuariocharterService.getCharter(params['id']).subscribe(value => {
+            this.logging=false;
+            this.profileFormUsuario.setValue({
+              id: value.id,
+              ruc: value.ruc,
+              empresa:value.empresa,
+              correo: value.usuario?.email,
+              password: value.usuario?.password,
+            })
+          },error => {
+            this.logging=false;
+          })
         })
-      },error => {
-        this.logging=false;
-      })
-    })
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   guardarCharter(){

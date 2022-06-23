@@ -66,30 +66,39 @@ export class PasajescharterComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Pasajero Charter")
-    this.activatedRoute.params.subscribe(params => {
-      console.log(params['id'])
-      this.vueloService.getVuelo(params['id']).subscribe(value => {
-        this.logging=false;
-        this.vuelo = value;
-        this.avionService.getAvionAll().subscribe(value1 => {
-          this.asientos = value1.filter(value2 => value2.id == value.avionResponse?.id)[0].asientos;
-        })
-      },error => {
-        this.logging=false;
-      })
-      this.promocionService.getPromocionAll().subscribe(value => {
-        if(value.filter(value1 => value1.vuelo?.id == params['id']).length==0){
-          this.promocion= new Promocion()
-        }else {
-          this.promocion = value.filter(value1 => value1.vuelo?.id == params['id'])[0]
-        }
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+        this.activatedRoute.params.subscribe(params => {
+          console.log(params['id'])
+          this.vueloService.getVuelo(params['id']).subscribe(value => {
+            this.logging=false;
+            this.vuelo = value;
+            this.avionService.getAvionAll().subscribe(value1 => {
+              this.asientos = value1.filter(value2 => value2.id == value.avionResponse?.id)[0].asientos;
+            })
+          },error => {
+            this.logging=false;
+          })
+          this.promocionService.getPromocionAll().subscribe(value => {
+            if(value.filter(value1 => value1.vuelo?.id == params['id']).length==0){
+              this.promocion= new Promocion()
+            }else {
+              this.promocion = value.filter(value1 => value1.vuelo?.id == params['id'])[0]
+            }
 
-      })
-    })
-    // @ts-ignore
-    this.thisrFormGroup.get("items_value")?.setValue("yes");
-    // @ts-ignore
-    this.thisrFormGroup.addControl('rows', this.rows);
+          })
+        })
+        // @ts-ignore
+        this.thisrFormGroup.get("items_value")?.setValue("yes");
+        // @ts-ignore
+        this.thisrFormGroup.addControl('rows', this.rows);
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
+
   }
 
   estadoAsineto(aseinto: Asientos) {

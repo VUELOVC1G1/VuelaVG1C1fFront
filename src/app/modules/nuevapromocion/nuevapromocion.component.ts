@@ -32,13 +32,21 @@ export class NuevapromocionComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Nuevo Promoción")
-    this.vueloService.getVueloAll().subscribe(value => {
-      this.logging=false;
-      console.log(value.filter(value1 => value1.estado==true&&value1.tipoVueloResponse?.nombre=="COMERCIAL"))
-      this.vuelos=value.filter(value1 => value1.estado==true&&value1.tipoVueloResponse?.nombre=="COMERCIAL")
-    },error => {
-      this.logging=false;
-    })
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+        this.vueloService.getVueloAll().subscribe(value => {
+          this.logging=false;
+          console.log(value.filter(value1 => value1.estado==true&&value1.tipoVueloResponse?.nombre=="COMERCIAL"))
+          this.vuelos=value.filter(value1 => value1.estado==true&&value1.tipoVueloResponse?.nombre=="COMERCIAL")
+        },error => {
+          this.logging=false;
+        })
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   guardarPromocion(){

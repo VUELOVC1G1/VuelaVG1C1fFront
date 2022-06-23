@@ -32,15 +32,23 @@ export class ManifiestoComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Manifiesto")
-    this.activatedRoute.params.subscribe(params => {
-      this.id=params['id']
-      this.usuariocharterService.getCharterAll().subscribe(value => {
-        this.documento.charterRequest=value.filter(value1 => value1.id==params['id'])[0]
-        this.logging=false;
-      },error => {
-        this.logging=false;
-      })
-    })
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "CHARTER" && JSON.parse(sessionStorage['user']).id != null) {
+        this.activatedRoute.params.subscribe(params => {
+          this.id=params['id']
+          this.usuariocharterService.getCharterAll().subscribe(value => {
+            this.documento.charterRequest=value.filter(value1 => value1.id==params['id'])[0]
+            this.logging=false;
+          },error => {
+            this.logging=false;
+          })
+        })
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
 

@@ -8,6 +8,7 @@ import {SolicitudService} from "../../service/solicitud.service";
 import {Usuariocharter} from "../../models/usuariocharter";
 import {UsuariocharterService} from "../../service/usuariocharter.service";
 import {Title} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-versolitud-ao',
@@ -32,15 +33,24 @@ export class VersolitudAoComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar,
               private solicitudService: SolicitudService,
               private usuariocharterService:UsuariocharterService,
-              private title: Title) {
+              private title: Title,
+              private router:Router) {
   }
 
   ngOnInit(): void {
     this.title.setTitle("Ver Solicitud")
-    this.listarSolicides();
-    this.usuariocharterService.getCharterAll().subscribe(value => {
-      this.usuario=value;
-    })
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+        this.listarSolicides();
+        this.usuariocharterService.getCharterAll().subscribe(value => {
+          this.usuario=value;
+        })
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   listarSolicides() {

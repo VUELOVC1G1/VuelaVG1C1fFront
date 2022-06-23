@@ -4,7 +4,7 @@ import {Boleto} from "../../models/boleto";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BoletoService} from "../../service/boleto.service";
 import {DatePipe} from "@angular/common";
 // @ts-ignore
@@ -41,12 +41,24 @@ export class VerboletosAtComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar,
               private activatedRoute: ActivatedRoute,
               private boletoService: BoletoService,
-              private title: Title) {
+              private title: Title,
+              private router:Router) {
   }
 
   ngOnInit(): void {
     this.title.setTitle("Ver Boletos")
-    this.listar("")
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+
+        this.listar("")
+
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
+
   }
 
   listar(cedula:String) {

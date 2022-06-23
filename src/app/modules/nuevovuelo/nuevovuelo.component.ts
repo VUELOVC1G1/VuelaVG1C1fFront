@@ -61,25 +61,33 @@ export class NuevovueloComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Nuevi Vuelo")
-    this.avionService.getAvionAll().subscribe(value => {
-      this.aviones=value.filter(value1 => value1.estado==true);
-    })
-    this.rutasService.getRutasAll().subscribe(value => {
-      this.rutas=value;
-    })
-    this.hoariosService.getHorariosAll().subscribe(value => {
-      this.horarios=value;
-    })
-    this.tiposdevueloService.gettiposdevuelosAll().subscribe(value => {
-      this.logging=false;
-      this.tiposvuelos=value;
-      this.vueloC=this.tiposvuelos.filter(value1 => value1.nombre=="CHARTER")[0]
-    },error => {
-      this.logging=false;
-    })
-    this.usuariocharterService.getCharterAll().subscribe(value => {
-      this.charter=value;
-    })
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+        this.avionService.getAvionAll().subscribe(value => {
+          this.aviones=value.filter(value1 => value1.estado==true);
+        })
+        this.rutasService.getRutasAll().subscribe(value => {
+          this.rutas=value;
+        })
+        this.hoariosService.getHorariosAll().subscribe(value => {
+          this.horarios=value;
+        })
+        this.tiposdevueloService.gettiposdevuelosAll().subscribe(value => {
+          this.logging=false;
+          this.tiposvuelos=value;
+          this.vueloC=this.tiposvuelos.filter(value1 => value1.nombre=="CHARTER")[0]
+        },error => {
+          this.logging=false;
+        })
+        this.usuariocharterService.getCharterAll().subscribe(value => {
+          this.charter=value;
+        })
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
 

@@ -6,6 +6,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Empleado} from "../../models/empleado";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Title} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-veremplados',
@@ -28,11 +29,23 @@ export class VerempladosComponent implements OnInit {
 
   constructor(private empleadoService:EmpleadoService,
               private _snackBar: MatSnackBar,
-              private title: Title) { }
+              private title: Title,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.title.setTitle("Ver Empleados")
-    this.listarHoarios();
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+
+        this.listarHoarios();
+
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
+
   }
 
   listarHoarios(){

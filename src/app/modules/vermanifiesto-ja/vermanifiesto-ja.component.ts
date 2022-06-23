@@ -5,7 +5,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {HorarioService} from "../../service/horario.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ManifiestoService} from "../../service/manifiesto.service";
 import {Title} from "@angular/platform-browser";
 
@@ -33,12 +33,24 @@ export class VermanifiestoJaComponent implements OnInit {
               private horarioService:HorarioService,
               private activatedRoute: ActivatedRoute,
               private manifiestoService:ManifiestoService,
-              private title: Title) { }
+              private title: Title,
+              private router:Router) { }
 
 
   ngOnInit(): void {
     this.title.setTitle("Ver Manifiesto")
-      this.listarManifiesto()
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+
+
+        this.listarManifiesto()
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
+
   }
 
   listarManifiesto(){

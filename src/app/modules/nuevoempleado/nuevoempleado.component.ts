@@ -16,6 +16,8 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['./nuevoempleado.component.css']
 })
 export class NuevoempleadoComponent implements OnInit {
+  date:Date=new Date();
+  hide = true;
   logging:boolean=true
   cargos:Cargo[]=[];
   constructor(private cargoService:CargoService,
@@ -26,12 +28,20 @@ export class NuevoempleadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("Nuevo Empleado")
-    this.cargoService.getcargoAll().subscribe(value => {
-      this.cargos=value;
-      this.logging=false;
-    },error => {
-      this.logging=false;
-    })
+    try {
+      if (JSON.parse(sessionStorage['user']).usuario?.rol == "EMPLEADO" && JSON.parse(sessionStorage['user']).id != null) {
+        this.cargoService.getcargoAll().subscribe(value => {
+          this.cargos=value;
+          this.logging=false;
+        },error => {
+          this.logging=false;
+        })
+      }else {
+        this.router.navigate(['/inicio/home'])
+      }
+    }catch (e){
+      this.router.navigate(['/inicio/home'])
+    }
   }
 
   profileFormUsuario = new FormGroup({
