@@ -16,6 +16,7 @@ import {Title} from "@angular/platform-browser";
 })
 export class NuevocharterComponent implements OnInit {
 
+  hide = true;
   logging:boolean=true
   constructor(private usuariocharterService:UsuariocharterService,
               private _snackBar: MatSnackBar,
