@@ -5,6 +5,10 @@ import {ReportesFac} from "../../models/reportes";
 import {DatePipe} from "@angular/common";
 import {Title} from "@angular/platform-browser";
 import {Router} from "@angular/router";
+// @ts-ignore
+import pdfMake from 'pdfmake/build/pdfmake';
+// @ts-ignore
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 @Component({
   selector: 'app-reportefacturas',
@@ -66,6 +70,85 @@ export class ReportefacturasComponent implements OnInit {
       }
     }catch (e){
       this.router.navigate(['/inicio/home'])
+    }
+  }
+
+  async createPdf() {
+    var pipe: DatePipe = new DatePipe('en-US')
+    var dia: String = new Date().toISOString();
+    this.reportesService.getReporteFac().subscribe(async value => {
+      const pdfDefinition: any = {
+        content: [
+          {image: await this.getBase64ImageFromURL('assets/icons/vuela_v1.png'), width: 50},
+          {
+            text: '_________________________________________________________________________________________',
+            alignment: 'center'
+          },
+          // @ts-ignore
+          {text: pipe.transform(dia, 'MMMM d, y'), alignment: 'right'},
+          {text: 'REPORTE DE FACTURA', fontSize: 15, bold: true, alignment: 'center'},
+          {text: 'Total de ingresos por mes', fontSize: 15, margin: [0, 0, 20, 0]},
+          {text: '    '},
+          {text: 'La aereolinea Vuela V lleva un ingreso de por mes de:'},
+          {text: '    '},
+          {
+            table: {
+              headerRows: 1,
+              widths: ['50%','50%'],
+              body: [
+                ['Mes', 'Total de ingresos'],
+                [  value.map(function(item){
+                  return pipe.transform(item.fecha, 'MMMM, y')
+                }),
+                  value.map(function(item){
+                    return "$"+item.total+''
+                  })
+                ],
+
+              ]
+            }
+          }
+        ],
+      }
+      const pdf = pdfMake.createPdf(pdfDefinition);
+      pdf.open();
+    })
+  }
+
+  getBase64ImageFromURL(url: any) {
+    return new Promise((resolve, reject) => {
+      var img = new Image();
+      img.setAttribute("crossOrigin", "anonymous");
+
+      img.onload = () => {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        var ctx = canvas.getContext("2d");
+        // @ts-ignore
+        ctx.drawImage(img, 0, 0);
+
+        var dataURL = canvas.toDataURL("image/png");
+
+        resolve(dataURL);
+      };
+
+      img.onerror = error => {
+        reject(error);
+      };
+
+      img.src = url;
+    });
+  }
+
+  CalculateAge(fecha?: Date): number {
+    if (fecha != null) {
+      const convertAge = new Date(fecha);
+      const timeDiff = Math.abs(Date.now() - convertAge.getTime());
+      return Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
+    } else {
+      return 0;
     }
   }
 

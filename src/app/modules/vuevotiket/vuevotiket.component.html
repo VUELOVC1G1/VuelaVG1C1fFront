@@ -39,7 +39,7 @@
                   </div>
                 </mat-grid-list>
                 <mat-divider inset></mat-divider>
-                <strong>CLASE BUSISTES</strong>
+                <strong>CLASE BUSINESS</strong>
                 <mat-grid-list cols="3" rowHeight="1:1">
                   <div *ngFor="let asiento of asientos;let indice=index">
                     <mat-grid-tile class="clase2" *ngIf="asiento.tipoAsiento?.nombre=='CLASE BUSINESS'">
@@ -48,7 +48,7 @@
                   </div>
                 </mat-grid-list>
                 <mat-divider inset></mat-divider>
-                <strong>CLASE ECONIMICA</strong>
+                <strong>CLASE ECONOMICA</strong>
                 <mat-grid-list cols="4" rowHeight="2:1">
                   <div *ngFor="let asiento of asientos;let indice=index">
                     <mat-grid-tile class="clase3" *ngIf="asiento.tipoAsiento?.nombre=='CLASE ECONOMICA'">

@@ -1,6 +1,5 @@
 # VuelaVG1C1fFront
 
-# HealthyPlus
 
 Este proyecto fue realizado con [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.
 
